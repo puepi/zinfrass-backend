@@ -21,4 +21,6 @@ public class Categorie {
 
     @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TypeEquipement> typeEquipements=new HashSet<>();
+
+
 }

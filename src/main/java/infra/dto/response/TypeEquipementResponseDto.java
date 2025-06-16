@@ -14,6 +14,7 @@ import java.util.List;
 public class TypeEquipementResponseDto {
     private Long id;
     private String nom;
+    private String abreviation;
     private String caracteristiques;
     private String categorieNom;
     private List<String> nrosLot;

@@ -14,5 +14,6 @@ import java.util.List;
 public class TypeEquipementRequestDto {
     private String nom;
     private String caracteristiques;
+    private String abreviation;
     private Long categoryId;
 }

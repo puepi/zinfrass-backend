@@ -27,8 +27,8 @@ public class CategoryController {
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addCategorie(@RequestBody CategorieRequestDto request){
         try {
-            CategorieResponseDto categorie=categoryService.addCategorie(request);
-            return ResponseEntity.ok(new ApiResponse("Succes",categorie));
+            CategorieResponseDto response=categoryService.addCategorie(request);
+            return ResponseEntity.ok(new ApiResponse("Success",response));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Failure",null));
         }
