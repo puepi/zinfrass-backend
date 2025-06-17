@@ -28,8 +28,11 @@ public class TypeEquipementService implements ITypeEquipementService{
         typeEquipement.setCaracteristiques(dto.getCaracteristiques());
         if(dto.getCategoryId()==null)
             throw new ResourceNotFoundException("Equipement should have a category");
+
         Categorie categorie=categoryService.getCategory(dto.getCategoryId());
+//        System.out.println("categorie = " + "la catégorie");
         typeEquipement.setCategorie(categorie);
+
         return Mapper.typeEquipementToTypeEquipementResponseDto(typeEquipementRepository.save(typeEquipement));
     }
 

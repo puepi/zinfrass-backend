@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Data
 @NoArgsConstructor
 public class TypeEquipement {
 

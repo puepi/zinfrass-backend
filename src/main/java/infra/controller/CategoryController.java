@@ -3,14 +3,12 @@ package infra.controller;
 import infra.api_response.ApiResponse;
 import infra.dto.request.CategorieRequestDto;
 import infra.dto.response.CategorieResponseDto;
+import infra.exception.ResourceNotFoundException;
 import infra.model.Categorie;
 import infra.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -30,6 +28,19 @@ public class CategoryController {
             CategorieResponseDto response=categoryService.addCategorie(request);
             return ResponseEntity.ok(new ApiResponse("Success",response));
         } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Failure",null));
+        }
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<ApiResponse> getCategorie(@PathVariable Long id){
+        try {
+            Categorie response=categoryService.getCategory(id);
+            return ResponseEntity.ok(new ApiResponse("Found",response));
+        }catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(e.getMessage(),null));
+        }
+        catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Failure",null));
         }
     }
