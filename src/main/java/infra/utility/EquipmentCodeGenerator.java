@@ -1,12 +1,12 @@
 package infra.utility;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class EquipmentCodeGenerator {
 
-    public static String generateEquipmentCode(String provider, String category, Date deliveryDate) {
+    public static String generateEquipmentCode(String provider, String category, LocalDateTime deliveryDate) {
         // Format date to YYYYMMDD
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         String dateStr = dateFormat.format(deliveryDate);

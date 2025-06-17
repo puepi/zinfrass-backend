@@ -21,5 +21,5 @@ public class LotRequestDto {
     private LocalDateTime dateLivraison;
     private String observations;
     private Long typeEquipementId;
-    private String providerName;
+    private Long providerId;
 }

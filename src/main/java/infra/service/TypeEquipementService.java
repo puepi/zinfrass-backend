@@ -32,4 +32,10 @@ public class TypeEquipementService implements ITypeEquipementService{
         typeEquipement.setCategorie(categorie);
         return Mapper.typeEquipementToTypeEquipementResponseDto(typeEquipementRepository.save(typeEquipement));
     }
+
+    @Override
+    public TypeEquipement get(Long id) {
+        TypeEquipement typeEquipement=typeEquipementRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Type d'équipement inexistant"));
+        return typeEquipement;
+    }
 }

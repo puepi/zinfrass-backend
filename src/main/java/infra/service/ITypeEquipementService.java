@@ -9,4 +9,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Service
 public interface ITypeEquipementService {
     public TypeEquipementResponseDto addTypeEquipement(@RequestBody TypeEquipementRequestDto dto);
+    public TypeEquipement get(Long id);
 }

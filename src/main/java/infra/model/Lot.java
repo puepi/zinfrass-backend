@@ -1,9 +1,7 @@
 package infra.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,7 +10,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Lot {
@@ -24,9 +23,11 @@ public class Lot {
     private String modele;
     private String couleur;
     @Column(nullable = false)
-    private int quantieStock;
+    private int quantiteStock;
     private String caracteristiques;
     private LocalDateTime dateLivraison;
+    private String nomsTechnciens;
+    private String nomsLivreurs;
     private String observations;
 
     @ManyToOne

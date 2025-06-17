@@ -2,14 +2,8 @@ package infra.dto;
 
 
 import infra.dto.request.TypeEquipementRequestDto;
-import infra.dto.response.CategorieResponseDto;
-import infra.dto.response.FournisseurResponseDto;
-import infra.dto.response.LotResponseDto;
-import infra.dto.response.TypeEquipementResponseDto;
-import infra.model.Categorie;
-import infra.model.Fournisseur;
-import infra.model.Lot;
-import infra.model.TypeEquipement;
+import infra.dto.response.*;
+import infra.model.*;
 
 import java.util.List;
 import java.util.Set;
@@ -72,7 +66,7 @@ public class Mapper {
         responseDto.setNroLot(lot.getNroLot());
         responseDto.setObservations(lot.getObservations());
         responseDto.setDateLivraison(lot.getDateLivraison());
-        responseDto.setQuantieStock(lot.getQuantieStock());
+        responseDto.setQuantieStock(lot.getQuantiteStock());
         responseDto.setProviderName(lot.getProvider().getNom());
         responseDto.setCaracteristiques(lot.getCaracteristiques());
         responseDto.setTypeEquipementName(lot.getTypeEquipement().getNom());
@@ -80,6 +74,15 @@ public class Mapper {
                 .stream()
                 .map(equipement -> equipement.getNumeroUnique())
                 .collect(Collectors.toSet());
+        return responseDto;
+    }
+
+    public static EquipementResponseDto EquipementtoEquipementResponseDto(Equipement equipement){
+        EquipementResponseDto responseDto=new EquipementResponseDto();
+        responseDto.setId(equipement.getId());
+        responseDto.setNumeroUnique(equipement.getNumeroUnique());
+        responseDto.setNumeroSerie(equipement.getNumeroSerie());
+        responseDto.setNroLot(equipement.getLot().getNroLot());
         return responseDto;
     }
 }
