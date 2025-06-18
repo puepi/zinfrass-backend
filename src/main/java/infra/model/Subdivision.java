@@ -11,8 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
 public class Subdivision {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

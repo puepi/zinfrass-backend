@@ -6,6 +6,7 @@ import infra.dto.response.SubdivisionResponseDto;
 import infra.exception.ResourceNotFoundException;
 import infra.model.Subdivision;
 import infra.repository.SubdivisionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,6 +14,7 @@ public class SubdivisionService implements ISubdivisionService {
 
     private final SubdivisionRepository subdivisionRepository;
 
+    @Autowired
     public SubdivisionService(SubdivisionRepository subdivisionRepository) {
         this.subdivisionRepository = subdivisionRepository;
     }

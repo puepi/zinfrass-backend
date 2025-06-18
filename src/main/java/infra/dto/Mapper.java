@@ -1,16 +1,12 @@
 package infra.dto;
 
 
-import infra.dto.request.SubdivisionRequestDto;
-import infra.dto.request.TypeEquipementRequestDto;
 import infra.dto.response.*;
 import infra.model.*;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import static org.aspectj.apache.bcel.Constants.types;
 
 public class Mapper {
     public static TypeEquipementResponseDto typeEquipementToTypeEquipementResponseDto(TypeEquipement typeEquipement){

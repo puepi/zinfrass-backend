@@ -8,6 +8,7 @@ import infra.exception.ResourceNotFoundException;
 import infra.repository.SubdivisionRepository;
 import infra.service.ISubdivisionService;
 import infra.service.SubdivisionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SubdivisionController {
     private final ISubdivisionService subdivisionService;
 
+    @Autowired
     public SubdivisionController(SubdivisionService service) {
         this.subdivisionService = service;
     }
