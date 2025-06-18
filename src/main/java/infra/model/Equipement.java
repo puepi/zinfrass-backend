@@ -16,6 +16,7 @@ public class Equipement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String numeroSerie;
     private String numeroUnique;
     @ManyToOne
