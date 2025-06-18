@@ -7,6 +7,7 @@ import infra.exception.ResourceNotFoundException;
 import infra.model.Categorie;
 import infra.model.TypeEquipement;
 import infra.repository.TypeEquipementRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,16 +22,17 @@ public class TypeEquipementService implements ITypeEquipementService{
         this.categoryService = categoryService;
     }
 
+    @Transactional
     @Override
     public TypeEquipementResponseDto addTypeEquipement(TypeEquipementRequestDto dto) {
         TypeEquipement  typeEquipement=new TypeEquipement();
         typeEquipement.setNom(dto.getNom());
         typeEquipement.setCaracteristiques(dto.getCaracteristiques());
+        typeEquipement.setAbreviation(dto.getAbreviation());
         if(dto.getCategoryId()==null)
             throw new ResourceNotFoundException("Equipement should have a category");
 
         Categorie categorie=categoryService.getCategory(dto.getCategoryId());
-//        System.out.println("categorie = " + "la catégorie");
         typeEquipement.setCategorie(categorie);
 
         return Mapper.typeEquipementToTypeEquipementResponseDto(typeEquipementRepository.save(typeEquipement));

@@ -18,6 +18,7 @@ public class Mapper {
         responseDto.setNom(typeEquipement.getNom());
         responseDto.setCaracteristiques(typeEquipement.getCaracteristiques());
         responseDto.setCategorieNom(typeEquipement.getCategorie().getNom());
+        responseDto.setAbreviation(typeEquipement.getAbreviation());
         List<String> lots=typeEquipement.getLots()
                 .stream()
                 .map(lot -> lot.getNroLot())

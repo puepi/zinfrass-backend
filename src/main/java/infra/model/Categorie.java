@@ -3,15 +3,17 @@ package infra.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.yaml.snakeyaml.events.Event;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
+@ToString(exclude = "typeEquipements")
 public class Categorie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
