@@ -88,6 +88,9 @@ public class Mapper {
         SubdivisionResponseDto responseDto=new SubdivisionResponseDto();
         responseDto.setId(subdivision.getId());
         responseDto.setNom(subdivision.getNom());
+        if(subdivision.getParent()!=null)
+            responseDto.setParent(subdivision.getParent().getNom());
+        responseDto.setType(String.valueOf(subdivision.getType()));
         Set<String> subdivisions=subdivision.getSubdivisions()
                 .stream()
                 .map(sub->subdivision.getParent().getNom())

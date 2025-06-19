@@ -2,13 +2,18 @@ package infra.service;
 
 import infra.dto.request.SubdivisionRequestDto;
 import infra.dto.response.SubdivisionResponseDto;
+import infra.exception.ResourceNotFoundException;
 import infra.model.Subdivision;
 
 public interface ISubdivisionService {
     SubdivisionResponseDto addSubdivision(SubdivisionRequestDto subdivisionRequestDto);
 
+    SubdivisionResponseDto addSubdivisionWithParent(SubdivisionRequestDto dto) throws ResourceNotFoundException;
+
     Subdivision getSubdivision(Long id);
 
+
+    void deleteSubdivision(Long id);
 
     SubdivisionResponseDto rattacherParent(Long id, Long idParent);
 }

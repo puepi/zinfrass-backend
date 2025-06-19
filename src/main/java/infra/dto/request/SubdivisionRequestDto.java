@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SubdivisionRequestDto {
     private String nom;
+    private String type;
     private Long parentId;
 }
