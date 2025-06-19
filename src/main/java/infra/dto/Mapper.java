@@ -93,9 +93,40 @@ public class Mapper {
         responseDto.setType(String.valueOf(subdivision.getType()));
         Set<String> subdivisions=subdivision.getSubdivisions()
                 .stream()
-                .map(sub->subdivision.getParent().getNom())
+                .map(sub->sub.getNom())
                 .collect(Collectors.toSet());
         responseDto.setSubdivisions(subdivisions);
         return responseDto;
+    }
+
+    public static List<SubdivisionResponseDto> subdivisonsToListOfSubdivisionResponseDto(List<Subdivision> subdivisions){
+        List<SubdivisionResponseDto> subdivisionsDto=subdivisions.stream()
+                .map(subdivision -> subdivisionToSubdivisionResponseDto(subdivision))
+                .toList();
+        return subdivisionsDto;
+    }
+
+    public static StructureResponseDto structureToStructureResponseDto(Structure structure){
+        StructureResponseDto responseDto=new StructureResponseDto();
+        responseDto.setId(structure.getId());
+        responseDto.setNom(structure.getNom());
+        responseDto.setAbreviation(structure.getAbreviation());
+        if(structure.getParent()!=null)
+            responseDto.setParent(structure.getParent().getNom());
+        responseDto.setType(String.valueOf(structure.getType()));
+        responseDto.setSubdivision(Mapper.subdivisionToSubdivisionResponseDto(structure.getSubdivision()));
+        Set<String> structures=structure.getStructures()
+                .stream()
+                .map(sub->sub.getNom())
+                .collect(Collectors.toSet());
+        responseDto.setStructures(structures);
+        return responseDto;
+    }
+
+    public static List<StructureResponseDto> structuresToListOfStructureResponseDto(List<Structure> structures){
+        List<StructureResponseDto> structuresDto=structures.stream()
+                .map(structure -> structureToStructureResponseDto(structure))
+                .toList();
+        return structuresDto;
     }
 }

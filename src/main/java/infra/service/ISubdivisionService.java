@@ -5,6 +5,8 @@ import infra.dto.response.SubdivisionResponseDto;
 import infra.exception.ResourceNotFoundException;
 import infra.model.Subdivision;
 
+import java.util.List;
+
 public interface ISubdivisionService {
     SubdivisionResponseDto addSubdivision(SubdivisionRequestDto subdivisionRequestDto);
 
@@ -12,6 +14,7 @@ public interface ISubdivisionService {
 
     Subdivision getSubdivision(Long id);
 
+    List<SubdivisionResponseDto> getAllSubdivisions();
 
     void deleteSubdivision(Long id);
 

@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/subdivisions")
 public class SubdivisionController {
@@ -28,7 +30,7 @@ public class SubdivisionController {
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addSubdivision(@RequestBody SubdivisionRequestDto dto){
         try {
-            SubdivisionResponseDto responseDto=subdivisionService.addSubdivision(dto);
+            SubdivisionResponseDto responseDto=subdivisionService.addSubdivisionWithParent(dto);
             return ResponseEntity.ok(new ApiResponse("Success",responseDto));
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,6 +43,16 @@ public class SubdivisionController {
         try {
             Subdivision responseDto=subdivisionService.getSubdivision(id);
             return ResponseEntity.ok(new ApiResponse("Success", Mapper.subdivisionToSubdivisionResponseDto(responseDto)));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @GetMapping("/getall")
+    public ResponseEntity<ApiResponse> getAllSubdivisions(){
+        try {
+            List<SubdivisionResponseDto> responseDto=subdivisionService.getAllSubdivisions();
+            return ResponseEntity.ok(new ApiResponse("Success", (responseDto)));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }

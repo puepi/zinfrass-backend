@@ -10,6 +10,8 @@ import infra.repository.SubdivisionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SubdivisionService implements ISubdivisionService {
 
@@ -35,12 +37,19 @@ public class SubdivisionService implements ISubdivisionService {
         subdivision.setNom(dto.getNom());
         Subdivision parent=getSubdivision(dto.getParentId());
         subdivision.setParent(parent);
+        subdivision.setType(TypeSubdivision.fromString(dto.getType()));
         return Mapper.subdivisionToSubdivisionResponseDto(subdivisionRepository.save(subdivision));
     }
 
     @Override
     public Subdivision getSubdivision(Long id){
         return subdivisionRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Subdivision inexistante"));
+    }
+
+    @Override
+    public List<SubdivisionResponseDto> getAllSubdivisions() {
+        List<Subdivision> subdivisions=subdivisionRepository.findAll();
+        return Mapper.subdivisonsToListOfSubdivisionResponseDto(subdivisions);
     }
 
     @Override

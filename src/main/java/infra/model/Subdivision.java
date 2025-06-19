@@ -18,9 +18,11 @@ import java.util.Set;
 public class Subdivision {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @EqualsAndHashCode.Include
     private Long id;
     @Column(unique = true)
+
     @EqualsAndHashCode.Include
     private String nom;
 
@@ -37,4 +39,7 @@ public class Subdivision {
     @JsonBackReference
     @JoinColumn(name = "parent_id")
     private Subdivision parent;
+
+    @OneToMany(mappedBy = "subdivision")
+    private Set<Structure> structures;
 }
