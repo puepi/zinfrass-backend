@@ -6,7 +6,9 @@ import infra.enums.TypeStructure;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -46,4 +48,7 @@ public class Structure {
     @JsonBackReference
     @JoinColumn(name = "parent_id")
     private Structure parent;
+
+    @OneToMany(mappedBy = "structure")
+    private List<Responsabilisation> occupations=new ArrayList<>();
 }

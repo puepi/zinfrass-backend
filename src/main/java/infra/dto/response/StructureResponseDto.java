@@ -25,4 +25,5 @@ public class StructureResponseDto {
     private SubdivisionResponseDto subdivision;
     private Set<String> structures=new HashSet<>();
     private String parent;
+    private Set<String> occupants=new HashSet<>();
 }

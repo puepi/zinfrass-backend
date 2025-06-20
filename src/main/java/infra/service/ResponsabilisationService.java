@@ -1,0 +1,40 @@
+package infra.service;
+
+import infra.dto.Mapper;
+import infra.dto.request.ResponsabilisationRequestDto;
+import infra.dto.response.ResponsabilisationResponseDto;
+import infra.exception.ResourceNotFoundException;
+import infra.model.Poste;
+import infra.model.Responsabilisation;
+import infra.model.ResponsabilisationId;
+import infra.model.Structure;
+import infra.repository.ResponsabilisationRepository;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ResponsabilisationService implements IResponsabilisationService {
+    private final ResponsabilisationRepository responsabilisationRepository;
+    private final StructureService structureService;
+    private final PosteService posteService;
+
+    public ResponsabilisationService(ResponsabilisationRepository responsabilisationRepository, StructureService structureService, PosteService posteService) {
+        this.responsabilisationRepository = responsabilisationRepository;
+        this.structureService = structureService;
+        this.posteService = posteService;
+    }
+
+    @Override
+    public ResponsabilisationResponseDto addResponsabilisation(ResponsabilisationRequestDto requestDto) throws ResourceNotFoundException {
+        Responsabilisation responsabilisation=new Responsabilisation();
+        Structure structure=structureService.getStructure(requestDto.getPosteId());
+        Poste poste=posteService.getPoste(requestDto.getPosteId());
+        responsabilisation.setStructure(structure);
+        responsabilisation.setPoste(poste);
+        responsabilisation.setDebut(requestDto.getDebut());
+        responsabilisation.setFin(requestDto.getFin());
+        responsabilisation.setNoms(requestDto.getNoms());
+        responsabilisation.setActif(requestDto.isActif());
+        responsabilisation.setId(new ResponsabilisationId(requestDto.getStructureId(), requestDto.getPosteId()));
+        return Mapper.responsabilisationToResponsabilisationResponseDto(responsabilisationRepository.save(responsabilisation));
+    }
+}

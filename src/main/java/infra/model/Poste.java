@@ -1,17 +1,18 @@
 package infra.model;
 
-import infra.enums.Rang;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Responsabilite {
+public class Poste {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,6 +20,8 @@ public class Responsabilite {
     private String nom;
     private String abreviation;
     @Enumerated(EnumType.STRING)
-    private Rang rang;
+    private String rang;
 
+    @OneToMany(mappedBy = "poste")
+    private List<Responsabilisation> occupations=new ArrayList<>();
 }

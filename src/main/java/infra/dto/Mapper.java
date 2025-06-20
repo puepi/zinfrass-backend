@@ -9,14 +9,14 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Mapper {
-    public static TypeEquipementResponseDto typeEquipementToTypeEquipementResponseDto(TypeEquipement typeEquipement){
-        TypeEquipementResponseDto responseDto=new TypeEquipementResponseDto();
+    public static TypeEquipementResponseDto typeEquipementToTypeEquipementResponseDto(TypeEquipement typeEquipement) {
+        TypeEquipementResponseDto responseDto = new TypeEquipementResponseDto();
         responseDto.setId(typeEquipement.getId());
         responseDto.setNom(typeEquipement.getNom());
         responseDto.setCaracteristiques(typeEquipement.getCaracteristiques());
         responseDto.setCategorieNom(typeEquipement.getCategorie().getNom());
         responseDto.setAbreviation(typeEquipement.getAbreviation());
-        List<String> lots=typeEquipement.getLots()
+        List<String> lots = typeEquipement.getLots()
                 .stream()
                 .map(lot -> lot.getNroLot())
                 .toList();
@@ -24,11 +24,11 @@ public class Mapper {
         return responseDto;
     }
 
-    public static CategorieResponseDto categorieToCategorieResponseDto(Categorie categorie){
-        CategorieResponseDto responseDto=new CategorieResponseDto();
+    public static CategorieResponseDto categorieToCategorieResponseDto(Categorie categorie) {
+        CategorieResponseDto responseDto = new CategorieResponseDto();
         responseDto.setId(categorie.getId());
         responseDto.setNom(categorie.getNom());
-        List<String> types=categorie.getTypeEquipements()
+        List<String> types = categorie.getTypeEquipements()
                 .stream()
                 .map(type -> type.getNom())
                 .toList();
@@ -36,8 +36,8 @@ public class Mapper {
         return responseDto;
     }
 
-    public static FournisseurResponseDto fournisseurToFournisseurResponseDto(Fournisseur fournisseur){
-        FournisseurResponseDto responseDto=new FournisseurResponseDto();
+    public static FournisseurResponseDto fournisseurToFournisseurResponseDto(Fournisseur fournisseur) {
+        FournisseurResponseDto responseDto = new FournisseurResponseDto();
         responseDto.setId(fournisseur.getId());
         responseDto.setNom(fournisseur.getNom());
         responseDto.setNIU(fournisseur.getNIU());
@@ -47,7 +47,7 @@ public class Mapper {
         responseDto.setRepresentant(fournisseur.getRepresentant());
         responseDto.setType(fournisseur.getType());
         responseDto.setTechniciens(fournisseur.getTechniciens());
-        Set<String> types=fournisseur.getLots()
+        Set<String> types = fournisseur.getLots()
                 .stream()
                 .map(lot -> lot.getTypeEquipement().getNom())
                 .collect(Collectors.toSet());
@@ -55,8 +55,8 @@ public class Mapper {
         return responseDto;
     }
 
-    public static LotResponseDto lotToLotResponseDto(Lot lot){
-        LotResponseDto responseDto=new LotResponseDto();
+    public static LotResponseDto lotToLotResponseDto(Lot lot) {
+        LotResponseDto responseDto = new LotResponseDto();
         responseDto.setId(lot.getId());
         responseDto.setCouleur(lot.getCouleur());
         responseDto.setMarque(lot.getMarque());
@@ -68,15 +68,15 @@ public class Mapper {
         responseDto.setProviderName(lot.getProvider().getNom());
         responseDto.setCaracteristiques(lot.getCaracteristiques());
         responseDto.setTypeEquipementName(lot.getTypeEquipement().getNom());
-        Set<String> equipements=lot.getEquipements()
+        Set<String> equipements = lot.getEquipements()
                 .stream()
                 .map(equipement -> equipement.getNumeroUnique())
                 .collect(Collectors.toSet());
         return responseDto;
     }
 
-    public static EquipementResponseDto EquipementtoEquipementResponseDto(Equipement equipement){
-        EquipementResponseDto responseDto=new EquipementResponseDto();
+    public static EquipementResponseDto EquipementtoEquipementResponseDto(Equipement equipement) {
+        EquipementResponseDto responseDto = new EquipementResponseDto();
         responseDto.setId(equipement.getId());
         responseDto.setNumeroUnique(equipement.getNumeroUnique());
         responseDto.setNumeroSerie(equipement.getNumeroSerie());
@@ -84,49 +84,77 @@ public class Mapper {
         return responseDto;
     }
 
-    public static SubdivisionResponseDto subdivisionToSubdivisionResponseDto(Subdivision subdivision){
-        SubdivisionResponseDto responseDto=new SubdivisionResponseDto();
+    public static SubdivisionResponseDto subdivisionToSubdivisionResponseDto(Subdivision subdivision) {
+        SubdivisionResponseDto responseDto = new SubdivisionResponseDto();
         responseDto.setId(subdivision.getId());
         responseDto.setNom(subdivision.getNom());
-        if(subdivision.getParent()!=null)
+        if (subdivision.getParent() != null)
             responseDto.setParent(subdivision.getParent().getNom());
         responseDto.setType(String.valueOf(subdivision.getType()));
-        Set<String> subdivisions=subdivision.getSubdivisions()
+        Set<String> subdivisions = subdivision.getSubdivisions()
                 .stream()
-                .map(sub->sub.getNom())
+                .map(sub -> sub.getNom())
                 .collect(Collectors.toSet());
         responseDto.setSubdivisions(subdivisions);
         return responseDto;
     }
 
-    public static List<SubdivisionResponseDto> subdivisonsToListOfSubdivisionResponseDto(List<Subdivision> subdivisions){
-        List<SubdivisionResponseDto> subdivisionsDto=subdivisions.stream()
+    public static List<SubdivisionResponseDto> subdivisonsToListOfSubdivisionResponseDto(List<Subdivision> subdivisions) {
+        List<SubdivisionResponseDto> subdivisionsDto = subdivisions.stream()
                 .map(subdivision -> subdivisionToSubdivisionResponseDto(subdivision))
                 .toList();
         return subdivisionsDto;
     }
 
-    public static StructureResponseDto structureToStructureResponseDto(Structure structure){
-        StructureResponseDto responseDto=new StructureResponseDto();
+    public static StructureResponseDto structureToStructureResponseDto(Structure structure) {
+        StructureResponseDto responseDto = new StructureResponseDto();
         responseDto.setId(structure.getId());
         responseDto.setNom(structure.getNom());
         responseDto.setAbreviation(structure.getAbreviation());
-        if(structure.getParent()!=null)
+        if (structure.getParent() != null)
             responseDto.setParent(structure.getParent().getNom());
         responseDto.setType(String.valueOf(structure.getType()));
         responseDto.setSubdivision(Mapper.subdivisionToSubdivisionResponseDto(structure.getSubdivision()));
-        Set<String> structures=structure.getStructures()
+        Set<String> structures = structure.getStructures()
                 .stream()
-                .map(sub->sub.getNom())
+                .map(sub -> sub.getNom())
                 .collect(Collectors.toSet());
         responseDto.setStructures(structures);
         return responseDto;
     }
 
-    public static List<StructureResponseDto> structuresToListOfStructureResponseDto(List<Structure> structures){
-        List<StructureResponseDto> structuresDto=structures.stream()
+    public static List<StructureResponseDto> structuresToListOfStructureResponseDto(List<Structure> structures) {
+        List<StructureResponseDto> structuresDto = structures.stream()
                 .map(structure -> structureToStructureResponseDto(structure))
                 .toList();
         return structuresDto;
+    }
+
+    public static PosteResponseDto posteToPosteResponseDto(Poste poste) {
+        PosteResponseDto responseDto = new PosteResponseDto();
+        responseDto.setId(poste.getId());
+        responseDto.setNom(poste.getNom());
+        responseDto.setAbreviation(poste.getAbreviation());
+        return responseDto;
+    }
+
+    public static List<PosteResponseDto> postesToListOfPosteResponseDto(List<Poste> postes) {
+        List<PosteResponseDto> posteResponseDtos = postes.stream()
+                .map(poste -> posteToPosteResponseDto(poste))
+                .toList();
+        return posteResponseDtos;
+    }
+
+    public static ResponsabilisationResponseDto responsabilisationToResponsabilisationResponseDto(Responsabilisation responsabilisation) {
+        ResponsabilisationResponseDto responseDto = new ResponsabilisationResponseDto();
+        responseDto.setId(responsabilisation.getId());
+        responseDto.setIdStructure(responseDto.getIdStructure());
+        responseDto.setIdPoste(responseDto.getIdPoste());
+        responseDto.setNomPoste(responsabilisation.getPoste().getNom());
+        responseDto.setDebut(responsabilisation.getDebut());
+        responsabilisation.setFin(responsabilisation.getFin());
+        responseDto.setNoms(responsabilisation.getNoms());
+        responseDto.setActif(responseDto.isActif());
+        return responseDto;
     }
 }
