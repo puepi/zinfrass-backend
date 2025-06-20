@@ -26,7 +26,7 @@ public class ResponsabilisationService implements IResponsabilisationService {
     @Override
     public ResponsabilisationResponseDto addResponsabilisation(ResponsabilisationRequestDto requestDto) throws ResourceNotFoundException {
         Responsabilisation responsabilisation=new Responsabilisation();
-        Structure structure=structureService.getStructure(requestDto.getPosteId());
+        Structure structure=structureService.getStructure(requestDto.getStructureId());
         Poste poste=posteService.getPoste(requestDto.getPosteId());
         responsabilisation.setStructure(structure);
         responsabilisation.setPoste(poste);
@@ -36,5 +36,9 @@ public class ResponsabilisationService implements IResponsabilisationService {
         responsabilisation.setActif(requestDto.isActif());
         responsabilisation.setId(new ResponsabilisationId(requestDto.getStructureId(), requestDto.getPosteId()));
         return Mapper.responsabilisationToResponsabilisationResponseDto(responsabilisationRepository.save(responsabilisation));
+    }
+
+    public Responsabilisation getResponsabilisation(Long id){
+        return responsabilisationRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Responsabilisation not found"));
     }
 }

@@ -19,8 +19,7 @@ public class Poste {
     @Column(nullable = false,unique = true)
     private String nom;
     private String abreviation;
-    @Enumerated(EnumType.STRING)
-    private String rang;
+
 
     @OneToMany(mappedBy = "poste")
     private List<Responsabilisation> occupations=new ArrayList<>();

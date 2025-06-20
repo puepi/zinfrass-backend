@@ -148,8 +148,9 @@ public class Mapper {
     public static ResponsabilisationResponseDto responsabilisationToResponsabilisationResponseDto(Responsabilisation responsabilisation) {
         ResponsabilisationResponseDto responseDto = new ResponsabilisationResponseDto();
         responseDto.setId(responsabilisation.getId());
-        responseDto.setIdStructure(responseDto.getIdStructure());
-        responseDto.setIdPoste(responseDto.getIdPoste());
+        responseDto.setIdStructure(responsabilisation.getStructure().getId());
+        responseDto.setIdPoste(responsabilisation.getPoste().getId());
+        responseDto.setNomStructure(responsabilisation.getStructure().getNom());
         responseDto.setNomPoste(responsabilisation.getPoste().getNom());
         responseDto.setDebut(responsabilisation.getDebut());
         responsabilisation.setFin(responsabilisation.getFin());
