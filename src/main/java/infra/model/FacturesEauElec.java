@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.time.LocalDate;
 
 @Entity
@@ -24,9 +25,11 @@ public class FacturesEauElec {
     private LocalDate debut;
     private LocalDate fin;
     private BigDecimal consommation;
+    private BigDecimal montant;
     private Long ancienIndex;
     private Long nouvelIndex;
-    private String unites;
+    private String unites="mètres cube (m3)";
+
     @ManyToOne
     @JoinColumn(name="batiment_id")
     private Batiment batiment;

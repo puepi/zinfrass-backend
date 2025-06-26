@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class PosteRequestDto {
     private String nom;
     private String abreviation;
+    private String rang;
 }

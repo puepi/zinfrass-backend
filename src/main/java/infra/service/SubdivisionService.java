@@ -47,6 +47,11 @@ public class SubdivisionService implements ISubdivisionService {
     }
 
     @Override
+    public Subdivision getSubdivisionByName(String name){
+        return subdivisionRepository.findByNomIgnoreCase(name).orElseThrow(()->new ResourceNotFoundException("Subdivision inexistante"));
+    }
+
+    @Override
     public List<SubdivisionResponseDto> getAllSubdivisions() {
         List<Subdivision> subdivisions=subdivisionRepository.findAll();
         return Mapper.subdivisonsToListOfSubdivisionResponseDto(subdivisions);

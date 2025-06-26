@@ -14,7 +14,6 @@ public class FournisseurResponseDto {
     private Long id;
     private String nom;
     private String representant;
-    private String techniciens;
     private String type;
     private String adresse;
     private String contact;

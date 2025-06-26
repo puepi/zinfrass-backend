@@ -50,7 +50,7 @@ public class StructureController {
         }
     }
 
-    @PostMapping("/get/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<ApiResponse> addStructure(@PathVariable Long id){
         try {
             Structure responseDto=service.getStructure(id);

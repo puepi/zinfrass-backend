@@ -18,6 +18,15 @@ public enum Rang {
     Rang(String label) {
         this.label = label;
     }
+
+    public static Rang fromString(String text) {
+        for (Rang type : Rang.values()) {
+            if (type.label.equalsIgnoreCase(text)) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("No enum constant for value: " + text);
+    }
     @JsonValue // Ensures correct serialization in JSON responses
     public String getLabel() {
         return label;

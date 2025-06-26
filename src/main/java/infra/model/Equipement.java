@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.yaml.snakeyaml.events.Event;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,4 +25,10 @@ public class Equipement {
     @ManyToOne
     @JoinColumn(name="lot_id")
     private Lot lot;
+
+    @OneToMany(mappedBy = "equipement",cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Octroi> octrois=new ArrayList<>();
+
+    @OneToMany(mappedBy = "equipement",fetch = FetchType.LAZY)
+    private Set<InstallationLogicielle> installations = new HashSet<>();
 }

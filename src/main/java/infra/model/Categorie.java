@@ -19,6 +19,7 @@ public class Categorie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, unique = true)
+//  exemple:Logiciel,Réseau électrique, réseau hydrolique, réseau informatique, réseau téléphonique,Matériel roulant, Mobilier de bureau,Matériel didactique
     private String nom;
 
     @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL, orphanRemoval = true)

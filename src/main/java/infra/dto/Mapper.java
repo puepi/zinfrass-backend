@@ -1,6 +1,8 @@
 package infra.dto;
 
 
+import infra.dto.request.BatimentRequestDto;
+import infra.dto.request.BatimentResponseDto;
 import infra.dto.response.*;
 import infra.model.*;
 
@@ -46,7 +48,6 @@ public class Mapper {
         responseDto.setEmail(fournisseur.getEmail());
         responseDto.setRepresentant(fournisseur.getRepresentant());
         responseDto.setType(fournisseur.getType());
-        responseDto.setTechniciens(fournisseur.getTechniciens());
         Set<String> types = fournisseur.getLots()
                 .stream()
                 .map(lot -> lot.getTypeEquipement().getNom())
@@ -120,6 +121,9 @@ public class Mapper {
                 .map(sub -> sub.getNom())
                 .collect(Collectors.toSet());
         responseDto.setStructures(structures);
+        responseDto.setOccupants(structure.getOccupations().stream().map(occupation->
+                    occupation.getPoste().getNom()
+                ).collect(Collectors.toSet()));
         return responseDto;
     }
 
@@ -134,6 +138,7 @@ public class Mapper {
         PosteResponseDto responseDto = new PosteResponseDto();
         responseDto.setId(poste.getId());
         responseDto.setNom(poste.getNom());
+        responseDto.setRang(String.valueOf(poste.getRang()));
         responseDto.setAbreviation(poste.getAbreviation());
         return responseDto;
     }
@@ -148,8 +153,6 @@ public class Mapper {
     public static ResponsabilisationResponseDto responsabilisationToResponsabilisationResponseDto(Responsabilisation responsabilisation) {
         ResponsabilisationResponseDto responseDto = new ResponsabilisationResponseDto();
         responseDto.setId(responsabilisation.getId());
-        responseDto.setIdStructure(responsabilisation.getStructure().getId());
-        responseDto.setIdPoste(responsabilisation.getPoste().getId());
         responseDto.setNomStructure(responsabilisation.getStructure().getNom());
         responseDto.setNomPoste(responsabilisation.getPoste().getNom());
         responseDto.setDebut(responsabilisation.getDebut());
@@ -158,4 +161,38 @@ public class Mapper {
         responseDto.setActif(responseDto.isActif());
         return responseDto;
     }
+
+    public static List<ResponsabilisationResponseDto> responsabilisationsToListOfResponsabilisationResponseDto(List<Responsabilisation> responsabilisations) {
+        List<ResponsabilisationResponseDto> responseDtos = responsabilisations.stream()
+                .map(responsabilisation -> responsabilisationToResponsabilisationResponseDto(responsabilisation))
+                .toList();
+        return responseDtos;
+    }
+
+    public static BatimentResponseDto batimentToBatimentResponseDto(Batiment batiment) {
+        BatimentResponseDto responseDto = new BatimentResponseDto();
+        responseDto.setId(batiment.getId());
+        responseDto.setNom(batiment.getNom());
+        responseDto.setNature(batiment.getNature());
+        responseDto.setSubdivisionName(batiment.getSubdivision().getNom());
+        return responseDto;
+    }
+
+    public static FacturesEauElecResponseDto facturestoFacturesResponse(FacturesEauElec facturesEauElec) {
+        FacturesEauElecResponseDto responseDto = new FacturesEauElecResponseDto();
+        responseDto.setId(facturesEauElec.getId());
+        responseDto.setDebut(facturesEauElec.getDebut());
+        responseDto.setFin(facturesEauElec.getFin());
+        responseDto.setConsommation(facturesEauElec.getConsommation());
+        responseDto.setBatimentName(facturesEauElec.getBatiment().getNom());
+        responseDto.setMontant(facturesEauElec.getMontant());
+        responseDto.setAncienIndex(facturesEauElec.getAncienIndex());
+        responseDto.setNouvelIndex(facturesEauElec.getNouvelIndex());
+        responseDto.setType(facturesEauElec.getType());
+        responseDto.setNumeroFacture(facturesEauElec.getNumeroFacture());
+        responseDto.setNuméroCompteur(facturesEauElec.getNuméroCompteur());
+        responseDto.setSubdivisionName(facturesEauElec.getBatiment().getSubdivision().getNom());
+        return responseDto;
+    }
+
 }

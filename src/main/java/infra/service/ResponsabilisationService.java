@@ -11,6 +11,8 @@ import infra.model.Structure;
 import infra.repository.ResponsabilisationRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResponsabilisationService implements IResponsabilisationService {
     private final ResponsabilisationRepository responsabilisationRepository;
@@ -35,10 +37,20 @@ public class ResponsabilisationService implements IResponsabilisationService {
         responsabilisation.setNoms(requestDto.getNoms());
         responsabilisation.setActif(requestDto.isActif());
         responsabilisation.setId(new ResponsabilisationId(requestDto.getStructureId(), requestDto.getPosteId()));
+//        System.out.println("respo= " + new ResponsabilisationId(requestDto.getStructureId(), requestDto.getPosteId()));
         return Mapper.responsabilisationToResponsabilisationResponseDto(responsabilisationRepository.save(responsabilisation));
     }
 
-    public Responsabilisation getResponsabilisation(Long id){
+    @Override
+    public Responsabilisation getResponsabilisation(Long structureId, Long posteId){
+        ResponsabilisationId id=new ResponsabilisationId(structureId,posteId);
         return responsabilisationRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Responsabilisation not found"));
     }
+
+    @Override
+    public List<ResponsabilisationResponseDto> getResponsabilisations(){
+        List<Responsabilisation> responseDtos=responsabilisationRepository.findAll();
+        return Mapper.responsabilisationsToListOfResponsabilisationResponseDto(responseDtos);
+    }
+
 }

@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -42,4 +43,7 @@ public class Subdivision {
 
     @OneToMany(mappedBy = "subdivision")
     private Set<Structure> structures;
+
+     @OneToMany(mappedBy = "subdivision", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Batiment> batimenst;
 }

@@ -19,4 +19,11 @@ public class Batiment {
     private String nature;
     @OneToMany(mappedBy = "batiment")
     private List<FacturesEauElec> facturesEauElec=new ArrayList<>();
+
+    @OneToMany(mappedBy = "batiment")
+    private List<Espace> espaces=new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name="subdivision_id")
+    private Subdivision subdivision;
 }

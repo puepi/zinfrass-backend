@@ -44,11 +44,17 @@ public class Structure {
     @JsonManagedReference
     private Set<Structure> structures=new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonBackReference
     @JoinColumn(name = "parent_id")
     private Structure parent;
 
-    @OneToMany(mappedBy = "structure")
+    @OneToMany(mappedBy = "structure",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Responsabilisation> occupations=new ArrayList<>();
+
+    @OneToMany(mappedBy = "structure",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Espace> espaces=new ArrayList<>();
+
+    @OneToMany(mappedBy = "structure",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Octroi> octrois=new ArrayList<>();
 }

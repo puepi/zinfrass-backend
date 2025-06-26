@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/responsabilisations")
 public class ResponsabilisationController {
@@ -33,11 +35,22 @@ public class ResponsabilisationController {
         }
     }
 
-    @PostMapping("/get/{id}")
-    public ResponseEntity<ApiResponse> addResponsabilisation(@PathVariable Long id){
+    @GetMapping("/get/{structureId}/{posteId}")
+    public ResponseEntity<ApiResponse> getResponsabilisation(@PathVariable Long structureId,@PathVariable Long posteId){
         try {
-            Responsabilisation responseDto=responsabilisationService.getResponsabilisation(id);
+            Responsabilisation responseDto=responsabilisationService.getResponsabilisation(structureId,posteId);
             return ResponseEntity.ok(new ApiResponse("Found", Mapper.responsabilisationToResponsabilisationResponseDto(responseDto)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+
+    @GetMapping("/getall")
+    public ResponseEntity<ApiResponse> getResponsabilisations(){
+        try {
+            List<ResponsabilisationResponseDto> responseDto=responsabilisationService.getResponsabilisations();
+            return ResponseEntity.ok(new ApiResponse("Found", (responseDto)));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));

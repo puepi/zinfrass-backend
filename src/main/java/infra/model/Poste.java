@@ -1,5 +1,6 @@
 package infra.model;
 
+import infra.enums.Rang;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class Poste {
     @Column(nullable = false,unique = true)
     private String nom;
     private String abreviation;
+    private Rang rang;
 
 
     @OneToMany(mappedBy = "poste")

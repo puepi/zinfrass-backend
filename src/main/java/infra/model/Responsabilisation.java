@@ -1,5 +1,6 @@
 package infra.model;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;

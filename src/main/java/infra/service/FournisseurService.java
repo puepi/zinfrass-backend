@@ -24,7 +24,6 @@ public class FournisseurService implements IFournisseurService{
         fournisseur.setNom(request.getNom());
         fournisseur.setEmail(request.getEmail());
         fournisseur.setType(request.getType());
-        fournisseur.setTechniciens(request.getTechniciens());
         fournisseur.setRepresentant(request.getRepresentant());
         return Mapper.fournisseurToFournisseurResponseDto(fournisseurRepository.save(fournisseur));
     }

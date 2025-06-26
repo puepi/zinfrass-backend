@@ -3,6 +3,7 @@ package infra.service;
 import infra.dto.Mapper;
 import infra.dto.request.PosteRequestDto;
 import infra.dto.response.PosteResponseDto;
+import infra.enums.Rang;
 import infra.exception.ResourceNotFoundException;
 import infra.model.Poste;
 import infra.repository.PosteRepository;
@@ -23,6 +24,7 @@ public class PosteService implements IPosteService {
     public PosteResponseDto addPoste(PosteRequestDto requestDto) {
         Poste poste=new Poste();
         poste.setNom(requestDto.getNom());
+        poste.setRang(Rang.fromString(requestDto.getRang()));
         poste.setAbreviation(requestDto.getAbreviation());
         return Mapper.posteToPosteResponseDto(posteRepository.save(poste));
     }

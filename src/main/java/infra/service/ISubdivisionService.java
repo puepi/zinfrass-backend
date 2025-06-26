@@ -14,6 +14,8 @@ public interface ISubdivisionService {
 
     Subdivision getSubdivision(Long id);
 
+    Subdivision getSubdivisionByName(String name);
+
     List<SubdivisionResponseDto> getAllSubdivisions();
 
     void deleteSubdivision(Long id);

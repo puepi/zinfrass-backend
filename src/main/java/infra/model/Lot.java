@@ -26,9 +26,8 @@ public class Lot {
     private int quantiteStock;
     private String caracteristiques;
     private LocalDateTime dateLivraison;
-    private String nomsTechnciens;
+    private String descriptive;
     private String nomsLivreurs;
-    private String observations;
 
     @ManyToOne
     @JoinColumn(name="type_id", nullable = false)
@@ -36,6 +35,9 @@ public class Lot {
 
     @OneToMany(mappedBy = "lot",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Equipement> equipements=new HashSet<>();
+
+    @OneToMany(mappedBy = "lot",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<Image> images=new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name="provider_id")
@@ -46,4 +48,7 @@ public class Lot {
         if(typeEquipement!=null)
             this.caracteristiques=typeEquipement.getCaracteristiques();
     }
+
+    @OneToMany(mappedBy = "lot")
+    private Set<Reception> receptions=new HashSet<>();
 }

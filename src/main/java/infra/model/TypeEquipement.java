@@ -15,10 +15,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class TypeEquipement {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+//  exemple: Unité centrale,Système d'exploitation, Pick-up,robinet, WC, fauteuil, chaise,table
     private String nom;
     @Column(nullable = false)
     private String abreviation;

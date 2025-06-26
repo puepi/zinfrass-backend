@@ -13,8 +13,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ResponsabilisationResponseDto {
     private ResponsabilisationId id;
-    private Long idStructure;
-    private Long idPoste;
     private String nomStructure;
     private String nomPoste;
     private LocalDate debut;

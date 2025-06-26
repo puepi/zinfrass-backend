@@ -16,5 +16,6 @@ public class PosteResponseDto {
     private Long id;
     private String nom;
     private String abreviation;
+    private String rang;
     private List<String> occupants=new ArrayList<>();
 }
