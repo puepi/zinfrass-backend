@@ -4,6 +4,7 @@ import infra.enums.TypeFacture;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.sql.Blob;
@@ -22,7 +23,9 @@ public class FacturesEauElec {
     private TypeFacture type;
     private String numeroFacture;
     private String numéroCompteur;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate debut;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate fin;
     private BigDecimal consommation;
     private BigDecimal montant;

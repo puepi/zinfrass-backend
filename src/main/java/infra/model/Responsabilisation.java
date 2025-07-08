@@ -1,10 +1,7 @@
 package infra.model;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +26,8 @@ public class Responsabilisation {
 
     private LocalDate debut;
     private LocalDate fin;
-    private String noms;
+    @OneToOne
+    @JoinColumn(name="personnel_id")
+    private Personnel personnel;
     private boolean actif;
 }

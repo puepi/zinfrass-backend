@@ -32,8 +32,8 @@ public class LotService implements ILotService{
         lot.setCaracteristiques(request.getCaracteristiques());
         lot.setMarque(request.getMarque());
         lot.setModele(request.getModele());
-        lot.setObservations(request.getObservations());
-        lot.setDateLivraison(request.getDateLivraison());
+//        lot.setObservations(request.getObservations());
+//        lot.setDateLivraison(request.getDateLivraison());
         lot.setQuantiteStock(request.getQuantiteStock());
         TypeEquipement typeEquipement=typeEquipementService.get(request.getTypeEquipementId());
         Fournisseur fournisseur=fournisseurRepository.findById(request.getProviderId()).orElseThrow(()->new ResourceNotFoundException("The provider name does not exist"));

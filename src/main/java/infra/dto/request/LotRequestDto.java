@@ -18,8 +18,8 @@ public class LotRequestDto {
     private String couleur;
     private int quantiteStock;
     private String caracteristiques;
-    private LocalDateTime dateLivraison;
-    private String observations;
+    private String descriptive;
+    private String nomsLivreurs;
     private Long typeEquipementId;
     private Long providerId;
 }

@@ -16,11 +16,11 @@ public class LotResponseDto {
     private String marque;
     private String modele;
     private String couleur;
-    private int quantieStock;
-    private String caracteristiques;
-    private LocalDateTime dateLivraison;
-    private String observations;
+    private int quantiteStock;
+    private String descriptive;
     private String typeEquipementName;
     private List<String> equipements;
+    private String nomsLivreurs;
     private String providerName;
+    private String caracteristiques;
 }

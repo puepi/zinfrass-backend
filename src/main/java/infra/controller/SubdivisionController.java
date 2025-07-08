@@ -5,6 +5,7 @@ import infra.api_response.ApiResponse;
 import infra.dto.Mapper;
 import infra.dto.request.SubdivisionRequestDto;
 import infra.dto.response.SubdivisionResponseDto;
+import infra.enums.TypeSubdivision;
 import infra.exception.ResourceNotFoundException;
 import infra.model.Subdivision;
 import infra.repository.SubdivisionRepository;
@@ -81,6 +82,27 @@ public class SubdivisionController {
         }
         catch (Exception e) {
             return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @GetMapping("/get/sub")
+    public ResponseEntity<ApiResponse> getSubdivisionByType(@RequestParam String type,@RequestParam Long id){
+        try {
+            TypeSubdivision typeSubdivision=TypeSubdivision.valueOf(type);
+            List<SubdivisionResponseDto> responseDto=subdivisionService.getSubdivisionByTypeAndParentId(typeSubdivision,id);
+            return ResponseEntity.ok(new ApiResponse("Success", responseDto));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+
+    @GetMapping("/get/parent/{parentId}")
+    public ResponseEntity<ApiResponse> getSubdivisionByParent(@PathVariable Long parentId){
+        try {
+            List<SubdivisionResponseDto> responseDto=subdivisionService.getSubdivisionParentId(parentId);
+            return ResponseEntity.ok(new ApiResponse("Success", responseDto));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
         }
     }
 }

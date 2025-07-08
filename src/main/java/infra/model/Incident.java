@@ -19,13 +19,25 @@ public class Incident {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime dateIncident;
-    private String declarant;
+    private String nomsDeclarant;
     private String poste;
+    private String nomStructure;
     @Enumerated(EnumType.STRING)
     private TypeIncidentIntervention type;
-    private Long objet;
+    @ManyToOne
+    @JoinColumn(name="equipement_id")
+    private Equipement equipement;
+
+    @ManyToOne
+    @JoinColumn(name="batiment_id")
+    private Batiment batiment;
+
+    @ManyToOne
+    @JoinColumn(name="espace_id")
+    private Espace espace;
+
     private String description;
-    private String propostion;
+
     @OneToMany(mappedBy = "incident", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Intervention> interventions=new ArrayList<>();
 

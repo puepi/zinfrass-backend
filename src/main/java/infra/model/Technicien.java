@@ -12,6 +12,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Technicien {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String noms;
     private String poste;
@@ -20,4 +22,7 @@ public class Technicien {
 
     @OneToMany(mappedBy = "technicien")
     private Set<Reception> receptions=new HashSet<>();
+
+    @OneToMany(mappedBy = "technicien")
+    private Set<Intervention> interventions=new HashSet<>();
 }

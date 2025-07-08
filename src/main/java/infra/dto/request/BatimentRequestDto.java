@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,5 +21,8 @@ import java.util.List;
 public class BatimentRequestDto {
     private String nom;
     private String nature;
-    private String subdivisionName;
+    private String description;
+    private boolean isRetrocede;
+    private LocalDate dateRetrocession;
+    private Long subdivisionId;
 }

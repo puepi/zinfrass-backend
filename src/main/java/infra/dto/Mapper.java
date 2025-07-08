@@ -63,9 +63,9 @@ public class Mapper {
         responseDto.setMarque(lot.getMarque());
         responseDto.setModele(lot.getModele());
         responseDto.setNroLot(lot.getNroLot());
-        responseDto.setObservations(lot.getObservations());
-        responseDto.setDateLivraison(lot.getDateLivraison());
-        responseDto.setQuantieStock(lot.getQuantiteStock());
+//        responseDto.setObservations(lot.getObservations());
+//        responseDto.setDateLivraison(lot.getDateLivraison());
+        responseDto.setQuantiteStock(lot.getQuantiteStock());
         responseDto.setProviderName(lot.getProvider().getNom());
         responseDto.setCaracteristiques(lot.getCaracteristiques());
         responseDto.setTypeEquipementName(lot.getTypeEquipement().getNom());
@@ -91,9 +91,10 @@ public class Mapper {
         responseDto.setNom(subdivision.getNom());
         if (subdivision.getParent() != null)
             responseDto.setParent(subdivision.getParent().getNom());
-        responseDto.setType(String.valueOf(subdivision.getType()));
+//        responseDto.setType(String.valueOf(subdivision.getType()));
         Set<String> subdivisions = subdivision.getSubdivisions()
                 .stream()
+                .filter(sub->sub.getParent().getId()!=sub.getId())
                 .map(sub -> sub.getNom())
                 .collect(Collectors.toSet());
         responseDto.setSubdivisions(subdivisions);
@@ -118,6 +119,7 @@ public class Mapper {
         responseDto.setSubdivision(Mapper.subdivisionToSubdivisionResponseDto(structure.getSubdivision()));
         Set<String> structures = structure.getStructures()
                 .stream()
+                .filter(s->s.getId()!=s.getParent().getId())
                 .map(sub -> sub.getNom())
                 .collect(Collectors.toSet());
         responseDto.setStructures(structures);
@@ -157,7 +159,7 @@ public class Mapper {
         responseDto.setNomPoste(responsabilisation.getPoste().getNom());
         responseDto.setDebut(responsabilisation.getDebut());
         responsabilisation.setFin(responsabilisation.getFin());
-        responseDto.setNoms(responsabilisation.getNoms());
+//        responseDto.setNoms(responsabilisation.getNoms());
         responseDto.setActif(responseDto.isActif());
         return responseDto;
     }
@@ -176,6 +178,13 @@ public class Mapper {
         responseDto.setNature(batiment.getNature());
         responseDto.setSubdivisionName(batiment.getSubdivision().getNom());
         return responseDto;
+    }
+
+    public static List<BatimentResponseDto> batimentsToListOfBatimentResponseDto(List<Batiment> batiments) {
+        List<BatimentResponseDto> responseDtos = batiments.stream()
+                .map(batiment -> batimentToBatimentResponseDto(batiment))
+                .toList();
+        return responseDtos;
     }
 
     public static FacturesEauElecResponseDto facturestoFacturesResponse(FacturesEauElec facturesEauElec) {

@@ -1,0 +1,1 @@
+{"type":"object","title":"Categorie","properties":{"id":{"type":"integer"},"nom":{"type":"string"},"typeEquipements":{"type":"array"}}}

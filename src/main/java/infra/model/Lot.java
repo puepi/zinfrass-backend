@@ -25,7 +25,6 @@ public class Lot {
     @Column(nullable = false)
     private int quantiteStock;
     private String caracteristiques;
-    private LocalDateTime dateLivraison;
     private String descriptive;
     private String nomsLivreurs;
 

@@ -1,0 +1,4 @@
+- rechercher les types d'équipement d'une catégorie
+- rechercher les équipements d'un certain type dans le stock
+- rechercher les équipements d'une certaine catégorie dans le stock
+-

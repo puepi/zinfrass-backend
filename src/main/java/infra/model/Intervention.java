@@ -12,8 +12,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Intervention {
-    @EmbeddedId
-    private InterventionId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     private TypeIncidentIntervention nature;
@@ -22,11 +23,19 @@ public class Intervention {
     private Origine raison;
 
     @ManyToOne
-    @MapsId("equipementId")
+    @JoinColumn(name="technicien_id")
+    private Technicien technicien;
+
+    @ManyToOne
+    @JoinColumn(name="equipement_id")
     private Equipement equipement;
 
     @ManyToOne
-    @MapsId("espaceId")
+    @JoinColumn(name="batiment_id")
+    private Batiment batiment;
+
+    @ManyToOne
+    @JoinColumn(name="espace_id")
     private Espace espace;
 
     @ManyToOne

@@ -10,6 +10,8 @@ import infra.repository.BatimentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BatimentService implements IBatimentService{
@@ -21,7 +23,7 @@ public class BatimentService implements IBatimentService{
         Batiment batiment=new Batiment();
         batiment.setNom(batimentRequestDto.getNom());
         batiment.setNature(batimentRequestDto.getNature());
-        Subdivision subdivision=subdivisionService.getSubdivisionByName(batimentRequestDto.getSubdivisionName());
+        Subdivision subdivision=subdivisionService.getSubdivision(batimentRequestDto.getSubdivisionId());
         batiment.setSubdivision(subdivision);
         return Mapper.batimentToBatimentResponseDto(batimentRepository.save(batiment));
     }
@@ -30,5 +32,12 @@ public class BatimentService implements IBatimentService{
     public Batiment getBatiment(Long id) {
         Batiment batiment=batimentRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("batiment inexistant"));
         return batiment;
+    }
+
+    @Override
+    public List<BatimentResponseDto> getBatimentBySubdivision(Long id) throws ResourceNotFoundException{
+        Subdivision subdivision=subdivisionService.getSubdivision(id);
+        List<Batiment> batiments=batimentRepository.findBySubdivisionId(id);
+        return Mapper.batimentsToListOfBatimentResponseDto(batiments);
     }
 }

@@ -1,0 +1,614 @@
+{
+	"info": {
+		"_postman_id": "a6f9cde2-2730-445a-9dda-6fc81c680d4c",
+		"name": "zinfrass",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42105770"
+	},
+	"item": [
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "add a category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\":\"Matériel roulant\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/categories/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories",
+								"add"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nom\":\"Matériel roulant\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/categories/add",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories",
+										"add"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \r\n}"
+						}
+					]
+				},
+				{
+					"name": "get categorie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/categories/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "type-equipement",
+			"item": [
+				{
+					"name": "add a type equipement",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\":\"Compteur d'eau\",\r\n    \"caracteristiques\":\"Diamètre nominal,pression normale,débit nominal,débit maximal,numéro de compteur\",\r\n    \"abreviation\":\"COMPT\",\r\n    \"categoryId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/types-equipement/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"types-equipement",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get type equipement",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/types-equipement/get/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"types-equipement",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "fournisseur",
+			"item": [
+				{
+					"name": "add a fournisseur",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\":\"Inconnu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/fournisseurs/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fournisseurs",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "lot",
+			"item": [
+				{
+					"name": "add a lot",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nroLot\":\"Lot1,Intek\",\r\n    \"typeEquipementId\":3,\r\n    \"providerId\":2,\r\n    \"marque\":\"Neptune\",\r\n    \"modele\":\"mach 10\",\r\n    \"couleur\":\"gris noir\",\r\n    \"quantiteStock\":12,\r\n    \"dateLivraison\":\"2025-06-16T18:30:00\",\r\n    \"observations\":\"Nous n'avons pas assisté à la réception de cette livraison\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/lots/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lots",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "equipement",
+			"item": [
+				{
+					"name": "add equipement",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroSerie\":\"CPSUY452SZPLOI\",\r\n    \"lotId\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/equipements/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipements",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subdivision",
+			"item": [
+				{
+					"name": "add a subdivision",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\":\"Département du Wouri\",\r\n    \"parentId\":7,\r\n    \"type\":\"Département\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/subdivisions/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"subdivisions",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update with parent",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/subdivisions/update-parent/7/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"subdivisions",
+								"update-parent",
+								"7",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get a sub",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/subdivisions/get/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"subdivisions",
+								"get",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a sub",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/subdivisions/delete/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"subdivisions",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all subdivisions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/subdivisions/getall",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"subdivisions",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "structure",
+			"item": [
+				{
+					"name": "add a structure",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"nom\":\"Délégation Départementale du Wouri\",\r\n    \"abreviation\":\"DDPROFF Wouri\",\r\n    \"type\":\"Délégation Départementale\",\r\n    \"subdivisionId\":8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/structures/add",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"structures",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update a structure",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/structures/update-parent/4/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"structures",
+								"update-parent",
+								"4",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all structures",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/structures/getall",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"structures",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "poste",
+			"item": [
+				{
+					"name": "add a poste",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nom\":\"Conseiller Technique n° 2\",\r\n  \"abreviation\":\"CT2\",\r\n  \"rang\":\"Directeur Adjoint\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/postes/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"postes",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all postes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/postes/getall",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"postes",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "responsabilisation",
+			"item": [
+				{
+					"name": "add a responsabilisation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"structureId\":1,\r\n  \"posteId\":7\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/responsabilisations/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"responsabilisations",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get a respo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/responsabilisations/get/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"responsabilisations",
+								"get",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all respos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"structureId\":1,\r\n  \"posteId\":7\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/responsabilisations/getall",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"responsabilisations",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "logiciel",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "factures",
+			"item": [
+				{
+					"name": "add a facture",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"Electricité\",\r\n    \"numeroFacture\":\"54POZ122\",\r\n    \"numéroCompteur\":\"97452\",\r\n    \"debut\":\"02/05/2025\",\r\n    \"fin\":\"03/06/2025\",\r\n    \"consommation\":1238,\r\n    \"montant\":158744,\r\n    \"ancienIndex\":987,\r\n    \"nouvelIndex\":1894,\r\n    \"batimentName\":\"Barilou\",\r\n    \"subdivisionName\":\"Délégation Régionale de l'Ouest\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

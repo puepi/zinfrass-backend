@@ -13,7 +13,6 @@ import java.util.Set;
 public class SubdivisionResponseDto {
     private Long id;
     private String nom;
-    private String type;
     private Set<String> subdivisions=new HashSet<>();
     private String parent;
 }

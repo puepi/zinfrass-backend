@@ -1,0 +1,371 @@
+{
+  "v": 8,
+  "name": "zinfrass_hopps",
+  "folders": [
+    {
+      "v": 8,
+      "name": "subdivision",
+      "folders": [],
+      "requests": [
+        {
+          "v": "14",
+          "name": "add a sub",
+          "method": "POST",
+          "endpoint": "http://localhost:8080/subdivisions/add",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"nom\":\"Département du Nkam\",\n  \"type\":\"Département\",\n  \"parentId\":8\n}"
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "14",
+          "name": "update a sub",
+          "method": "PUT",
+          "endpoint": "http://localhost:8080/subdivisions/update-parent/7/4",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "14",
+          "name": "get a sub",
+          "method": "GET",
+          "endpoint": "http://localhost:8080/subdivisions/get/8",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "14",
+          "name": "get all subs",
+          "method": "GET",
+          "endpoint": "http://localhost:8080/subdivisions/getall",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "_ref_id": "coll_mc3hdnmv_bc3f47e8-64ae-4e63-800c-0ca3a556773e"
+    },
+    {
+      "v": 8,
+      "name": "structure",
+      "folders": [],
+      "requests": [
+        {
+          "v": "14",
+          "name": "add a structure",
+          "method": "POST",
+          "endpoint": "http://localhost:8080/structures/add",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n \"nom\":\"Inspection Générale\",\n \"abreviation\":\"IG\",\n  \"type\":\"Inspection Générale\",\n \"subdivisionId\":1,\n  \"parentId\":1\n}"
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "14",
+          "name": "get all structures",
+          "method": "GET",
+          "endpoint": "http://localhost:8080/structures/getall",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "14",
+          "name": "update a structure",
+          "method": "PUT",
+          "endpoint": "http://localhost:8080/structures/update-parent/1/1",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "14",
+          "name": "get all structures",
+          "method": "GET",
+          "endpoint": "http://localhost:8080/structures/getall",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        }
+      ],
+      "auth": {
+        "authActive": true,
+        "authType": "inherit"
+      },
+      "headers": [],
+      "_ref_id": "coll_mc3ojq9q_4235469b-ceb0-4e61-84b7-2e424fd8e225"
+    },
+    {
+      "v": 8,
+      "name": "poste",
+      "folders": [],
+      "requests": [
+        {
+          "v": "14",
+          "name": "add a poste",
+          "method": "POST",
+          "endpoint": "http://localhost:8080/postes/add",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"nom\":\"Inspecteur n°1\",\n  \"abreviation\":\"I1\"\n}"
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "14",
+          "name": "get all postes",
+          "method": "GET",
+          "endpoint": "http://localhost:8080/postes/getall",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "14",
+          "name": "get a poste",
+          "method": "GET",
+          "endpoint": "http://localhost:8080/postes/get/1",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "_ref_id": "coll_mc4jbb2m_4d6ca609-d4b3-42fc-b21e-22c954858bb5"
+    },
+    {
+      "v": 8,
+      "name": "responsabilisation",
+      "folders": [],
+      "requests": [
+        {
+          "v": "14",
+          "name": "add a responsabilisation",
+          "method": "POST",
+          "endpoint": "http://localhost:8080/responsabilisations/add",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"structureId\":3,\n  \"posteId\":5\n}"
+          },
+          "requestVariables": [],
+          "responses": {}
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "_ref_id": "coll_mc4mkhpp_4763f099-be3d-4560-b317-d80e7258c8bf"
+    },
+    {
+      "v": 8,
+      "name": "logiciel",
+      "folders": [],
+      "requests": [
+        {
+          "v": "14",
+          "name": "add a logiciel",
+          "method": "POST",
+          "endpoint": "http://localhost:8080/logiciels/add",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n  \"nom\":\"MS Windows\",\n  \"typeLogiciel\":\"Système d'exploitation\",\n  \"typeLicence\":\"Craquée\",\n  \"version\":11\n}"
+          },
+          "requestVariables": [],
+          "responses": {}
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "_ref_id": "coll_mcb9ttu2_19ca392e-80c1-4ca1-a0ef-dc6e2c410eec"
+    },
+    {
+      "v": 8,
+      "name": "facture",
+      "folders": [],
+      "requests": [
+        {
+          "v": "14",
+          "name": "add a facture",
+          "method": "POST",
+          "endpoint": "http://localhost:8080/factures/add",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": "application/json",
+            "body": "{\n    \"type\":\"Electricité\",\n    \"numeroFacture\":\"54POZ122\",\n    \"numeroCompteur\":\"97452\",\n    \"debut\":\"02/05/2025\",\n    \"fin\":\"03/06/2025\",\n    \"consommation\":1238,\n    \"montant\":158744,\n    \"ancienIndex\":987,\n    \"nouvelIndex\":1894,\n    \"batimentId\":1\n}"
+          },
+          "requestVariables": [],
+          "responses": {}
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "_ref_id": "coll_mcbgtykm_902beef2-8754-4b30-8953-a11cd874685e"
+    }
+  ],
+  "requests": [],
+  "auth": {
+    "authActive": true,
+    "authType": "none"
+  },
+  "headers": [],
+  "_ref_id": "coll_mc3hd5wf_385d0354-9844-42d7-9f47-ca0511284f69"
+}

@@ -2,6 +2,7 @@ package infra.service;
 
 import infra.dto.request.SubdivisionRequestDto;
 import infra.dto.response.SubdivisionResponseDto;
+import infra.enums.TypeSubdivision;
 import infra.exception.ResourceNotFoundException;
 import infra.model.Subdivision;
 
@@ -15,6 +16,10 @@ public interface ISubdivisionService {
     Subdivision getSubdivision(Long id);
 
     Subdivision getSubdivisionByName(String name);
+
+    List<SubdivisionResponseDto> getSubdivisionParentId(Long id);
+
+    List<SubdivisionResponseDto> getSubdivisionByTypeAndParentId(TypeSubdivision type, Long id);
 
     List<SubdivisionResponseDto> getAllSubdivisions();
 

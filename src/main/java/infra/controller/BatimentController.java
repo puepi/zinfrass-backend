@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/batiments")
 @RequiredArgsConstructor
@@ -27,10 +29,20 @@ public class BatimentController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<ApiResponse> addBatiment(@PathVariable Long id){
+    public ResponseEntity<ApiResponse> getBatiment(@PathVariable Long id){
         try {
             Batiment responseDto=batimentService.getBatiment(id);
             return ResponseEntity.ok(new ApiResponse("Success", Mapper.batimentToBatimentResponseDto(responseDto)));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+
+    @GetMapping("/subdivision/{id}")
+    public ResponseEntity<ApiResponse> getBatimentBySubdivision(@PathVariable Long id){
+        try {
+            List<BatimentResponseDto> responseDto=batimentService.getBatimentBySubdivision(id);
+            return ResponseEntity.ok(new ApiResponse("Success", responseDto));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
         }
