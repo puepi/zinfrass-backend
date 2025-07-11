@@ -13,4 +13,8 @@ public interface IBatimentService {
     Batiment getBatiment(Long id);
 
     List<BatimentResponseDto> getBatimentBySubdivision(Long id);
+
+    List<BatimentResponseDto> getBatimentBySubdivisionName(String name);
+
+    List<BatimentResponseDto> getBatiments();
 }

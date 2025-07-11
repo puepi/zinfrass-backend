@@ -48,4 +48,25 @@ public class BatimentController {
         }
 
     }
+    @GetMapping("/subdivision-name")
+    public ResponseEntity<ApiResponse> getBatimentBySubdivisionName(@RequestParam String name){
+        try {
+            List<BatimentResponseDto> responseDto=batimentService.getBatimentBySubdivisionName(name);
+            return ResponseEntity.ok(new ApiResponse("Success", responseDto));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+
+    }
+
+    @GetMapping("/getall")
+    public ResponseEntity<ApiResponse> getAllBatiments(){
+        try {
+            List<BatimentResponseDto> responseDto=batimentService.getBatiments();
+            return ResponseEntity.ok(new ApiResponse("Success", responseDto));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+
+    }
 }
