@@ -11,4 +11,5 @@ import java.util.Optional;
 @Repository
 public interface BatimentRepository extends JpaRepository<Batiment,Long> {
     List<Batiment> findBySubdivisionId(Long id);
+    List<Batiment> findBySubdivisionNomContainingIgnoreCase(String name);
 }

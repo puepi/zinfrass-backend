@@ -40,4 +40,16 @@ public class BatimentService implements IBatimentService{
         List<Batiment> batiments=batimentRepository.findBySubdivisionId(id);
         return Mapper.batimentsToListOfBatimentResponseDto(batiments);
     }
+
+    @Override
+    public List<BatimentResponseDto> getBatimentBySubdivisionName(String name) {
+        List<Batiment> batiments=batimentRepository.findBySubdivisionNomContainingIgnoreCase(name);
+        return Mapper.batimentsToListOfBatimentResponseDto(batiments);
+    }
+
+    @Override
+    public List<BatimentResponseDto> getBatiments() {
+        List<Batiment> batiments=batimentRepository.findAll();
+        return Mapper.batimentsToListOfBatimentResponseDto(batiments);
+    }
 }
