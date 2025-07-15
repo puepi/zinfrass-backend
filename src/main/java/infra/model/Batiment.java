@@ -1,5 +1,6 @@
 package infra.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,9 @@ public class Batiment {
     private String nom;
     private String nature;
     private boolean isRetrocede;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateRetrocession;
+    private String description;
     @OneToMany(mappedBy = "batiment")
     private List<FacturesEauElec> facturesEauElec=new ArrayList<>();
 

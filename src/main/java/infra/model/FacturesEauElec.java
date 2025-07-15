@@ -1,5 +1,6 @@
 package infra.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import infra.enums.TypeFacture;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -24,8 +25,10 @@ public class FacturesEauElec {
     private String numeroFacture;
     private String numéroCompteur;
     @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate debut;
     @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fin;
     private BigDecimal consommation;
     private BigDecimal montant;

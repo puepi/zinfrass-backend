@@ -176,6 +176,9 @@ public class Mapper {
         responseDto.setId(batiment.getId());
         responseDto.setNom(batiment.getNom());
         responseDto.setNature(batiment.getNature());
+        responseDto.setRetrocede(batiment.isRetrocede());
+        responseDto.setDateRetrocession(batiment.getDateRetrocession());
+        responseDto.setDescription(batiment.getDescription());
         responseDto.setSubdivisionName(batiment.getSubdivision().getNom());
         return responseDto;
     }
