@@ -15,4 +15,5 @@ public class SubdivisionResponseDto {
     private String nom;
     private Set<String> subdivisions=new HashSet<>();
     private String parent;
+    private String type;
 }

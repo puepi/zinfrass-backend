@@ -16,4 +16,6 @@ public interface SubdivisionRepository extends JpaRepository<Subdivision,Long> {
     List<Subdivision> findByTypeAndParentId(TypeSubdivision type, Long parentId);
 
     List<Subdivision> findByParentId(Long id);
+
+    List<Subdivision> findByNomContainingIgnoreCase(String name);
 }

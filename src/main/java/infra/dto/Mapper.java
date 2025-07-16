@@ -4,6 +4,7 @@ package infra.dto;
 import infra.dto.request.BatimentRequestDto;
 import infra.dto.request.BatimentResponseDto;
 import infra.dto.response.*;
+import infra.enums.TypeSubdivision;
 import infra.model.*;
 
 import java.util.List;
@@ -89,6 +90,7 @@ public class Mapper {
         SubdivisionResponseDto responseDto = new SubdivisionResponseDto();
         responseDto.setId(subdivision.getId());
         responseDto.setNom(subdivision.getNom());
+        responseDto.setType(subdivision.getType().toString());
         if (subdivision.getParent() != null)
             responseDto.setParent(subdivision.getParent().getNom());
 //        responseDto.setType(String.valueOf(subdivision.getType()));

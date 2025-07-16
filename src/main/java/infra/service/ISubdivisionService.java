@@ -17,6 +17,8 @@ public interface ISubdivisionService {
 
     Subdivision getSubdivisionByName(String name);
 
+    List<SubdivisionResponseDto> getSubdivisionByNameContaining(String name);
+
     List<SubdivisionResponseDto> getSubdivisionParentId(Long id);
 
     List<SubdivisionResponseDto> getSubdivisionByTypeAndParentId(TypeSubdivision type, Long id);

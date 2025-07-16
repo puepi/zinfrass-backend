@@ -49,6 +49,26 @@ public class SubdivisionController {
         }
     }
 
+//    @GetMapping("/get/name")
+//    public ResponseEntity<ApiResponse> getSubdivisionByName(@RequestParam String name){
+//        try {
+//            Subdivision responseDto=subdivisionService.getSubdivisionByName(name);
+//            return ResponseEntity.ok(new ApiResponse("Success", Mapper.subdivisionToSubdivisionResponseDto(responseDto)));
+//        } catch (Exception e) {
+//            return ResponseEntity.internalServerError().build();
+//        }
+//    }
+
+    @GetMapping("/get-name")
+    public ResponseEntity<ApiResponse> getNomContaining(@RequestParam String name){
+        try {
+            List<SubdivisionResponseDto> responseDto=subdivisionService.getSubdivisionByNameContaining(name);
+            return ResponseEntity.ok(new ApiResponse("Success", responseDto));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
     @GetMapping("/getall")
     public ResponseEntity<ApiResponse> getAllSubdivisions(){
         try {

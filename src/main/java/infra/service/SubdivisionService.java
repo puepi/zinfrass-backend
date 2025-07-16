@@ -52,6 +52,12 @@ public class SubdivisionService implements ISubdivisionService {
     }
 
     @Override
+    public List<SubdivisionResponseDto> getSubdivisionByNameContaining(String name) {
+        List<Subdivision> subdivisions=subdivisionRepository.findByNomContainingIgnoreCase(name);
+        return Mapper.subdivisonsToListOfSubdivisionResponseDto(subdivisions);
+    }
+
+    @Override
     public List<SubdivisionResponseDto> getSubdivisionParentId(Long id){
         List<Subdivision> subdivisions=subdivisionRepository.findByParentId(id);
         List<Subdivision> sub=subdivisions.stream().filter(s->s.getId()!=s.getParent().getId()).toList();
