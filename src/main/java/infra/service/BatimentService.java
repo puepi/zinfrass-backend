@@ -23,6 +23,9 @@ public class BatimentService implements IBatimentService{
         Batiment batiment=new Batiment();
         batiment.setNom(batimentRequestDto.getNom());
         batiment.setNature(batimentRequestDto.getNature());
+        batiment.setDescription(batimentRequestDto.getDescription());
+        batiment.setRetrocede(batimentRequestDto.isRetrocede());
+        batiment.setDateRetrocession(batimentRequestDto.getDateRetrocession());
         Subdivision subdivision=subdivisionService.getSubdivision(batimentRequestDto.getSubdivisionId());
         batiment.setSubdivision(subdivision);
         return Mapper.batimentToBatimentResponseDto(batimentRepository.save(batiment));
