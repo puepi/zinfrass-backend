@@ -33,6 +33,7 @@ public class FacturesEauElec {
     private BigDecimal consommation;
     private BigDecimal montant;
     private Long ancienIndex;
+
     private Long nouvelIndex;
     private String unites="mètres cube (m3)";
 
