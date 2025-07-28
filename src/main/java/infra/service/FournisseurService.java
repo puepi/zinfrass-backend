@@ -7,6 +7,8 @@ import infra.model.Fournisseur;
 import infra.repository.FournisseurRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FournisseurService implements IFournisseurService{
     private final FournisseurRepository fournisseurRepository;
@@ -26,5 +28,11 @@ public class FournisseurService implements IFournisseurService{
         fournisseur.setType(request.getType());
         fournisseur.setRepresentant(request.getRepresentant());
         return Mapper.fournisseurToFournisseurResponseDto(fournisseurRepository.save(fournisseur));
+    }
+
+    @Override
+    public List<FournisseurResponseDto> getFournisseurs() {
+        List<Fournisseur> fournisseurs=fournisseurRepository.findAll();
+        return Mapper.fournisseurstoListOfFournisseurResponseDto(fournisseurs);
     }
 }

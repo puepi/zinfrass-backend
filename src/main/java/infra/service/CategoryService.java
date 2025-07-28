@@ -27,14 +27,17 @@ public class CategoryService implements ICategoryService{
         return Mapper.categorieToCategorieResponseDto(categoryRepository.save(categorie));
     }
 
-    @Override
-    public List<Categorie> categories() {
-        return List.of();
-    }
 
     @Override
     public Categorie getCategory(Long id) {
         return categoryRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Category does not exists"));
+
+    }
+
+    @Override
+    public List<CategorieResponseDto> getAllCategories() {
+        List<Categorie> categories=categoryRepository.findAll();
+        return Mapper.categoriesToListOfCategorieResponseDto(categories);
     }
 
     @Override

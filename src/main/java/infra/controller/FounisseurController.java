@@ -9,10 +9,9 @@ import infra.service.IFournisseurService;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/fournisseurs")
@@ -30,6 +29,16 @@ public class FounisseurController {
             return ResponseEntity.ok(new ApiResponse("Success",responseDto));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Failure",null));
+        }
+    }
+
+    @GetMapping("/getall")
+    public ResponseEntity<ApiResponse> getFournisseurs(){
+        try {
+            List<FournisseurResponseDto> responseDto=fournisseurService.getFournisseurs();
+            return ResponseEntity.ok(new ApiResponse("Success",responseDto));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(e.getMessage(),null));
         }
     }
 }

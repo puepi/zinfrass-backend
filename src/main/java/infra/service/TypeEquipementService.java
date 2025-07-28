@@ -11,6 +11,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TypeEquipementService implements ITypeEquipementService{
     private final TypeEquipementRepository typeEquipementRepository;
@@ -42,5 +44,11 @@ public class TypeEquipementService implements ITypeEquipementService{
     public TypeEquipement get(Long id) {
         TypeEquipement typeEquipement=typeEquipementRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Type d'équipement inexistant"));
         return typeEquipement;
+    }
+
+    @Override
+    public List<TypeEquipementResponseDto> getAllTypesEquipement() {
+        List<TypeEquipement> typeEquipements=typeEquipementRepository.findAll();
+        return List.of();
     }
 }

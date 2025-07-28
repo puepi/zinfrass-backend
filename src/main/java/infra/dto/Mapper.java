@@ -29,6 +29,7 @@ public class Mapper {
 
     public static CategorieResponseDto categorieToCategorieResponseDto(Categorie categorie) {
         CategorieResponseDto responseDto = new CategorieResponseDto();
+        System.out.println("responseDto = " + responseDto);
         responseDto.setId(categorie.getId());
         responseDto.setNom(categorie.getNom());
         List<String> types = categorie.getTypeEquipements()
@@ -36,7 +37,15 @@ public class Mapper {
                 .map(type -> type.getNom())
                 .toList();
         responseDto.setTypesEquipement(types);
+
         return responseDto;
+    }
+
+    public static List<CategorieResponseDto> categoriesToListOfCategorieResponseDto(List<Categorie> categories){
+
+        return categories.stream()
+                .map(categorie -> categorieToCategorieResponseDto(categorie))
+                .toList();
     }
 
     public static FournisseurResponseDto fournisseurToFournisseurResponseDto(Fournisseur fournisseur) {
@@ -55,6 +64,13 @@ public class Mapper {
                 .collect(Collectors.toSet());
         responseDto.setTypesEquipement(types);
         return responseDto;
+    }
+
+    public static List<FournisseurResponseDto> fournisseurstoListOfFournisseurResponseDto(List<Fournisseur> fournisseurs){
+        List<FournisseurResponseDto> responseDtos=fournisseurs.stream()
+                .map(fournisseur -> fournisseurToFournisseurResponseDto(fournisseur))
+                .toList();
+        return responseDtos;
     }
 
     public static LotResponseDto lotToLotResponseDto(Lot lot) {

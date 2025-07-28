@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FournisseurRequestDto {
-    private String nom="Inconnu";
+    private String nom;
     private String representant;
     private String techniciens;
     private String type;

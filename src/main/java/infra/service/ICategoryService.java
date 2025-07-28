@@ -10,7 +10,8 @@ import java.util.List;
 @Service
 public interface ICategoryService {
     public CategorieResponseDto addCategorie(CategorieRequestDto dto);
-    public List<Categorie> categories();
     public Categorie getCategory(Long id);
     public List<Categorie> getCategories();
+
+    List<CategorieResponseDto> getAllCategories();
 }
