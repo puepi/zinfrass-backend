@@ -37,12 +37,24 @@ public class TypeEquipementController {
     public ResponseEntity<ApiResponse> getAllTypesEquipement(){
         try {
             List<TypeEquipementResponseDto> response=typeEquipementService.getAllTypesEquipement();
+            System.out.println("response = " + response);
             return ResponseEntity.ok(new ApiResponse("Success",response));
         } catch (ResourceNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(e.getMessage(),null));
-        }catch(Exception e){
-            e.printStackTrace();
-            return ResponseEntity.internalServerError().build();
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<ApiResponse> getTypeEquipement(@PathVariable Long id){
+        try {
+            TypeEquipementResponseDto responseDto=typeEquipementService.getTypeEquipement(id);
+            return ResponseEntity.ok(new ApiResponse("Success",responseDto));
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(e.getMessage(),null));
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(e.getMessage(),null));
         }
     }
 }

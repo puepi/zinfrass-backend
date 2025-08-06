@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-import java.util.Set;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategorieResponseDto {
+public class EspaceResponseDto {
     private Long id;
     private String nom;
-    private Set<String> typesEquipement;
+    private String position;
+    private String usage;
+    private String dimensions;
+    private String batimentNom;
 }

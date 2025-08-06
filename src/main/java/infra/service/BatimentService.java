@@ -2,7 +2,7 @@ package infra.service;
 
 import infra.dto.Mapper;
 import infra.dto.request.BatimentRequestDto;
-import infra.dto.request.BatimentResponseDto;
+import infra.dto.response.BatimentResponseDto;
 import infra.exception.ResourceNotFoundException;
 import infra.model.Batiment;
 import infra.model.Subdivision;

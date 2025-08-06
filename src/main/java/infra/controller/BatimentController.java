@@ -3,7 +3,7 @@ package infra.controller;
 import infra.api_response.ApiResponse;
 import infra.dto.Mapper;
 import infra.dto.request.BatimentRequestDto;
-import infra.dto.request.BatimentResponseDto;
+import infra.dto.response.BatimentResponseDto;
 import infra.model.Batiment;
 import infra.service.IBatimentService;
 import lombok.RequiredArgsConstructor;

@@ -1,13 +1,10 @@
 package infra.dto;
 
 
-import infra.dto.request.BatimentRequestDto;
-import infra.dto.request.BatimentResponseDto;
+import infra.dto.response.BatimentResponseDto;
 import infra.dto.response.*;
-import infra.enums.TypeSubdivision;
 import infra.model.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,24 +25,28 @@ public class Mapper {
         return responseDto;
     }
 
-    public static List<TypeEquipementResponseDto> typeEquipementToListOfTypeEquipementResponseDto(List<TypeEquipement> typeEquipements) {
-        return typeEquipements.stream()
-                .map(type-> typeEquipementToTypeEquipementResponseDto(type))
-                .toList();
-    }
-
     public static CategorieResponseDto categorieToCategorieResponseDto(Categorie categorie) {
         CategorieResponseDto responseDto = new CategorieResponseDto();
-        System.out.println("responseDto = " + responseDto);
         responseDto.setId(categorie.getId());
         responseDto.setNom(categorie.getNom());
-//        List<String> types = categorie.getTypeEquipements()
+//        Set<String> types = categorie.getTypeEquipements()
 //                .stream()
 //                .map(type -> type.getNom())
-//                .toList();
+//                .collect(Collectors.toSet());
+//        Set<String> types=new HashSet<>(Arrays.asList("UC,EC,LAPT"));
+        // CRITICAL FIX: Create a defensive copy of the collection BEFORE streaming
+
+
 //        responseDto.setTypesEquipement(types);
 
         return responseDto;
+    }
+
+    public static List<TypeEquipementResponseDto> typesEquipementToListOfTypeEquipementResponseDto(List<TypeEquipement> typeEquipements){
+
+        return typeEquipements.stream()
+                .map(typeEquipement -> typeEquipementToTypeEquipementResponseDto(typeEquipement))
+                .toList();
     }
 
     public static List<CategorieResponseDto> categoriesToListOfCategorieResponseDto(List<Categorie> categories){
@@ -98,12 +99,6 @@ public class Mapper {
                 .map(equipement -> equipement.getNumeroUnique())
                 .collect(Collectors.toSet());
         return responseDto;
-    }
-
-    public static List<LotResponseDto> lotsToListOfLotsResponseDto(List<Lot> lots){
-        return lots.stream()
-                .map(lot->lotToLotResponseDto(lot))
-                .toList();
     }
 
     public static EquipementResponseDto EquipementtoEquipementResponseDto(Equipement equipement) {
@@ -235,6 +230,17 @@ public class Mapper {
         responseDto.setNumeroFacture(facturesEauElec.getNumeroFacture());
         responseDto.setNuméroCompteur(facturesEauElec.getNuméroCompteur());
         responseDto.setSubdivisionName(facturesEauElec.getBatiment().getSubdivision().getNom());
+        return responseDto;
+    }
+
+    public static EspaceResponseDto espaceToEspaceResponseDto(Espace espace) {
+        EspaceResponseDto responseDto = new EspaceResponseDto();
+        responseDto.setId(espace.getId());
+        responseDto.setNom(espace.getNom());
+        responseDto.setBatimentNom(espace.getBatiment().getNom());
+        responseDto.setDimensions(espace.getDimensions());
+        responseDto.setUsage(String.valueOf(espace.getUsages()));
+        responseDto.setPosition(espace.getPosition());
         return responseDto;
     }
 
