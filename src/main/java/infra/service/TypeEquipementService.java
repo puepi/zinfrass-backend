@@ -49,6 +49,12 @@ public class TypeEquipementService implements ITypeEquipementService{
     @Override
     public List<TypeEquipementResponseDto> getAllTypesEquipement() {
         List<TypeEquipement> typeEquipements=typeEquipementRepository.findAll();
-        return List.of();
+        return Mapper.typesEquipementToListOfTypeEquipementResponseDto((typeEquipements));
+    }
+
+    @Override
+    public TypeEquipementResponseDto getTypeEquipement(Long id) {
+        TypeEquipement equipement= typeEquipementRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Type d'équipement doesn't exist"));
+        return Mapper.typeEquipementToTypeEquipementResponseDto(equipement);
     }
 }

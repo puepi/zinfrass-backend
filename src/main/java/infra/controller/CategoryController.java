@@ -39,11 +39,12 @@ public class CategoryController {
     public ResponseEntity<ApiResponse> getCategorie(@PathVariable Long id){
         try {
             Categorie response=categoryService.getCategory(id);
-
             return ResponseEntity.ok(new ApiResponse("Found", Mapper.categorieToCategorieResponseDto(response)));
         }catch (ResourceNotFoundException e) {
+            System.out.println("ResourceNotFoundException = " + "found");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(e.getMessage(),null));
         }catch (Exception e) {
+            System.out.println("Exception = " + e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(e.getMessage(),null));
         }
     }

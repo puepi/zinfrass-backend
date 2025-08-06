@@ -1,7 +1,6 @@
 package infra.service;
 
 import infra.dto.Mapper;
-import infra.dto.request.BatimentResponseDto;
 import infra.dto.request.FacturesEauElecRequestDto;
 import infra.dto.response.FacturesEauElecResponseDto;
 import infra.model.Batiment;

@@ -14,4 +14,6 @@ public interface ITypeEquipementService {
     public TypeEquipement get(Long id);
 
     List<TypeEquipementResponseDto> getAllTypesEquipement();
+
+    TypeEquipementResponseDto getTypeEquipement(Long id);
 }

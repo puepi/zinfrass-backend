@@ -31,7 +31,6 @@ public class CategoryService implements ICategoryService{
     @Override
     public Categorie getCategory(Long id) {
         return categoryRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Category does not exists"));
-
     }
 
     @Override

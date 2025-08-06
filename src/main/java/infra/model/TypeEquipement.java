@@ -19,6 +19,7 @@ public class TypeEquipement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 //  exemple: Unité centrale,Système d'exploitation, Pick-up,robinet, WC, fauteuil, chaise,table
+    @Column(unique=true)
     private String nom;
     @Column(nullable = false)
     private String abreviation;

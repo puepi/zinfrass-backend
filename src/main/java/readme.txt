@@ -37,7 +37,8 @@ présenter le cycle de vie des infrastructures // gestion des infrastructures co
             s'assuer que l'intervention d'un technicien est validée par son supérieur et aussi par un utilisateur
             s'assurer que tout utilisateur peut faire des observations pour son propre compte afin qu'elles soient visibles plus tard par les autres
 - quels sont les espaces alloués au Cabinet du Ministre
-
+- le NIU doit avoir 14 chiffres et les numéros de téléphone doivent sae mettre au format 695 12 45 78
+- lors d'une action qui a des effets sur la base de données, je dois afficher un popup "Effectué avec succès" ou "Erreur" qui apparait et disparait après 4s
 - test logiciels
 - déploiement
 - extension grâce à un agent intelligent permettant d'aider le technicien à résoudre rapidement les pannes au regard du matériel, des logiciels et de l'historique d'incidents et interventions

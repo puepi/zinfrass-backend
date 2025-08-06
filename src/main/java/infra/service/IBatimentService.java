@@ -1,7 +1,7 @@
 package infra.service;
 
 import infra.dto.request.BatimentRequestDto;
-import infra.dto.request.BatimentResponseDto;
+import infra.dto.response.BatimentResponseDto;
 import infra.model.Batiment;
 import org.springframework.stereotype.Service;
 
