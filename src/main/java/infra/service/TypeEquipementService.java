@@ -49,6 +49,6 @@ public class TypeEquipementService implements ITypeEquipementService{
     @Override
     public List<TypeEquipementResponseDto> getAllTypesEquipement() {
         List<TypeEquipement> typeEquipements=typeEquipementRepository.findAll();
-        return List.of();
+        return Mapper.typeEquipementToListOfTypeEquipementResponseDto(typeEquipements);
     }
 }

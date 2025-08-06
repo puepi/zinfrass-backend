@@ -12,6 +12,8 @@ import infra.repository.LotRepository;
 import infra.repository.TypeEquipementRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LotService implements ILotService{
     private final LotRepository lotRepository;
@@ -46,5 +48,10 @@ public class LotService implements ILotService{
     @Override
     public Lot getLotById(Long lotId) {
         return lotRepository.findById(lotId).orElseThrow(()->new ResourceNotFoundException("Id Lot inexistant"));
+    }
+
+    @Override
+    public List<LotResponseDto> getAllLots() {
+        return Mapper.lotsToListOfLotsResponseDto(lotRepository.findAll());
     }
 }
