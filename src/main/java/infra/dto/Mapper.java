@@ -1,6 +1,7 @@
 package infra.dto;
 
 
+import infra.dto.request.EquipementRequestDto;
 import infra.dto.response.BatimentResponseDto;
 import infra.dto.response.*;
 import infra.model.*;
@@ -114,6 +115,13 @@ public class Mapper {
         responseDto.setNumeroSerie(equipement.getNumeroSerie());
         responseDto.setNroLot(equipement.getLot().getNroLot());
         return responseDto;
+    }
+
+    public static Equipement equipementRequestToEquipement(EquipementRequestDto requestDto) {
+        Equipement eq=new Equipement();
+        eq.setNumeroSerie(requestDto.getNumeroSerie());
+        eq.setNumeroUnique(requestDto.getNumeroSerie());
+        return eq;
     }
 
     public static SubdivisionResponseDto subdivisionToSubdivisionResponseDto(Subdivision subdivision) {
