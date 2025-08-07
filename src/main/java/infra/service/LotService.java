@@ -1,9 +1,12 @@
 package infra.service;
 
 import infra.dto.Mapper;
+import infra.dto.request.EquipementRequestDto;
 import infra.dto.request.LotRequestDto;
+import infra.dto.response.EquipementResponseDto;
 import infra.dto.response.LotResponseDto;
 import infra.exception.ResourceNotFoundException;
+import infra.model.Equipement;
 import infra.model.Fournisseur;
 import infra.model.Lot;
 import infra.model.TypeEquipement;
@@ -11,6 +14,8 @@ import infra.repository.FournisseurRepository;
 import infra.repository.LotRepository;
 import infra.repository.TypeEquipementRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class LotService implements ILotService{
@@ -32,14 +37,16 @@ public class LotService implements ILotService{
         lot.setCaracteristiques(request.getCaracteristiques());
         lot.setMarque(request.getMarque());
         lot.setModele(request.getModele());
-//        lot.setObservations(request.getObservations());
-//        lot.setDateLivraison(request.getDateLivraison());
+        lot.setObservations(request.getObservations());
+        lot.setDateLivraison(request.getDateReception());
         lot.setQuantiteStock(request.getQuantiteStock());
         TypeEquipement typeEquipement=typeEquipementService.get(request.getTypeEquipementId());
         Fournisseur fournisseur=fournisseurRepository.findById(request.getProviderId()).orElseThrow(()->new ResourceNotFoundException("The provider name does not exist"));
         lot.setProvider(fournisseur);
         lot.setTypeEquipement(typeEquipement);
-
+        for(EquipementRequestDto req: request.getEquipements()){
+            lot.addEquipement(Mapper.equipementRequestToEquipement(req));
+        }
         return Mapper.lotToLotResponseDto(lotRepository.save(lot));
     }
 

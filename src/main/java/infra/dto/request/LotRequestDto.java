@@ -7,7 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,9 +19,13 @@ public class LotRequestDto {
     private String modele;
     private String couleur;
     private int quantiteStock;
-    private String caracteristiques;
     private String descriptive;
-    private String nomsLivreurs;
     private Long typeEquipementId;
+    private List<EquipementRequestDto> equipements;
+    private String nomsLivreurs;
+    private String techniciens;
+    private LocalDate dateReception;
+    private String  observations;
     private Long providerId;
+    private String caracteristiques;
 }

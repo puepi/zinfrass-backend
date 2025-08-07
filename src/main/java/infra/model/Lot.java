@@ -2,7 +2,9 @@ package infra.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,6 +29,10 @@ public class Lot {
     private String caracteristiques;
     private String descriptive;
     private String nomsLivreurs;
+    private String techniciens;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateLivraison;
+    private String observations;
 
     @ManyToOne
     @JoinColumn(name="type_id", nullable = false)
@@ -50,4 +56,9 @@ public class Lot {
 
     @OneToMany(mappedBy = "lot")
     private Set<Reception> receptions=new HashSet<>();
+
+    public void addEquipement(Equipement equipement){
+        equipements.add(equipement);
+        equipement.setLot(this);
+    }
 }

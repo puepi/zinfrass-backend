@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,8 +20,11 @@ public class LotResponseDto {
     private int quantiteStock;
     private String descriptive;
     private String typeEquipementName;
-    private List<String> equipements;
+    private List<EquipementResponseDto> equipements;
     private String nomsLivreurs;
+    private String techniciens;
+    private LocalDate dateReception;
+    private String  observations;
     private String providerName;
     private String caracteristiques;
 }
