@@ -21,14 +21,20 @@ public class EspaceService implements IEspaceService{
         Espace espace=new Espace();
         espace.setNom(requestDto.getNom());
         espace.setPosition(requestDto.getPosition());
-        espace.setUsages(Usage.valueOf(requestDto.getUsage()));
+        espace.setUsages(Usage.fromString(requestDto.getUsage()));
         espace.setBatiment(batimentService.getBatiment(requestDto.getBatimentId()));
         espace.setDimensions(requestDto.getDimensions());
-        return Mapper.espaceToEspaceResponseDto(espace);
+        return Mapper.espaceToEspaceResponseDto(espaceRepository.save(espace));
     }
 
     @Override
     public List<EspaceResponseDto> getAllEspaces() {
         return List.of();
+    }
+
+    @Override
+    public List<EspaceResponseDto> getAllEspace() {
+        List<Espace> espaces=espaceRepository.findAll();
+        return Mapper.espacesToListOfEspacesResponseDto(espaces);
     }
 }

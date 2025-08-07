@@ -101,6 +101,12 @@ public class Mapper {
         return responseDto;
     }
 
+    public static List<LotResponseDto> lotsToListOfLotsResponseDto(List<Lot> lots) {
+        return lots.stream()
+                .map(lot->lotToLotResponseDto(lot))
+                .toList();
+    }
+
     public static EquipementResponseDto EquipementtoEquipementResponseDto(Equipement equipement) {
         EquipementResponseDto responseDto = new EquipementResponseDto();
         responseDto.setId(equipement.getId());
@@ -243,5 +249,21 @@ public class Mapper {
         responseDto.setPosition(espace.getPosition());
         return responseDto;
     }
+
+
+    public static List<EspaceResponseDto> espacesToListOfEspacesResponseDto(List<Espace> espaces){
+        return espaces.stream()
+                .map(espace->espaceToEspaceResponseDto(espace))
+                .toList();
+    }
+
+    public static List<TypeEquipementResponseDto> typeEquipementToListOfTypeEquipementResponseDto(List<TypeEquipement> typeEquipements) {
+        return typeEquipements.stream()
+                .map(type->typeEquipementToTypeEquipementResponseDto(type))
+                .toList();
+    }
+
+
+
 
 }

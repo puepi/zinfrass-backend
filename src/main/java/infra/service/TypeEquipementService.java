@@ -51,4 +51,9 @@ public class TypeEquipementService implements ITypeEquipementService{
         List<TypeEquipement> typeEquipements=typeEquipementRepository.findAll();
         return Mapper.typeEquipementToListOfTypeEquipementResponseDto(typeEquipements);
     }
+
+    @Override
+    public TypeEquipementResponseDto getTypeEquipement(Long id) {
+        return null;
+    }
 }

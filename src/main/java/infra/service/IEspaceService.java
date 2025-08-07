@@ -9,4 +9,6 @@ public interface IEspaceService {
     EspaceResponseDto addEspace(EspaceRequestDto requestDto);
 
     List<EspaceResponseDto> getAllEspaces();
+
+    List<EspaceResponseDto> getAllEspace();
 }
