@@ -21,6 +21,7 @@ public class Equipement {
     private Long id;
     @Column(unique = true)
     private String numeroSerie;
+    @Column(unique=true)
     private String numeroUnique;
     @ManyToOne
     @JoinColumn(name="lot_id")

@@ -37,6 +37,9 @@ public class LotService implements ILotService{
         lot.setCaracteristiques(request.getCaracteristiques());
         lot.setMarque(request.getMarque());
         lot.setModele(request.getModele());
+        lot.setDescriptive(request.getDescriptive());
+        lot.setNomsLivreurs(request.getNomsLivreurs());
+        lot.setTechniciens(request.getTechniciens());
         lot.setObservations(request.getObservations());
         lot.setDateLivraison(request.getDateReception());
         lot.setQuantiteStock(request.getQuantiteStock());

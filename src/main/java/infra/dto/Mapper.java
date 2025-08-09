@@ -89,16 +89,21 @@ public class Mapper {
         responseDto.setMarque(lot.getMarque());
         responseDto.setModele(lot.getModele());
         responseDto.setNroLot(lot.getNroLot());
-//        responseDto.setObservations(lot.getObservations());
-//        responseDto.setDateLivraison(lot.getDateLivraison());
+        responseDto.setDescriptive(lot.getDescriptive());
+        responseDto.setObservations(lot.getObservations());
+        responseDto.setDateReception(lot.getDateLivraison());
         responseDto.setQuantiteStock(lot.getQuantiteStock());
         responseDto.setProviderName(lot.getProvider().getNom());
         responseDto.setCaracteristiques(lot.getCaracteristiques());
+        responseDto.setNomsLivreurs(lot.getNomsLivreurs());
+        responseDto.setTechniciens(lot.getTechniciens());
         responseDto.setTypeEquipementName(lot.getTypeEquipement().getNom());
         Set<String> equipements = lot.getEquipements()
                 .stream()
-                .map(equipement -> equipement.getNumeroUnique())
+                .map(equipement -> equipement.getNumeroUnique() + "/"
+                        + equipement.getNumeroSerie())
                 .collect(Collectors.toSet());
+        responseDto.setEquipements(equipements);
         return responseDto;
     }
 
@@ -120,7 +125,7 @@ public class Mapper {
     public static Equipement equipementRequestToEquipement(EquipementRequestDto requestDto) {
         Equipement eq=new Equipement();
         eq.setNumeroSerie(requestDto.getNumeroSerie());
-        eq.setNumeroUnique(requestDto.getNumeroSerie());
+        eq.setNumeroUnique(requestDto.getNumeroUnique());
         return eq;
     }
 
@@ -245,6 +250,12 @@ public class Mapper {
         responseDto.setNuméroCompteur(facturesEauElec.getNuméroCompteur());
         responseDto.setSubdivisionName(facturesEauElec.getBatiment().getSubdivision().getNom());
         return responseDto;
+    }
+
+    public static List<FacturesEauElecResponseDto> facturesToListOfFactures(List<FacturesEauElec> factures) {
+        return factures.stream()
+                .map(facture->facturestoFacturesResponse(facture))
+                .toList();
     }
 
     public static EspaceResponseDto espaceToEspaceResponseDto(Espace espace) {

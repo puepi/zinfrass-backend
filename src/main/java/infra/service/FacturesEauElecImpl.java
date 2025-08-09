@@ -9,6 +9,8 @@ import infra.repository.FacturesEauElecRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class FacturesEauElecImpl implements FacturesEauElecService {
@@ -29,5 +31,11 @@ public class FacturesEauElecImpl implements FacturesEauElecService {
         facturesEauElec.setMontant(request.getMontant());
         facturesEauElec.setNuméroCompteur(request.getNuméroCompteur());
         return Mapper.facturestoFacturesResponse(facturesEauElecRepository.save(facturesEauElec));
+    }
+
+    @Override
+    public List<FacturesEauElecResponseDto> getAllFactures() {
+        List<FacturesEauElec> factures=facturesEauElecRepository.findAll();
+        return Mapper.facturesToListOfFactures(factures);
     }
 }

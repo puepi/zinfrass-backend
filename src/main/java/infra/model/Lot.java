@@ -1,5 +1,6 @@
 package infra.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -38,7 +39,7 @@ public class Lot {
     @JoinColumn(name="type_id", nullable = false)
     private TypeEquipement typeEquipement;
 
-    @OneToMany(mappedBy = "lot",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "lot",cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<Equipement> equipements=new HashSet<>();
 
     @OneToMany(mappedBy = "lot",cascade = CascadeType.ALL,fetch = FetchType.LAZY)

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -20,7 +21,7 @@ public class LotResponseDto {
     private int quantiteStock;
     private String descriptive;
     private String typeEquipementName;
-    private List<EquipementResponseDto> equipements;
+    private Set<String> equipements;
     private String nomsLivreurs;
     private String techniciens;
     private LocalDate dateReception;
