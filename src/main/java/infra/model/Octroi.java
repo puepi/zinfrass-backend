@@ -12,15 +12,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Octroi {
-    @EmbeddedId
-    private OctroiId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne
-    @MapsId("equipementId")
+    @JoinColumn(name = "equipement_id")
     private Equipement equipement;
 
     @ManyToOne
-    @MapsId("structureId")
+    @JoinColumn(name = "structure_id")
     private Structure structure;
 
     private LocalDateTime dateOctroi;

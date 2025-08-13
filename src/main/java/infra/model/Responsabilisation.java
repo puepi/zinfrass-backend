@@ -13,21 +13,23 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 public class Responsabilisation {
-    @EmbeddedId
-    private ResponsabilisationId id;
+    @Id
+    private Long id;
 
-    @ManyToOne
-    @MapsId("structureId")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "structure_id")
     private Structure structure;
 
-    @ManyToOne
-    @MapsId("posteId")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="poste_id")
     private Poste poste;
 
     private LocalDate debut;
     private LocalDate fin;
+    private String nomsPrenoms;
+    private boolean actif;
+
     @OneToOne
     @JoinColumn(name="personnel_id")
     private Personnel personnel;
-    private boolean actif;
 }

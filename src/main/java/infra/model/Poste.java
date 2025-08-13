@@ -20,6 +20,7 @@ public class Poste {
     @Column(nullable = false,unique = true)
     private String nom;
     private String abreviation;
+    @Enumerated(value = EnumType.STRING)
     private Rang rang;
 
 
