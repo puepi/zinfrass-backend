@@ -75,4 +75,17 @@ public class StructureController {
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
         }
     }
+
+    @GetMapping("/get-name")
+    public ResponseEntity<ApiResponse> getByName(@RequestParam String name){
+        try {
+            List<StructureResponseDto> responseDto=service.getStructureByNameContaining(name);
+            return ResponseEntity.ok(new ApiResponse("Succes",responseDto));
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(e.getMessage(),null));
+        }catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
 }

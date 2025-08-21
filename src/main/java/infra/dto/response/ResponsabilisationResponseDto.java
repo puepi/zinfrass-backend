@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResponsabilisationResponseDto {
-    private ResponsabilisationId id;
+    private Long id;
     private String nomStructure;
     private String nomPoste;
     private LocalDate debut;

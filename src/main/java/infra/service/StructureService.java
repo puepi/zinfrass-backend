@@ -54,4 +54,10 @@ public class StructureService implements IStructureService {
         List<Structure> structures=structureRepository.findAll();
         return Mapper.structuresToListOfStructureResponseDto(structures);
     }
+
+    @Override
+    public List<StructureResponseDto> getStructureByNameContaining(String name) {
+        List<Structure> structures=structureRepository.findByNomContainingIgnoreCase(name);
+        return Mapper.structuresToListOfStructureResponseDto(structures);
+    }
 }

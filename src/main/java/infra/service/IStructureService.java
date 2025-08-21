@@ -16,4 +16,6 @@ public interface IStructureService {
     Structure getStructure(Long id);
 
     List<StructureResponseDto> geAllStructures();
+
+    List<StructureResponseDto> getStructureByNameContaining(String name);
 }
