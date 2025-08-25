@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @Data
 public class Responsabilisation {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -24,10 +26,12 @@ public class Responsabilisation {
     @JoinColumn(name="poste_id")
     private Poste poste;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate debut;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate fin;
     private String nomsPrenoms;
-    private boolean actif;
+    private boolean actif=false;
 
     @OneToOne
     @JoinColumn(name="personnel_id")
