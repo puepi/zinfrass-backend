@@ -17,6 +17,6 @@ public class Personnel {
     private String noms;
     private String prenoms;
     private LocalDate dateNaissance;
-    @OneToMany(mappedBy = "personnel")
-    private List<Responsabilisation> responsabilisations;
+//    @OneToMany(mappedBy = "personnel")
+//    private List<Responsabilisation> responsabilisations;
 }

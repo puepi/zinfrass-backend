@@ -21,5 +21,5 @@ public class ResponsabilisationRequestDto {
     private LocalDate debut;
     private LocalDate fin;
     private String noms;
-    private boolean actif;
+    private Boolean actif;
 }

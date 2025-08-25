@@ -205,7 +205,7 @@ public class Mapper {
         responseDto.setDebut(responsabilisation.getDebut());
         responsabilisation.setFin(responsabilisation.getFin());
         responseDto.setNoms(responsabilisation.getNomsPrenoms());
-        responseDto.setActif(responseDto.isActif());
+        responseDto.setActif(responsabilisation.getActif());
         return responseDto;
     }
 
