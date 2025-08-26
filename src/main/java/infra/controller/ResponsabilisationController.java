@@ -29,7 +29,9 @@ public class ResponsabilisationController {
         try {
             ResponsabilisationResponseDto responseDto=responsabilisationService.addResponsabilisation(requestDto);
             return ResponseEntity.ok(new ApiResponse("Success",responseDto));
-        } catch (Exception e) {
+        } catch(ResourceNotFoundException e){
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
         }
