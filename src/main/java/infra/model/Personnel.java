@@ -3,6 +3,7 @@ package infra.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,7 +17,9 @@ public class Personnel {
     private Long id;
     private String noms;
     private String prenoms;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateNaissance;
+    private String matricule;
 //    @OneToMany(mappedBy = "personnel")
 //    private List<Responsabilisation> responsabilisations;
 }
