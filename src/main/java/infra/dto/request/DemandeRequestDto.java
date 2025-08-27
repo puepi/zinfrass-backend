@@ -16,4 +16,5 @@ public class DemandeRequestDto {
     private String catégorieEquipement;
     private String service;
     private String noms;
+    private String poste;
 }

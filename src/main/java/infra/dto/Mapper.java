@@ -283,6 +283,22 @@ public class Mapper {
     }
 
 
+    public static DemandeResponseDto demandeToDemandeResponseDto(Demande demande) {
+        DemandeResponseDto responseDto=new DemandeResponseDto();
+        responseDto.setId(demande.getId());
+        responseDto.setObjet(demande.getObjet());
+        responseDto.setService(demande.getService());
+        responseDto.setPoste(demande.getPoste());
+        responseDto.setNoms(demande.getNoms());
+        responseDto.setDateReception(demande.getDateReception());
+        responseDto.setTypeEquipement(demande.getTypeEquipement());
+        responseDto.setCatégorieEquipement(demande.getCatégorieEquipement());
+        return responseDto;
+    }
 
-
+    public static List<DemandeResponseDto> demandesToListofDemandeResponseDto(List<Demande> demandes) {
+        return demandes.stream()
+                .map(demande -> demandeToDemandeResponseDto(demande))
+                .toList();
+    }
 }
