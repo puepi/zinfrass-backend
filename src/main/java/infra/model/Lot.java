@@ -49,14 +49,17 @@ public class Lot {
     @JoinColumn(name="provider_id")
     private Fournisseur provider;
 
+    @OneToMany(mappedBy = "lot",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Octroi> octrois=new ArrayList<>();
+
     public void setTypeEquipement(TypeEquipement typeEquipement) {
         this.typeEquipement = typeEquipement;
         if(typeEquipement!=null)
             this.caracteristiques=typeEquipement.getCaracteristiques();
     }
 
-    @OneToMany(mappedBy = "lot")
-    private Set<Reception> receptions=new HashSet<>();
+//    @OneToMany(mappedBy = "lot")
+//    private Set<Reception> receptions=new HashSet<>();
 
     public void addEquipement(Equipement equipement){
         equipements.add(equipement);

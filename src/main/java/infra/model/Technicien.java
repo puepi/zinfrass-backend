@@ -20,8 +20,8 @@ public class Technicien {
     @Enumerated(EnumType.STRING)
     private PersonelStatus status;
 
-    @OneToMany(mappedBy = "technicien")
-    private Set<Reception> receptions=new HashSet<>();
+//    @OneToMany(mappedBy = "technicien")
+//    private Set<Reception> receptions=new HashSet<>();
 
     @OneToMany(mappedBy = "technicien")
     private Set<Intervention> interventions=new HashSet<>();

@@ -27,8 +27,8 @@ public class Equipement {
     @JoinColumn(name="lot_id")
     private Lot lot;
 
-    @OneToMany(mappedBy = "equipement",cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Octroi> octrois=new ArrayList<>();
+//    @OneToMany(mappedBy = "equipement",cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
+//    private List<Octroi> octrois=new ArrayList<>();
 
     @OneToMany(mappedBy = "equipement",fetch = FetchType.LAZY)
     private Set<InstallationLogicielle> installations = new HashSet<>();

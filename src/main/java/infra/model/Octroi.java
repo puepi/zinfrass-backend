@@ -17,8 +17,9 @@ public class Octroi {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "equipement_id")
-    private Equipement equipement;
+    @JoinColumn(name = "lot_id")
+    private Lot lot;
+
 
     @ManyToOne
     @JoinColumn(name = "structure_id")

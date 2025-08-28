@@ -24,7 +24,7 @@ public class Espace {
     private String dimensions;
 
     @ManyToOne
-    @JoinColumn(name="espace_id")
+    @JoinColumn(name="batiment_id")
     private Batiment batiment;
 
     @ManyToOne
