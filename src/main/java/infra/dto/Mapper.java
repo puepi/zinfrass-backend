@@ -301,4 +301,19 @@ public class Mapper {
                 .map(demande -> demandeToDemandeResponseDto(demande))
                 .toList();
     }
+
+    public static PersonnelResponseDto personnelToPersonnelResponse(Personnel personnel) {
+        PersonnelResponseDto responseDto=new PersonnelResponseDto();
+        responseDto.setNoms(personnel.getNoms());
+        responseDto.setPrenoms(personnel.getPrenoms());
+        responseDto.setMatricule(personnel.getMatricule());
+        responseDto.setId(personnel.getId());
+        return responseDto;
+    }
+
+    public static List<PersonnelResponseDto> personnelsToListOfPersonnelResponseDto(List<Personnel> personnels) {
+        return personnels.stream()
+                .map(personnel -> personnelToPersonnelResponse(personnel))
+                .toList();
+    }
 }
