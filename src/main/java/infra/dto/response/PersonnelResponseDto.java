@@ -12,4 +12,5 @@ public class PersonnelResponseDto {
     private String noms;
     private String prenoms;;
     private String matricule;
+    private String genre;
 }

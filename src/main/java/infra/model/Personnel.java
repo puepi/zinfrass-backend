@@ -1,5 +1,6 @@
 package infra.model;
 
+import infra.enums.Genre;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,8 @@ public class Personnel {
     private String noms;
     private String prenoms;;
     private String matricule;
+    @Enumerated(value = EnumType.STRING)
+    private Genre genre;
 //    @OneToMany(mappedBy = "personnel")
 //    private List<Responsabilisation> responsabilisations;
 }

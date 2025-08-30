@@ -11,4 +11,5 @@ public class PersonnelRequestDto {
     private String noms;
     private String prenoms;;
     private String matricule;
+    private String genre;
 }

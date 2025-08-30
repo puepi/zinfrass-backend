@@ -308,6 +308,7 @@ public class Mapper {
         responseDto.setPrenoms(personnel.getPrenoms());
         responseDto.setMatricule(personnel.getMatricule());
         responseDto.setId(personnel.getId());
+        responseDto.setGenre(String.valueOf(personnel.getGenre()));
         return responseDto;
     }
 

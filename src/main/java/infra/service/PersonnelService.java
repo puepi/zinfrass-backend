@@ -3,6 +3,7 @@ package infra.service;
 import infra.dto.Mapper;
 import infra.dto.request.PersonnelRequestDto;
 import infra.dto.response.PersonnelResponseDto;
+import infra.enums.Genre;
 import infra.model.Personnel;
 import infra.repository.PersonnelRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class PersonnelService implements IPersonnelService {
         personnel.setNoms(requestDto.getNoms());
         personnel.setMatricule(requestDto.getMatricule());
         personnel.setPrenoms(requestDto.getPrenoms());
+        personnel.setGenre(Genre.fromString(requestDto.getGenre()));
         return Mapper.personnelToPersonnelResponse(personnelRepository.save(personnel));
     }
 
