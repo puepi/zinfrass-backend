@@ -206,8 +206,8 @@ public class Mapper {
         responsabilisation.setFin(responsabilisation.getFin());
         responseDto.setNoms(responsabilisation.getNomsPrenoms());
         responseDto.setActif(responsabilisation.getActif());
-        responseDto.setStructureId(responsabilisation.getStructure().getId());
-        responseDto.setPosteId(responsabilisation.getPoste().getId());
+        responseDto.setStructureId(responsabilisation.getStructure());
+        responseDto.setPosteId(responsabilisation.getPosteId());
         return responseDto;
     }
 
