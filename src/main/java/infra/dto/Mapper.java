@@ -206,6 +206,8 @@ public class Mapper {
         responsabilisation.setFin(responsabilisation.getFin());
         responseDto.setNoms(responsabilisation.getNomsPrenoms());
         responseDto.setActif(responsabilisation.getActif());
+        responseDto.setStructureId(responseDto.getStructureId());
+        responseDto.setPosteId(responseDto.getPosteId());
         return responseDto;
     }
 
@@ -316,5 +318,20 @@ public class Mapper {
         return personnels.stream()
                 .map(personnel -> personnelToPersonnelResponse(personnel))
                 .toList();
+    }
+
+    public static OctroiResponseDto octroiToOctroiResponseDto(Octroi octroi) {
+        OctroiResponseDto responseDto=new OctroiResponseDto();
+        responseDto.setId(octroi.getId());
+        responseDto.setReferenceDocument(octroi.getReferenceDocument());
+        responseDto.setDateOctroi(octroi.getDateOctroi());
+        responseDto.setStructure(octroi.getStructure().getNom());
+        responseDto.setNomsBénéficiaire(octroi.getNomsBénéficiaire());
+        responseDto.setMarque(octroi.getLot().getMarque());
+        responseDto.setModele(octroi.getLot().getModele());
+        responseDto.setNroLot(octroi.getLot().getNroLot());
+        responseDto.setTypeEquipement(octroi.getLot().getTypeEquipement().getNom());
+        responseDto.setPoste(octroi.getPoste());
+        return responseDto;
     }
 }

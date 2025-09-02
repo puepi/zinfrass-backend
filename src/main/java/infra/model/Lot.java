@@ -52,11 +52,7 @@ public class Lot {
     @OneToMany(mappedBy = "lot",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Octroi> octrois=new ArrayList<>();
 
-    public void setTypeEquipement(TypeEquipement typeEquipement) {
-        this.typeEquipement = typeEquipement;
-        if(typeEquipement!=null)
-            this.caracteristiques=typeEquipement.getCaracteristiques();
-    }
+
 
 //    @OneToMany(mappedBy = "lot")
 //    private Set<Reception> receptions=new HashSet<>();

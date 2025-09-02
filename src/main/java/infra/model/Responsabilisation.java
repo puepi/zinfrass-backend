@@ -31,7 +31,7 @@ public class Responsabilisation {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate fin;
     private String nomsPrenoms;
-    private Boolean actif=false;
+    private Boolean actif=true;
 
 //    @OneToOne
 //    @JoinColumn(name="personnel_id")

@@ -44,9 +44,9 @@ public class StructureService implements IStructureService {
     }
 
     @Override
-    public Structure getStructure(Long id) {
-        Structure structure=structureRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Structure inexistante"));
-        return structure;
+    public Structure getStructure(Long id) throws ResourceNotFoundException {
+        return structureRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Structure inexistante"));
+
     }
 
     @Override

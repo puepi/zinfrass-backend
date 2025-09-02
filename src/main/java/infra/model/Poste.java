@@ -22,8 +22,6 @@ public class Poste {
     private String abreviation;
     @Enumerated(value = EnumType.STRING)
     private Rang rang;
-
-
     @OneToMany(mappedBy = "poste")
     private List<Responsabilisation> occupations=new ArrayList<>();
 }
