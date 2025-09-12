@@ -12,7 +12,8 @@ public enum Rang {
     SOUS_DIRECTEUR("Sous-Directeur"),
     CHEF_SERVICE("Chef de Service"),
     CHEF_SERVICE_ADJOINT("Chef de Service Adjoint"),
-    CHEF_BUREAU("Chef de Bureau");
+    CHEF_BUREAU("Chef de Bureau"),
+    NA("NA");
 
     private final String label;
     Rang(String label) {

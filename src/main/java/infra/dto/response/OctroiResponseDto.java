@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -13,7 +14,7 @@ public class OctroiResponseDto {
     private Long id;
     private String nroLot;
     private String structure;
-    private LocalDateTime dateOctroi;
+    private LocalDate dateOctroi;
     private String typeEquipement;
     private String marque;
     private String modele;

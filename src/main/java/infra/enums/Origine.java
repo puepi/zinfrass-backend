@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum Origine {
     INSTALLATION("Installation"),
     MAINTENANCE("Maintenance"),
+    DEPANNAGE("Dépannage"),
     DEPLACEMENT("Déplacement");
 
     private final String label;

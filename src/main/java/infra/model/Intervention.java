@@ -5,7 +5,9 @@ import infra.enums.TypeIncidentIntervention;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -41,10 +43,15 @@ public class Intervention {
     @ManyToOne
     @JoinColumn(name = "incident_id")
     private Incident incident;
-    private LocalDateTime dateIntervention;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateIntervention;
     private String nomsIntervenant;
     private String poste;
+    private String service;
+    private String objet;
+    private String identifiant;
+    private String lieu;
     private String diagnostic;
     private String solution;
-    private String appreciation;
+    private String appreciations;
 }

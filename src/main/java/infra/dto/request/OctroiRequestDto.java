@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 public class OctroiRequestDto {
     private Long lotId;
     private Long structureId;
-    private LocalDateTime dateOctroi;
+    private LocalDate dateOctroi;
     private String nomsBénéficiaire;
     private String poste;
     private String referenceDocument;

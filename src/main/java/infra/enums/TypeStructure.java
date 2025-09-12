@@ -7,6 +7,7 @@ public enum TypeStructure {
     SECRETARIAT_GENERALE("Secrétariat Général"),
     INSPECTION_GENERALE("Inspection Générale"),
     DIRECTION("Direction"),
+    SOUS_DIRECTION("Sous-direction"),
     DIVISION("Division"),
     CELLULE("Cellule"),
     SERVICE("Service"),

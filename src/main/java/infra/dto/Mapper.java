@@ -334,4 +334,26 @@ public class Mapper {
         responseDto.setPoste(octroi.getPoste());
         return responseDto;
     }
+
+    public static IncidentResponseDto incidentToIncidentResponseDto(Incident incident) {
+        IncidentResponseDto responseDto=new IncidentResponseDto();
+        responseDto.setId(incident.getId());
+        responseDto.setDateIncident(incident.getDateIncident());
+        responseDto.setNroIncident(incident.getNroIncident());
+        responseDto.setResolu(incident.getResolu());
+        responseDto.setNomsDeclarant(incident.getNomsDeclarant());
+        responseDto.setDescription(incident.getDescription());
+        responseDto.setPoste(incident.getPoste());
+        responseDto.setNature(String.valueOf(incident.getType()));
+        responseDto.setObjet(incident.getObjet());
+        responseDto.setNomStructure(incident.getNomStructure());
+        responseDto.setIdentifiant(incident.getIdentifiant());
+        return responseDto;
+    }
+
+    public static List<IncidentResponseDto> incidentstoListOfIncidentResponseDto(List<Incident> incidents) {
+        return incidents.stream()
+                .map(incident -> incidentToIncidentResponseDto(incident))
+                .toList();
+    }
 }

@@ -1,5 +1,6 @@
 package infra.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import infra.enums.Origine;
 import infra.enums.TypeIncidentIntervention;
 import jakarta.persistence.*;
@@ -8,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -29,7 +31,8 @@ public class Octroi {
     private Structure structure;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime dateOctroi;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOctroi;
     private String nomsBénéficiaire;
     private String poste;
     private String referenceDocument;

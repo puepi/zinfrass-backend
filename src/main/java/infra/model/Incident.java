@@ -3,8 +3,11 @@ package infra.model;
 import infra.enums.TypeIncidentIntervention;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,14 +17,20 @@ import java.util.Set;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class  Incident {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime dateIncident;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateIncident;
+    private String nroIncident;
     private String nomsDeclarant;
     private String poste;
     private String nomStructure;
+    private String resolu;
+    private String objet;
+    private String identifiant;
     @Enumerated(EnumType.STRING)
     private TypeIncidentIntervention type;
     @ManyToOne

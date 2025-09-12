@@ -42,7 +42,7 @@ public class ResponsabilisationService implements IResponsabilisationService {
             theRepo.setFin(requestDto.getFin());
             theRepo.setNomsPrenoms(requestDto.getNoms());
             if(!theRepo.getNomsPrenoms().trim().equalsIgnoreCase("Poste vacant")){
-                theRepo.setActif(false);
+                theRepo.setActif(true);
             }else{
                 theRepo.setActif(requestDto.getActif());
             }
