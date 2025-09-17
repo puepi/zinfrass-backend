@@ -24,6 +24,7 @@ public class Espace {
     private String dimensions;
     private String description;
 <<<<<<< HEAD
+<<<<<<< HEAD
     @Column(unique=true)
     private String numeroUnique;
 //
@@ -31,6 +32,8 @@ public class Espace {
 =======
 >>>>>>> 64f959f (changes)
 
+=======
+>>>>>>> 64f959f (changes)
 
     @ManyToOne
     @JoinColumn(name="batiment_id")
