@@ -4,6 +4,26 @@ présenter le cycle de vie des infrastructures // gestion des infrastructures co
 (à la réception, quels sont les critères de recherche d'un lot si le lot existe)
 (sinon,afficher le formulaire de création d'un lot)
 (simuler la réception d'un lot de véhicules)
+
+[permettre d'ajouter des équipements ou de les modifier même après la réception]
+[ajouter la situation géographique des structures]
+[ajouter un document qui indique ou non une autorisation d'intervention]
+[ajouter les caractéristiques propres à un équipement]
+[pouvoir afficher en temps réel le stock en magasin ou octroyé]
+[on voudrait aussi réceptionner les bâtiments avec tous les équipements;
+ créer des espaces et affecter des équipements à ces espaces ou
+ octroyer des équipements à un poste de travail
+]
+[   faire un diagramme de classes,
+    (structures,postes, responsabilisations,batiments,factures,équipements,
+    fournisseur,catégorie,type d'équipement,demandes,espaces,personnel,octroi,affectation
+    incident,intervention, connectique
+    )
+]
+[faire un diagramme de cas d'utilisation,]
+[faire un diagramme de séquence,]
+
+[token for git pushing on 16th of september 2025:]
 - tests et appréciation + pv
 - demandes de matériels
 - octroi
