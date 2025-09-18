@@ -35,6 +35,7 @@ public class Espace {
 =======
 >>>>>>> 64f959f (changes)
 
+
     @ManyToOne
     @JoinColumn(name="batiment_id")
     private Batiment batiment;
