@@ -23,7 +23,7 @@ public class Espace {
     private Usage usages;
     private String dimensions;
     private String description;
-
+//
 
     @ManyToOne
     @JoinColumn(name="batiment_id")
