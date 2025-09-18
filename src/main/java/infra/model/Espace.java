@@ -25,6 +25,7 @@ public class Espace {
     private String description;
 //
 
+
     @ManyToOne
     @JoinColumn(name="batiment_id")
     private Batiment batiment;
