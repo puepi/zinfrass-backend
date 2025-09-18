@@ -23,7 +23,7 @@ présenter le cycle de vie des infrastructures // gestion des infrastructures co
 [faire un diagramme de cas d'utilisation,]
 [faire un diagramme de séquence,]
 
-[token for git pushing on 16th of september 2025:]
+[token for git pushing on 16th of september 2025: ]
 - tests et appréciation + pv
 - demandes de matériels
 - octroi
