@@ -27,6 +27,7 @@ public class Espace {
     private String numeroUnique;
 //
 
+
     @ManyToOne
     @JoinColumn(name="batiment_id")
     private Batiment batiment;
