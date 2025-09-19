@@ -15,6 +15,7 @@ import infra.repository.LotRepository;
 import infra.repository.TypeEquipementRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -22,6 +23,8 @@ public class LotService implements ILotService{
     private final LotRepository lotRepository;
     private final FournisseurRepository fournisseurRepository;
     private  final TypeEquipementService typeEquipementService;
+
+    private static final DateTimeFormatter DATE_FR_FORMATTER = DateTimeFormatter.ofPattern("ddMMyyyy");
 
     public LotService(LotRepository lotRepository, FournisseurRepository fournisseurRepository, TypeEquipementRepository typeEquipementRepository, TypeEquipementService typeEquipementService) {
         this.lotRepository = lotRepository;
@@ -32,7 +35,7 @@ public class LotService implements ILotService{
     @Override
     public LotResponseDto addLot(LotRequestDto request) {
         Lot lot=new Lot();
-        lot.setNroLot(request.getNroLot());
+
         lot.setCouleur(request.getCouleur());
         lot.setCaracteristiques(request.getCaracteristiques());
         lot.setMarque(request.getMarque());
@@ -50,6 +53,7 @@ public class LotService implements ILotService{
         for(EquipementRequestDto req: request.getEquipements()){
             lot.addEquipement(Mapper.equipementRequestToEquipement(req));
         }
+        lot.setNroLot(genererNroLot(lot));
         return Mapper.lotToLotResponseDto(lotRepository.save(lot));
     }
 
@@ -61,5 +65,21 @@ public class LotService implements ILotService{
     @Override
     public List<LotResponseDto> getAllLots() {
         return Mapper.lotsToListOfLotsResponseDto(lotRepository.findAll());
+    }
+
+    @Override
+    public String genererNroLot(Lot lot) {
+        String fournisseurCode = lot.getProvider().getNom().toUpperCase(); // suppose un champ code dans Fournisseur
+        String typeCode = lot.getTypeEquipement().getNom().toUpperCase();  // suppose un champ code dans TypeEquipement
+        String marque = lot.getMarque().toUpperCase();
+        String dateStr = lot.getDateLivraison().format(DATE_FR_FORMATTER);
+        // Récupérer tous les lots existants pour cette combinaison
+        List<Lot> lotsExistants = lotRepository.findByProviderAndTypeEquipementAndMarqueAndDateLivraison(
+                lot.getProvider(), lot.getTypeEquipement(), lot.getMarque(), lot.getDateLivraison()
+        );
+        // Numéro séquentiel automatique
+        int numeroSequence = lotsExistants.size() + 1;
+        String seqStr = String.format("%04d", numeroSequence);
+        return String.join("Lot-", fournisseurCode, typeCode, marque, dateStr, seqStr);
     }
 }

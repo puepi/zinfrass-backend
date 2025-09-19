@@ -24,6 +24,8 @@ public class Batiment {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateRetrocession;
     private String description;
+    @Column(unique=true)
+    private String numeroUnique;
     @OneToMany(mappedBy = "batiment")
     private List<FacturesEauElec> facturesEauElec=new ArrayList<>();
 
