@@ -12,4 +12,6 @@ public interface ILotService {
     Lot getLotById(Long lotId);
 
     List<LotResponseDto> getAllLots();
+
+    String genererNroLot(Lot lot);
 }

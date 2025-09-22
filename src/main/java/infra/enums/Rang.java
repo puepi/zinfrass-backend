@@ -13,6 +13,7 @@ public enum Rang {
     CHEF_SERVICE("Chef de Service"),
     CHEF_SERVICE_ADJOINT("Chef de Service Adjoint"),
     CHEF_BUREAU("Chef de Bureau"),
+    ECI("ECI"),
     NA("NA");
 
     private final String label;

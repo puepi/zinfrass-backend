@@ -21,7 +21,10 @@ présenter le cycle de vie des infrastructures // gestion des infrastructures co
 [Quand tu finis une intervention, tu mets à jour l'état de l'objet de l'intervention]
 [On vient d'installer en urgence un nouvel onduleur dans le bureau du Ministre  ]
 [pouvoir afficher en temps réel le stock en magasin ou octroyé]
-[on voudrait aussi réceptionner les bâtiments avec tous les équipements;
+[on peut installer rapidement un onduleur neuf chez le Ministre]
+[Nke a procédé au dépannage de 3 imprimantes ce matin]
+[identifier de manière unique un objet tel qu'un bâtiment, un lieu, un équipement, un logicielc avec une nomenclature qui permet d'en reconnaitre le type]
+[on voudrait aussi réceptionner les bâtiments avec tous les équipements];
  créer des espaces et affecter des équipements à ces espaces ou
  octroyer des équipements à un poste de travail
 ]
