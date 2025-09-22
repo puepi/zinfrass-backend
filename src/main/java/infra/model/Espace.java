@@ -23,17 +23,12 @@ public class Espace {
     private Usage usages;
     private String dimensions;
     private String description;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     @Column(unique=true)
     private String numeroUnique;
 //
 
-=======
->>>>>>> 64f959f (changes)
 
-=======
->>>>>>> 64f959f (changes)
 
 
     @ManyToOne
