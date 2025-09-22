@@ -9,6 +9,17 @@ présenter le cycle de vie des infrastructures // gestion des infrastructures co
 [ajouter la situation géographique des structures]
 [ajouter un document qui indique ou non une autorisation d'intervention]
 [ajouter les caractéristiques propres à un équipement]
+[différencier le fait qu'une structure est incluse dans une autre et qu'une
+ structure est rattachée à une autre:c'est 2 chose différentes
+]
+[[  -uploader les photos,
+    -faire la pagination,
+    -terminer le tableau de bord
+    -mettre à jour, supprimer
+]]
+[Nke vient de dépanner 3 imprimantes]
+[Quand tu finis une intervention, tu mets à jour l'état de l'objet de l'intervention]
+[On vient d'installer en urgence un nouvel onduleur dans le bureau du Ministre  ]
 [pouvoir afficher en temps réel le stock en magasin ou octroyé]
 [on voudrait aussi réceptionner les bâtiments avec tous les équipements;
  créer des espaces et affecter des équipements à ces espaces ou

@@ -36,4 +36,15 @@ public class PersonnelController {
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
         }
     }
+
+    @GetMapping("/get-noms/{id}")
+    public ResponseEntity<ApiResponse> getNomsAndPrenoms(@PathVariable Long id){
+        try {
+            String responseDto=personnelService.getNoms(id);
+            return ResponseEntity.ok(new ApiResponse("Success",responseDto));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+
 }

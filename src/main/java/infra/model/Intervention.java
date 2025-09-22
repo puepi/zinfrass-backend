@@ -53,5 +53,6 @@ public class Intervention {
     private String lieu;
     private String diagnostic;
     private String solution;
-    private String appreciations;
+    private String observations;
+    private String etat_objet;
 }

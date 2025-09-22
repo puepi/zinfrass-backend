@@ -11,4 +11,5 @@ public interface IPersonnelService {
     public PersonnelResponseDto addPersonnel(PersonnelRequestDto requestDto);
     public List<PersonnelResponseDto> getAllPersonnels();
     public PersonnelResponseDto getPersonnelByMatricule(String matricule);
+    String getNoms(Long id);
 }

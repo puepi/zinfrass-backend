@@ -23,6 +23,7 @@ public class Espace {
     private Usage usages;
     private String dimensions;
     private String description;
+    private String identifiant;
 //
 
     @ManyToOne

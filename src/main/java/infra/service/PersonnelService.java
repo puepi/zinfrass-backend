@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,4 +37,22 @@ public class PersonnelService implements IPersonnelService {
     public PersonnelResponseDto getPersonnelByMatricule(String matricule) {
         return null;
     }
+
+    @Override
+    public String getNoms(Long id) {
+        Optional<Personnel> personnelOptional=personnelRepository.findById(id);
+        String noms="";
+        if(personnelOptional.isPresent()){
+            Personnel personnel=personnelOptional.get();
+            if(personnel.getGenre().toString().equals("MASCULIN")){
+                noms+="M. ";
+            }else if(personnel.getGenre().toString().equals("FEMININ")){
+                noms+="Mme ";
+            }
+            noms+= personnel.getNoms() + " " + personnel.getPrenoms();
+            return noms;
+        }
+        return noms;
+    }
+
 }
