@@ -12,10 +12,16 @@ présenter le cycle de vie des infrastructures // gestion des infrastructures co
 [différencier le fait qu'une structure est incluse dans une autre et qu'une
  structure est rattachée à une autre:c'est 2 chose différentes
 ]
+[une structure est répartie sur plusieurs bureaux et un bureau appartient à une structure]
+[un bureau abrite plusieurs postes de travail et un poste de travail est logé dans un seul bureau]
 [[  -uploader les photos,
     -faire la pagination,
     -terminer le tableau de bord
     -mettre à jour, supprimer
+    -comment se fait l'installation de logiciels?
+    -aperçu de la fiche d'équipement:catégorie, type d'équipement,
+        caractéristiques complètes,poste d'affectation,état,incidents,interventions,
+        historique d'attributions
 ]]
 [Nke vient de dépanner 3 imprimantes]
 [Quand tu finis une intervention, tu mets à jour l'état de l'objet de l'intervention]
