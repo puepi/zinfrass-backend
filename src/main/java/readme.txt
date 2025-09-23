@@ -6,6 +6,7 @@ présenter le cycle de vie des infrastructures // gestion des infrastructures co
 (simuler la réception d'un lot de véhicules)
 
 [permettre d'ajouter des équipements ou de les modifier même après la réception]
+[consulter la liste des équipements affectés à un poste de travail]
 [ajouter la situation géographique des structures]
 [ajouter un document qui indique ou non une autorisation d'intervention]
 [ajouter les caractéristiques propres à un équipement]

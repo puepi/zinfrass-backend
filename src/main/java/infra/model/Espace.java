@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,9 +36,12 @@ public class Espace {
     @JoinColumn(name="batiment_id")
     private Batiment batiment;
 
-    @ManyToOne
-    @JoinColumn(name="structure_id")
-    private Structure structure;
+    @OneToMany(mappedBy = "bureau",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Responsabilisation> responsabilisations;
+
+//    @ManyToOne
+//    @JoinColumn(name="structure_id")
+//    private Structure structure;
 
     @OneToMany(mappedBy = "espace",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Image> images=new HashSet<>();

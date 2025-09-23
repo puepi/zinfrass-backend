@@ -26,6 +26,10 @@ public class Responsabilisation {
     @JoinColumn(name="poste_id")
     private Poste poste;
 
+    @ManyToOne
+    @JoinColumn(name = "espace_id")
+    private Espace bureau;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate debut;
     @DateTimeFormat(pattern="yyyy-MM-dd")

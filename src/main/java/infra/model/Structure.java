@@ -52,8 +52,8 @@ public class Structure {
     @OneToMany(mappedBy = "structure",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Responsabilisation> occupations=new ArrayList<>();
 
-    @OneToMany(mappedBy = "structure",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Espace> espaces=new ArrayList<>();
+//    @OneToMany(mappedBy = "structure",cascade = CascadeType.ALL,orphanRemoval = true)
+//    private List<Espace> espaces=new ArrayList<>();
 
     @OneToMany(mappedBy = "structure",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Octroi> octrois=new ArrayList<>();
