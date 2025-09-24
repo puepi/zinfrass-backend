@@ -69,8 +69,8 @@ public class LotService implements ILotService{
 
     @Override
     public String genererNroLot(Lot lot) {
-        String fournisseurCode = lot.getProvider().getNom().toUpperCase(); // suppose un champ code dans Fournisseur
-        String typeCode = lot.getTypeEquipement().getNom().toUpperCase();  // suppose un champ code dans TypeEquipement
+        String fournisseurCode = lot.getProvider().getNom().toUpperCase().substring(0, 2); // suppose un champ code dans Fournisseur
+        String typeCode = lot.getTypeEquipement().getAbreviation().toUpperCase();  // suppose un champ code dans TypeEquipement
         String marque = lot.getMarque().toUpperCase();
         String dateStr = lot.getDateLivraison().format(DATE_FR_FORMATTER);
         // Récupérer tous les lots existants pour cette combinaison
@@ -79,7 +79,7 @@ public class LotService implements ILotService{
         );
         // Numéro séquentiel automatique
         int numeroSequence = lotsExistants.size() + 1;
-        String seqStr = String.format("%04d", numeroSequence);
-        return String.join("Lot-", fournisseurCode, typeCode, marque, dateStr, seqStr);
+        String seqStr = String.format("%03d", numeroSequence);
+        return "Lot-" + seqStr + String.join("-", fournisseurCode, typeCode, dateStr);
     }
 }

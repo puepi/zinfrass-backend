@@ -55,4 +55,5 @@ public class Intervention {
     private String solution;
     private String observations;
     private String etat_objet;
+    private String position_equipement;
 }
