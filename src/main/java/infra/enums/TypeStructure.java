@@ -11,11 +11,12 @@ public enum TypeStructure {
     DIVISION("Division"),
     CELLULE("Cellule"),
     SERVICE("Service"),
+    BUREAU("Bureau"),
     DELEGATION_ARRONDISSEMENT("Délégation d'Arrondissement"),
     DELEGATION_DEPARTEMENTALE("Délégation Départementale"),
     DELEGATION_REGIONALE("Délégation Régionale"),
     CRECHE_HALTE_GARDERIE("Crèche et Halte Garderie"),
-    CENTRE_PROMORION_FEMME_FAMILLE("Centre de Promotion de la Femme et de la Famille"),
+    CENTRE_PROMOTION_FEMME_FAMILLE("Centre de Promotion de la Femme et de la Famille"),
     CENTRE_TECHNOLOGIES_APPROPRIE("Centre de Technologies Approprié");
 
     private final String label;

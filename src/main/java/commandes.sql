@@ -24,3 +24,5 @@ ALTER TABLE equipement
 ADD CONSTRAINT FK_equipement_lot
 FOREIGN KEY (lot_id) REFERENCES lot(id)
 ON DELETE CASCADE;
+
+alter table zinfrass.poste drop constraint poste_chk_1;

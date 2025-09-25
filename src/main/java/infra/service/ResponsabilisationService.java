@@ -56,6 +56,7 @@ public class ResponsabilisationService implements IResponsabilisationService {
             responsabilisation.setFin(requestDto.getFin());
             responsabilisation.setNomsPrenoms(requestDto.getNoms());
             responsabilisation.setActif(requestDto.getActif());
+            System.out.println("noms = " + responsabilisation.getNomsPrenoms());
             return Mapper.responsabilisationToResponsabilisationResponseDto(responsabilisationRepository.save(responsabilisation));
         }
 //        responsabilisation.setId(new ResponsabilisationId(requestDto.getStructureId(), requestDto.getPosteId()));

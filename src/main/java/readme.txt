@@ -6,6 +6,16 @@ présenter le cycle de vie des infrastructures // gestion des infrastructures co
 (simuler la réception d'un lot de véhicules)
 
 [permettre d'ajouter des équipements ou de les modifier même après la réception]
+[générer automatiquement les numéros de série si besoin]
+[générer automatiquement un identifiant unique pour chaque bâtiment, équipement ou espace]
+[[
+    UC-LEN-Think001
+    EC-HP-Pavillon2012
+    OND-APC-Scanovi9851
+    BAT-A-Centraux BAT-B-MFOU
+    BUR-R3
+    TOI-R1
+]]
 [consulter la liste des équipements affectés à un poste de travail]
 [ajouter la situation géographique des structures]
 [ajouter un document qui indique ou non une autorisation d'intervention]

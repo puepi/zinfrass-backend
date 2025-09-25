@@ -34,6 +34,7 @@ public class Responsabilisation {
     private LocalDate debut;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate fin;
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'Poste vacant'")
     private String nomsPrenoms;
     private Boolean actif=true;
 
