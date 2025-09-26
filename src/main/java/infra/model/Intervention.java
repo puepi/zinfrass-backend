@@ -24,6 +24,10 @@ public class Intervention {
     @Enumerated(EnumType.STRING)
     private Origine raison;
 
+    @Lob
+    @OneToOne
+    Image autorisation;
+
     @ManyToOne
     @JoinColumn(name="technicien_id")
     private Technicien technicien;
@@ -56,4 +60,5 @@ public class Intervention {
     private String observations;
     private String etat_objet;
     private String position_equipement;
+    private String ref_autorisation;
 }

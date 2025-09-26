@@ -3,8 +3,7 @@ package infra.enums;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum TypeIncidentIntervention {
-    MATERIEL_STOCK("Materiel en stock"),
-    MATERIEL_OCTROYE("Materiel octroyé"),
+    EQUIPEMENT("Equipement"),
     LOGICIEL("Logiciel"),
     BATIMENT("Bâtiment"),
     ESPACE("Espace");

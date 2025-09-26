@@ -30,38 +30,67 @@ public class ResponsabilisationService implements IResponsabilisationService {
     @Override
     @Transactional
     public ResponsabilisationResponseDto addResponsabilisation(ResponsabilisationRequestDto requestDto) throws ResourceNotFoundException {
-        Responsabilisation responsabilisation=new Responsabilisation();
-        Optional<Responsabilisation> existingRespo=responsabilisationRepository.findByStructureIdAndPosteIdAndActifTrue(requestDto.getStructureId(), requestDto.getPosteId());
-        if(existingRespo.isPresent()){
-            Responsabilisation theRepo=existingRespo.get();
-            Structure structure=structureService.getStructure(requestDto.getStructureId());
-            Poste poste=posteService.getPoste(requestDto.getPosteId());
-            theRepo.setStructure(structure);
-            theRepo.setPoste(poste);
-            theRepo.setDebut(requestDto.getDebut());
-            theRepo.setFin(requestDto.getFin());
-            theRepo.setNomsPrenoms(requestDto.getNoms());
-            if(!theRepo.getNomsPrenoms().trim().equalsIgnoreCase("Poste vacant")){
-                theRepo.setActif(true);
-            }else{
-                theRepo.setActif(requestDto.getActif());
-            }
-            return Mapper.responsabilisationToResponsabilisationResponseDto(responsabilisationRepository.save(theRepo));
-        }else{
-            Structure structure=structureService.getStructure(requestDto.getStructureId());
-            Poste poste=posteService.getPoste(requestDto.getPosteId());
-            responsabilisation.setStructure(structure);
-            responsabilisation.setPoste(poste);
-            responsabilisation.setDebut(requestDto.getDebut());
-            responsabilisation.setFin(requestDto.getFin());
-            responsabilisation.setNomsPrenoms(requestDto.getNoms());
-            responsabilisation.setActif(requestDto.getActif());
-            System.out.println("noms = " + responsabilisation.getNomsPrenoms());
-            return Mapper.responsabilisationToResponsabilisationResponseDto(responsabilisationRepository.save(responsabilisation));
+        // Vérifie s’il existe déjà une responsabilisation active pour ce poste et cette structure
+        Optional<Responsabilisation> existingRespo = responsabilisationRepository
+                .findByStructureIdAndPosteIdAndActifTrue(requestDto.getStructureId(), requestDto.getPosteId());
+
+        Structure structure = structureService.getStructure(requestDto.getStructureId());
+        Poste poste = posteService.getPoste(requestDto.getPosteId());
+
+        if (existingRespo.isPresent()) {
+            // Si une responsabilisation active existe déjà → on la désactive
+            Responsabilisation oldRespo = existingRespo.get();
+            oldRespo.setActif(false);
+            responsabilisationRepository.save(oldRespo);
         }
-//        responsabilisation.setId(new ResponsabilisationId(requestDto.getStructureId(), requestDto.getPosteId()));
-//        System.out.println("respo= " + new ResponsabilisationId(requestDto.getStructureId(), requestDto.getPosteId()));
+        Responsabilisation theRepo = new Responsabilisation();
+        theRepo.setStructure(structure);
+        theRepo.setPoste(poste);
+        theRepo.setDebut(requestDto.getDebut());
+        theRepo.setFin(requestDto.getFin());
+
+        // noms = "Poste vacant" si non renseigné
+        String noms = requestDto.getNoms();
+        if (noms == null || noms.trim().isEmpty()) {
+            theRepo.setNomsPrenoms("Poste vacant");
+        } else {
+            theRepo.setNomsPrenoms(noms.trim());
+        }
+
+        // actif = true si non vacant
+//            if (!theRepo.getNomsPrenoms().equalsIgnoreCase("Poste vacant")) {
+        theRepo.setActif(true);
+//            } else {
+//                theRepo.setActif(false);
+//            }
+
+        return Mapper.responsabilisationToResponsabilisationResponseDto(responsabilisationRepository.save(theRepo));
+
+//        } else {
+//            Responsabilisation responsabilisation = new Responsabilisation();
+//            responsabilisation.setStructure(structure);
+//            responsabilisation.setPoste(poste);
+//            responsabilisation.setDebut(requestDto.getDebut());
+//            responsabilisation.setFin(requestDto.getFin());
+//
+//            // noms = "Poste vacant" si non renseigné
+//            String noms = requestDto.getNoms();
+//            if (noms == null || noms.trim().isEmpty()) {
+//                responsabilisation.setNomsPrenoms("Poste vacant");
+//            } else {
+//                responsabilisation.setNomsPrenoms(noms.trim());
+//            }
+//
+//            // actif = true si non vacant
+////            if (!responsabilisation.getNomsPrenoms().equalsIgnoreCase("Poste vacant")) {
+//                responsabilisation.setActif(true);
+////            } else {
+////                responsabilisation.setActif(false);
+////            }
+
+//            return Mapper.responsabilisationToResponsabilisationResponseDto(responsabilisationRepository.save(responsabilisation))
     }
+
 
     @Override
     public Responsabilisation getResponsabilisation(Long structureId, Long posteId){
