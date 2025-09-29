@@ -21,4 +21,7 @@ public class IncidentResponseDto {
     private String objet;
     private String description;
     private String identifiant;
+    private String poste_affecte;
+    private String structure_affecte;
+    private String personne_affecte;
 }

@@ -31,8 +31,18 @@ public class  Incident {
     private String resolu;
     private String objet;
     private String identifiant;
+    private String poste_affecte;
+    private String structure_affecte;
+    private String personne_affecte;
+
+
+    @ManyToOne
+    private Responsabilisation responsabilisation;
+    @JoinColumn(name = "incident_id")
+
     @Enumerated(EnumType.STRING)
     private TypeIncidentIntervention type;
+
     @ManyToOne
     @JoinColumn(name="equipement_id")
     private Equipement equipement;

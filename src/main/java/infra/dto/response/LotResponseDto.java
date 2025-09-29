@@ -28,4 +28,5 @@ public class LotResponseDto {
     private String  observations;
     private String providerName;
     private String caracteristiques;
+    private String receptionne="Non";
 }

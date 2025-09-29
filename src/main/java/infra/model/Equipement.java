@@ -35,4 +35,7 @@ public class Equipement {
 
     @OneToMany(mappedBy = "equipement",fetch = FetchType.LAZY)
     private Set<Intervention> interventions = new HashSet<>();
+
+    @OneToMany(mappedBy = "equipement",fetch = FetchType.LAZY)
+    private Set<Incident> incidents = new HashSet<>();
 }

@@ -8,7 +8,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -34,6 +36,9 @@ public class Batiment {
 
     @OneToMany(mappedBy = "batiment")
     private List<Intervention> interventions=new ArrayList<>();
+
+    @OneToMany(mappedBy = "batiment",fetch = FetchType.LAZY)
+    private Set<Incident> incidents = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name="subdivision_id")

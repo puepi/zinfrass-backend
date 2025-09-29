@@ -16,7 +16,9 @@ public class InterventionRequestDto {
     private LocalDate dateIntervention;
     private String poste;
     private String service;
+    private String sur;
     private String objet;
+    private String observations;
     private String identifiant;
     private String lieu;
     private String diagnostic;

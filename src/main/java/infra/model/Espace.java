@@ -49,6 +49,9 @@ public class Espace {
     @OneToMany(mappedBy = "espace",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Intervention> interventions=new HashSet<>();
 
+    @OneToMany(mappedBy = "espace",fetch = FetchType.LAZY)
+    private Set<Incident> incidents = new HashSet<>();
+
     @OneToMany(mappedBy = "espace")
     private Set<EspaceConnectique> espaceConnectiques=new HashSet<>();
 }

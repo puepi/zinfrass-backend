@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum TypeIncidentIntervention {
     EQUIPEMENT("Equipement"),
+    LOT("Lot"),
     LOGICIEL("Logiciel"),
     BATIMENT("Bâtiment"),
     ESPACE("Espace");

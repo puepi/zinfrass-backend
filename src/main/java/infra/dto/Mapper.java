@@ -89,6 +89,7 @@ public class Mapper {
         responseDto.setMarque(lot.getMarque());
         responseDto.setModele(lot.getModele());
         responseDto.setNroLot(lot.getNroLot());
+//        responseDto.setReceptionne(lot.getReceptionne());
         responseDto.setDescriptive(lot.getDescriptive());
         responseDto.setObservations(lot.getObservations());
         responseDto.setDateReception(lot.getDateLivraison());

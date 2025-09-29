@@ -4,6 +4,7 @@ import infra.enums.Origine;
 import infra.enums.TypeIncidentIntervention;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class Intervention {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,6 +54,7 @@ public class Intervention {
     private String nomsIntervenant;
     private String poste;
     private String service;
+    private String sur;
     private String objet;
     private String identifiant;
     private String lieu;
@@ -61,4 +64,7 @@ public class Intervention {
     private String etat_objet;
     private String position_equipement;
     private String ref_autorisation;
+    private String poste_affecte;
+    private String structure_affecte;
+    private String personne_affecte;
 }

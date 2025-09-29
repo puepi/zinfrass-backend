@@ -13,6 +13,7 @@ public enum Usage {
     SALON("Salon"),
     SOUS_SOL("Sous-sol"),
     BIBLIOTHEQUE("Bibliothèque"),
+    MAGASIN("Magasin"),
     CENTRE_ASSISTANCE("Centre d'Assistance");
 
     private final String label;

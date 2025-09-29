@@ -34,6 +34,7 @@ public class Lot {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateLivraison;
     private String observations;
+    private String receptionne="Non";
 
     @ManyToOne
     @JoinColumn(name="type_id", nullable = false)
