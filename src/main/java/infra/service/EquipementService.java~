@@ -53,8 +53,8 @@ public class EquipementService implements IEquipementService{
 
     @Override
     public List<EquipementResponseDto> getEquipementsFromLot(Long idLot) {
-        List<Equipement> equipements=equipementRepository.findByLotId(idLot);
-        return equipements.stream().map(equipement -> Mapper.equipementtoEquipementResponseDto(equipement)).toList();
+        List<Equipement> equipements=equipementRepository.findBy
+        return List.of();
     }
 
     @Override

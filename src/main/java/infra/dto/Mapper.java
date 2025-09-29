@@ -114,7 +114,7 @@ public class Mapper {
                 .toList();
     }
 
-    public static EquipementResponseDto EquipementtoEquipementResponseDto(Equipement equipement) {
+    public static EquipementResponseDto equipementtoEquipementResponseDto(Equipement equipement) {
         EquipementResponseDto responseDto = new EquipementResponseDto();
         responseDto.setId(equipement.getId());
         responseDto.setNumeroUnique(equipement.getNumeroUnique());
