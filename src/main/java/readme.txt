@@ -34,6 +34,7 @@ présenter le cycle de vie des infrastructures // gestion des infrastructures co
         caractéristiques complètes,poste d'affectation,état,incidents,interventions,
         historique d'attributions
 ]]
+[BUR R5 BAT-A/CENTRAUX][]
 [Nke vient de dépanner 3 imprimantes]
 [Quand tu finis une intervention, tu mets à jour l'état de l'objet de l'intervention]
 [On vient d'installer en urgence un nouvel onduleur dans le bureau du Ministre  ]

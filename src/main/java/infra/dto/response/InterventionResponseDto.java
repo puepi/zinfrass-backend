@@ -17,12 +17,15 @@ public class InterventionResponseDto {
     private LocalDate dateIntervention;
     private String poste;
     private String service;
-    private String sur;
     private String objet;
     private String identifiant;
     private String observations;
     private String lieu;
     private String diagnostic;
     private String solution;
-    private String appreciations;
+    private String etat_objet;
+    private String position_equipement;
+    private String poste_affecte;
+    private String structure_affecte;
+    private String personne_affecte;
 }

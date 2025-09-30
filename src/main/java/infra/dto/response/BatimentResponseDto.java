@@ -17,4 +17,5 @@ public class BatimentResponseDto {
     private LocalDate dateRetrocession;
     private String description;
     private String subdivisionName;
+    private String numeroUnique;
 }

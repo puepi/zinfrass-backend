@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/interventions")
 @RequiredArgsConstructor
@@ -21,7 +23,7 @@ public class InterventionController {
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> add(@RequestBody InterventionRequestDto requestDto){
         try {
-            InterventionResponseDto responseDto=interventionService.add(requestDto);
+            List<InterventionResponseDto> responseDto=interventionService.addLot(requestDto);
             return ResponseEntity.ok(new ApiResponse("Success",responseDto));
         }catch(Exception e){
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));

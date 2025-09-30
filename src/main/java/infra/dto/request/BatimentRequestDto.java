@@ -25,4 +25,5 @@ public class BatimentRequestDto {
     private boolean isRetrocede;
     private LocalDate dateRetrocession;
     private Long subdivisionId;
+    private String numeroUnique;
 }

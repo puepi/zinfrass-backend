@@ -8,6 +8,6 @@ import java.util.List;
 
 @Service
 public interface IInterventionService {
-    InterventionResponseDto add(InterventionRequestDto requestDto);
+    List<InterventionResponseDto> addLot(InterventionRequestDto requestDto);
     List<InterventionResponseDto> getAllInterventions();
 }

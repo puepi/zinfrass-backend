@@ -54,7 +54,6 @@ public class Intervention {
     private String nomsIntervenant;
     private String poste;
     private String service;
-    private String sur;
     private String objet;
     private String identifiant;
     private String lieu;

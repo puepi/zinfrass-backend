@@ -228,6 +228,7 @@ public class Mapper {
         responseDto.setDateRetrocession(batiment.getDateRetrocession());
         responseDto.setDescription(batiment.getDescription());
         responseDto.setSubdivisionName(batiment.getSubdivision().getNom());
+        responseDto.setNumeroUnique(batiment.getNumeroUnique());
         return responseDto;
     }
 
@@ -356,5 +357,33 @@ public class Mapper {
         return incidents.stream()
                 .map(incident -> incidentToIncidentResponseDto(incident))
                 .toList();
+    }
+
+    public static InterventionResponseDto interventionToInterventionResponseDto(Intervention intervention) {
+        InterventionResponseDto responseDto=new InterventionResponseDto();
+        responseDto.setNomsIntervenant(intervention.getNomsIntervenant());
+        responseDto.setPoste(intervention.getPoste());
+        responseDto.setService(intervention.getService());
+        responseDto.setIdentifiant(intervention.getIdentifiant());
+        responseDto.setObservations(intervention.getObservations());
+        responseDto.setId(intervention.getId());
+        responseDto.setNature(String.valueOf(intervention.getNature()));
+        responseDto.setLieu(intervention.getLieu());
+        responseDto.setDateIntervention(intervention.getDateIntervention());
+        responseDto.setEtat_objet(intervention.getEtat_objet());
+        responseDto.setDiagnostic(intervention.getDiagnostic());
+        responseDto.setSolution(intervention.getSolution());
+        responseDto.setObjet(intervention.getObjet());
+        responseDto.setPosition_equipement(intervention.getPosition_equipement());
+        responseDto.setPersonne_affecte(intervention.getPersonne_affecte());
+        responseDto.setPoste_affecte(intervention.getPoste_affecte());
+        responseDto.setStructure_affecte(intervention.getStructure_affecte());
+        responseDto.setRaison(String.valueOf(intervention.getRaison()));
+        return responseDto;
+    }
+
+    public static List<InterventionResponseDto> interventionsToListOfInterventionResponseDto(List<Intervention> interventions) {
+        return interventions.stream()
+                .map(intervention -> interventionToInterventionResponseDto(intervention)).toList();
     }
 }
