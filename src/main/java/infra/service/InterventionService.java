@@ -42,6 +42,7 @@ public class InterventionService implements IInterventionService{
                 intervention.setEtat_objet(requestDto.getEtat_objet());
                 intervention.setNature(TypeIncidentIntervention.LOT);
                 intervention.setRaison(Origine.RECEPTION);
+                intervention.setRef_autorisation(requestDto.getRef_autorisation());
                 interventions.add(intervention);
             }
             return Mapper.interventionsToListOfInterventionResponseDto(interventionRepository.saveAll(interventions));

@@ -23,6 +23,7 @@ public class InterventionRequestDto {
     private String diagnostic;
     private String solution;
     private String etat_objet;
+    private String ref_autorisation;
     private String position_equipement;
     private String poste_affecte;
     private String structure_affecte;

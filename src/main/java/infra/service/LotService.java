@@ -82,4 +82,9 @@ public class LotService implements ILotService{
         String seqStr = String.format("%03d", numeroSequence);
         return "Lot-" + seqStr + String.join("-", fournisseurCode, typeCode, dateStr);
     }
+
+    @Override
+    public LotResponseDto changeQuantity(Long idLot, int qty) {
+        return null;
+    }
 }

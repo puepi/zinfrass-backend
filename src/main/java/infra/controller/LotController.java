@@ -7,11 +7,7 @@ import infra.exception.ResourceNotFoundException;
 import infra.service.ILotService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.nio.channels.Pipe;
 import java.util.List;
@@ -42,6 +38,21 @@ public class LotController {
     public ResponseEntity<ApiResponse> getAllLots(){
         try {
             List<LotResponseDto> responseDto=lotService.getAllLots();
+            return ResponseEntity.ok(new ApiResponse("Success",responseDto));
+        } catch (ResourceNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Failure",null));
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(
+                    e.getMessage(),null
+            ));
+        }
+    }
+
+    @PutMapping("/change-quantity/{idLot}/{qty}")
+    public ResponseEntity<ApiResponse> getAllLots(@PathVariable Long idLot,@PathVariable int qty ){
+        try {
+            LotResponseDto responseDto=lotService.changeQuantity(idLot,qty);
             return ResponseEntity.ok(new ApiResponse("Success",responseDto));
         } catch (ResourceNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Failure",null));
