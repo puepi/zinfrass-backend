@@ -2,6 +2,7 @@ package infra.controller;
 
 import infra.api_response.ApiResponse;
 import infra.dto.request.LotRequestDto;
+import infra.dto.request.UpdateRequestDto;
 import infra.dto.response.LotResponseDto;
 import infra.exception.ResourceNotFoundException;
 import infra.service.ILotService;
@@ -49,11 +50,26 @@ public class LotController {
         }
     }
 
-    @PutMapping("/change-quantity/{idLot}/{qty}")
-    public ResponseEntity<ApiResponse> getAllLots(@PathVariable Long idLot,@PathVariable int qty ){
+    @PutMapping("/change-quantity/{idLot}")
+    public ResponseEntity<ApiResponse> getAllLots(@PathVariable Long idLot, @RequestBody UpdateRequestDto requestDto){
         try {
-            LotResponseDto responseDto=lotService.changeQuantity(idLot,qty);
+            LotResponseDto responseDto=lotService.changeQuantity(idLot,requestDto.getQty());
             return ResponseEntity.ok(new ApiResponse("Success",responseDto));
+        } catch (ResourceNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Failure",null));
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(
+                    e.getMessage(),null
+            ));
+        }
+    }
+
+    @DeleteMapping("/delete/{idLot}")
+    public ResponseEntity<ApiResponse> getAllLots(@PathVariable Long idLot){
+        try {
+            lotService.deleteLot(idLot);
+            return ResponseEntity.ok(new ApiResponse("Success",null));
         } catch (ResourceNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Failure",null));
         }

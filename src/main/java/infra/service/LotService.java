@@ -14,9 +14,11 @@ import infra.repository.FournisseurRepository;
 import infra.repository.LotRepository;
 import infra.repository.TypeEquipementRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LotService implements ILotService{
@@ -84,7 +86,29 @@ public class LotService implements ILotService{
     }
 
     @Override
+    @Transactional
     public LotResponseDto changeQuantity(Long idLot, int qty) {
-        return null;
+        // 1. Recherche de l'entité par ID. L'utilisation d'Optional est une bonne pratique.
+        Optional<Lot> optionalLot = lotRepository.findById(idLot);
+
+        if (optionalLot.isPresent()) {
+            Lot lot = optionalLot.get();
+
+            // 2. Mise à jour de la propriété de l'entité.
+            lot.setQuantiteStock(qty);
+
+            // 3. Sauvegarde de l'entité. Puisque l'entité a déjà un ID,
+            //    JpaRepository effectue automatiquement une opération UPDATE.
+            return Mapper.lotToLotResponseDto(lotRepository.save(lot));
+        } else {
+            // 4. Si non trouvé, lever une exception qui sera gérée par le contrôleur
+            //    pour retourner un statut HTTP 404 NOT FOUND.
+            throw new RuntimeException("Lot non trouvé avec l'ID: " + idLot);
+        }
+    }
+
+    @Override
+    public void deleteLot(Long idLot) {
+        lotRepository.deleteById(idLot);
     }
 }

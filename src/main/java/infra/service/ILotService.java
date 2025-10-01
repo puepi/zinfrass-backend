@@ -16,4 +16,6 @@ public interface ILotService {
     String genererNroLot(Lot lot);
 
     LotResponseDto changeQuantity(Long idLot, int qty);
+
+    void deleteLot(Long idLot);
 }
