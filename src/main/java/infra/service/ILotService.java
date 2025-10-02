@@ -1,5 +1,6 @@
 package infra.service;
 
+import infra.dto.request.EquipementRequestDto;
 import infra.dto.request.LotRequestDto;
 import infra.dto.response.LotResponseDto;
 import infra.model.Lot;
@@ -18,4 +19,6 @@ public interface ILotService {
     LotResponseDto changeQuantity(Long idLot, int qty);
 
     void deleteLot(Long idLot);
+
+    LotResponseDto addEquipementsToLot(Long idLot, List<EquipementRequestDto> equipements);
 }

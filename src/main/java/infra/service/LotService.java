@@ -47,7 +47,7 @@ public class LotService implements ILotService{
         lot.setTechniciens(request.getTechniciens());
         lot.setObservations(request.getObservations());
         lot.setDateLivraison(request.getDateReception());
-        lot.setQuantiteStock(request.getQuantiteStock());
+//        lot.setQuantiteStock(request.getQuantiteStock());
         TypeEquipement typeEquipement=typeEquipementService.get(request.getTypeEquipementId());
         Fournisseur fournisseur=fournisseurRepository.findById(request.getProviderId()).orElseThrow(()->new ResourceNotFoundException("The provider name does not exist"));
         lot.setProvider(fournisseur);
@@ -56,6 +56,7 @@ public class LotService implements ILotService{
             lot.addEquipement(Mapper.equipementRequestToEquipement(req));
         }
         lot.setNroLot(genererNroLot(lot));
+        lot.updateQuantiteStock();
         return Mapper.lotToLotResponseDto(lotRepository.save(lot));
     }
 
@@ -95,7 +96,7 @@ public class LotService implements ILotService{
             Lot lot = optionalLot.get();
 
             // 2. Mise à jour de la propriété de l'entité.
-            lot.setQuantiteStock(qty);
+            lot.updateQuantiteStock();
 
             // 3. Sauvegarde de l'entité. Puisque l'entité a déjà un ID,
             //    JpaRepository effectue automatiquement une opération UPDATE.
@@ -108,7 +109,27 @@ public class LotService implements ILotService{
     }
 
     @Override
+    @Transactional
     public void deleteLot(Long idLot) {
         lotRepository.deleteById(idLot);
+    }
+
+    @Override
+    public LotResponseDto addEquipementsToLot(Long idLot, List<EquipementRequestDto> equipements) {
+        Lot lot=lotRepository.findById(idLot).orElseThrow(()->new ResourceNotFoundException("Id Lot inexistant"));
+        // 2️⃣ Convert each EquipementRequestDto to Equipement entity and attach to Lot
+        for (EquipementRequestDto dto : equipements) {
+            Equipement equipement = Mapper.equipementRequestToEquipement(dto); // assuming you have this mapper
+            lot.addEquipement(equipement); // automatically sets equipement.lot = lot
+        }
+
+        // 3️⃣ Update quantiteStock automatically
+        lot.updateQuantiteStock(); // or let @PrePersist/@PreUpdate handle it
+
+        // 4️⃣ Save Lot (cascades to new Equipements because of CascadeType.ALL)
+        Lot savedLot = lotRepository.save(lot);
+
+        // 5️⃣ Return response DTO
+        return Mapper.lotToLotResponseDto(savedLot);
     }
 }

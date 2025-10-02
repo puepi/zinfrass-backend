@@ -1,6 +1,7 @@
 package infra.controller;
 
 import infra.api_response.ApiResponse;
+import infra.dto.request.EquipementRequestDto;
 import infra.dto.request.LotRequestDto;
 import infra.dto.request.UpdateRequestDto;
 import infra.dto.response.LotResponseDto;
@@ -69,6 +70,22 @@ public class LotController {
     public ResponseEntity<ApiResponse> getAllLots(@PathVariable Long idLot){
         try {
             lotService.deleteLot(idLot);
+            return ResponseEntity.ok(new ApiResponse("Success",null));
+        } catch (ResourceNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Failure",null));
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(
+                    e.getMessage(),null
+            ));
+        }
+    }
+
+    @PostMapping("/{idLot}/add-equipements")
+    public ResponseEntity<ApiResponse> addEquipementsToLot(@PathVariable Long idLot, @RequestBody List<EquipementRequestDto> equipements
+    ) {
+        try {
+            LotResponseDto updatedLot = lotService.addEquipementsToLot(idLot, equipements);
             return ResponseEntity.ok(new ApiResponse("Success",null));
         } catch (ResourceNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Failure",null));

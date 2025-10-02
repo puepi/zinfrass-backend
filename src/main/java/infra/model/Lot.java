@@ -32,6 +32,7 @@ public class Lot {
     private String nomsLivreurs;
     private String techniciens;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateLivraison;
     private String observations;
     private String receptionne="Non";
@@ -61,5 +62,13 @@ public class Lot {
     public void addEquipement(Equipement equipement){
         equipements.add(equipement);
         equipement.setLot(this);
+        this.quantiteStock=this.equipements.size();
+    }
+
+    // 🔑 JPA callback
+    @PrePersist
+    @PreUpdate
+    public void updateQuantiteStock() {
+        this.quantiteStock = equipements != null ? equipements.size() : 0;
     }
 }
