@@ -380,10 +380,12 @@ public class Mapper {
         responseDto.setStructure_affecte(intervention.getStructure_affecte());
         responseDto.setRaison(String.valueOf(intervention.getRaison()));
         responseDto.setRef_autorisation(intervention.getRef_autorisation());
+        System.out.println("responseDto = " + responseDto);
         return responseDto;
     }
 
     public static List<InterventionResponseDto> interventionsToListOfInterventionResponseDto(List<Intervention> interventions) {
+        System.out.println("\"interventions\" = " + "interventions");
         return interventions.stream()
                 .map(intervention -> interventionToInterventionResponseDto(intervention)).toList();
     }
