@@ -29,8 +29,6 @@ public class InterventionService implements IInterventionService{
     @Transactional
     @Override
     public List<InterventionResponseDto> addLot(InterventionRequestDto requestDto) throws  NumberFormatException{
-
-
         if(Origine.RECEPTION.fromString(requestDto.getRaison()).equals(Origine.RECEPTION)){
             List<Intervention> interventions = new ArrayList<>();
             Lot lot = lotService.getLotById(Long.valueOf(requestDto.getObjet()));
@@ -46,7 +44,7 @@ public class InterventionService implements IInterventionService{
                 intervention.setNomsIntervenant(requestDto.getNomsIntervenant());
                 intervention.setPoste(requestDto.getPoste());
                 intervention.setService(requestDto.getService());
-                intervention.setObjet(requestDto.getObjet());
+                intervention.setObjet(lot.getNroLot());
                 intervention.setLieu(requestDto.getLieu());
                 intervention.setObservations("Réception effectuée avec succès après mise au magasin");
                 intervention.setDateIntervention(LocalDate.now());
@@ -67,6 +65,38 @@ public class InterventionService implements IInterventionService{
 
     @Override
     public List<InterventionResponseDto> getAllInterventions() {
-        return List.of();
+        List<Intervention> interventions=interventionRepository.findAll();
+        return interventions.stream().map(Mapper::interventionToInterventionResponseDto).toList();
+    }
+
+    @Override
+    public InterventionResponseDto addInstallation(InterventionRequestDto requestDto) {
+        if(Origine.INSTALLATION.fromString(requestDto.getRaison()).equals(Origine.INSTALLATION)){
+            Intervention intervention=new Intervention();
+            intervention.setNomsIntervenant(requestDto.getNomsIntervenant());
+            intervention.setPoste(requestDto.getPoste());
+            intervention.setService(requestDto.getService());
+            intervention.setObjet(requestDto.getObjet());
+            intervention.setLieu(requestDto.getLieu());
+            intervention.setObservations(requestDto.getObservations());
+            intervention.setDateIntervention(requestDto.getDateIntervention());
+            intervention.setPosition_equipement(requestDto.getPosition_equipement());
+            intervention.setRaison(Origine.fromString(requestDto.getRaison()));
+            intervention.setIdentifiant(requestDto.getIdentifiant());
+            intervention.setLieu(requestDto.getLieu());
+            intervention.setEtat_objet(requestDto.getEtat_objet());
+            intervention.setNature(TypeIncidentIntervention.fromString(requestDto.getNature()));
+            intervention.setRef_autorisation(requestDto.getRef_autorisation());
+            intervention.setPoste_affecte(requestDto.getPoste_affecte());
+            intervention.setStructure_affecte(requestDto.getStructure_affecte());
+            intervention.setPersonne_affecte(requestDto.getPersonne_affecte());
+            return Mapper.interventionToInterventionResponseDto(interventionRepository.save(intervention));
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteIntervention(Long id) {
+        interventionRepository.deleteById(id);
     }
 }

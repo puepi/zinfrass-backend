@@ -10,4 +10,8 @@ import java.util.List;
 public interface IInterventionService {
     List<InterventionResponseDto> addLot(InterventionRequestDto requestDto);
     List<InterventionResponseDto> getAllInterventions();
+
+    InterventionResponseDto addInstallation(InterventionRequestDto requestDto);
+
+    void deleteIntervention(Long id);
 }

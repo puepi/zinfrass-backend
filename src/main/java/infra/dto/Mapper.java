@@ -380,7 +380,6 @@ public class Mapper {
         responseDto.setStructure_affecte(intervention.getStructure_affecte());
         responseDto.setRaison(String.valueOf(intervention.getRaison()));
         responseDto.setRef_autorisation(intervention.getRef_autorisation());
-        System.out.println("responseDto = " + responseDto);
         return responseDto;
     }
 
