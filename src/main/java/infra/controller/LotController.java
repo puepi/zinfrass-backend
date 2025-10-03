@@ -86,7 +86,7 @@ public class LotController {
     ) {
         try {
             LotResponseDto updatedLot = lotService.addEquipementsToLot(idLot, equipements);
-            return ResponseEntity.ok(new ApiResponse("Success",null));
+            return ResponseEntity.ok(new ApiResponse("Success",updatedLot));
         } catch (ResourceNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Failure",null));
         }
