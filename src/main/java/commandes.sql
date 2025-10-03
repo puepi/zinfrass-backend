@@ -25,6 +25,9 @@ ADD CONSTRAINT FK_equipement_lot
 FOREIGN KEY (lot_id) REFERENCES lot(id)
 ON DELETE CASCADE;
 
+
+ALTER TABLE lot MODIFY caracteristiques TEXT;
+
 alter table zinfrass.poste drop constraint poste_chk_1;
 
 alter table zinfrass.responsabilisation alter column noms_prenoms set default 'Poste vacant' ;

@@ -95,6 +95,7 @@ présenter le cycle de vie des infrastructures // gestion des infrastructures co
 - déploiement
 - extension grâce à un agent intelligent permettant d'aider le technicien à résoudre rapidement les pannes au regard du matériel, des logiciels et de l'historique d'incidents et interventions
 
+https://www.youtube.com/watch?v=29eDuMjsEF8
 https://www.youtube.com/watch?v=M9O5AjEFzKw&t=70191s
 ----------------------------------------------------------------
 (
