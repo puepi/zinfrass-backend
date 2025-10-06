@@ -72,18 +72,23 @@ public class LotService implements ILotService{
 
     @Override
     public String genererNroLot(Lot lot) {
-        String fournisseurCode = lot.getProvider().getNom().toUpperCase().substring(0, 2); // suppose un champ code dans Fournisseur
-        String typeCode = lot.getTypeEquipement().getAbreviation().toUpperCase();  // suppose un champ code dans TypeEquipement
-        String marque = lot.getMarque().toUpperCase();
+        int safeEndIndex = Math.min(3, lot.getProvider().getNom().length());
+        String fournisseurCode = lot.getProvider().getNom().toUpperCase().substring(0, safeEndIndex); // suppose un champ code dans Fournisseur
+        String typeCode = lot.getTypeEquipement().getAbreviation().toUpperCase();
+        safeEndIndex = Math.min(3, lot.getMarque().length());
+        // suppose un champ code dans TypeEquipement
+        String marqueModel = typeCode+lot.getMarque().substring(0,safeEndIndex).toUpperCase();
+        safeEndIndex = Math.min(6, lot.getModele().length());
+        marqueModel+=lot.getModele().substring(0,safeEndIndex).toUpperCase();
         String dateStr = lot.getDateLivraison().format(DATE_FR_FORMATTER);
         // Récupérer tous les lots existants pour cette combinaison
-        List<Lot> lotsExistants = lotRepository.findByProviderAndTypeEquipementAndMarqueAndDateLivraison(
-                lot.getProvider(), lot.getTypeEquipement(), lot.getMarque(), lot.getDateLivraison()
+        List<Lot> lotsExistants = lotRepository.findByProviderAndTypeEquipementAndMarqueAndModeleAndDateLivraison(
+                lot.getProvider(), lot.getTypeEquipement(), lot.getMarque(),lot.getModele(), lot.getDateLivraison()
         );
         // Numéro séquentiel automatique
         int numeroSequence = lotsExistants.size() + 1;
         String seqStr = String.format("%03d", numeroSequence);
-        return "Lot-" + seqStr + String.join("-", fournisseurCode, typeCode, dateStr);
+        return "Lot-" + seqStr + String.join("-", fournisseurCode, marqueModel, dateStr);
     }
 
     @Override
@@ -96,7 +101,7 @@ public class LotService implements ILotService{
             Lot lot = optionalLot.get();
 
             // 2. Mise à jour de la propriété de l'entité.
-            lot.updateQuantiteStock();
+            lot.setQuantiteStock(qty);
 
             // 3. Sauvegarde de l'entité. Puisque l'entité a déjà un ID,
             //    JpaRepository effectue automatiquement une opération UPDATE.

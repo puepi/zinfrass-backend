@@ -12,5 +12,5 @@ import java.util.Optional;
 
 @Repository
 public interface LotRepository extends JpaRepository<Lot,Long> {
-    List<Lot> findByProviderAndTypeEquipementAndMarqueAndDateLivraison(Fournisseur provider, TypeEquipement typeEquipement, String marque, LocalDate dateLivraison);
+    List<Lot> findByProviderAndTypeEquipementAndMarqueAndModeleAndDateLivraison(Fournisseur provider, TypeEquipement typeEquipement, String marque,String modele, LocalDate dateLivraison);
 }

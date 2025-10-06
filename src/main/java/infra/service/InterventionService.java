@@ -30,15 +30,14 @@ public class InterventionService implements IInterventionService{
     @Override
     public List<InterventionResponseDto> addLot(InterventionRequestDto requestDto) throws  NumberFormatException{
         if(Origine.RECEPTION.fromString(requestDto.getRaison()).equals(Origine.RECEPTION)){
+
             List<Intervention> interventions = new ArrayList<>();
             Lot lot = lotService.getLotById(Long.valueOf(requestDto.getObjet()));
+            System.out.println("lot = " + Mapper.lotToLotResponseDto(lot));
             List<String> identifiants=equipementService.getEquipementsFromLot(Long.valueOf(requestDto.getObjet()))
                     .stream().map(equipement->equipement.getNumeroUnique()).toList();
-//            System.out.println("identifiants = " + identifiants);
-            // Remove all equipements to set quantity to 0
-            lot.getEquipements().clear();
-//            lot.updateQuantiteStock(); // optional, will also be done automatically by @PreUpdate
-            lotRepository.save(lot); // make sure this persists the change
+            System.out.println("identifiants = " + identifiants);
+
             for(String id:identifiants){
                 Intervention intervention=new Intervention();
                 intervention.setNomsIntervenant(requestDto.getNomsIntervenant());
@@ -56,11 +55,17 @@ public class InterventionService implements IInterventionService{
                 intervention.setNature(TypeIncidentIntervention.LOT);
                 intervention.setRef_autorisation(requestDto.getRef_autorisation());
                 interventions.add(intervention);
+
 //                LotResponseDto lotResponseDto=lotService.changeQuantity(Long.parseLong(requestDto.getObjet()),0);
             }
+//             Remove all equipements to set quantity to 0
+            lot.getEquipements().clear();
+            lot.updateQuantiteStock(); // optional, will also be done automatically by @PreUpdate
+            lotRepository.save(lot); // make sure this persists the change
             return Mapper.interventionsToListOfInterventionResponseDto(interventionRepository.saveAll(interventions));
+        }else{
+            return null;
         }
-        return null;
     }
 
     @Override

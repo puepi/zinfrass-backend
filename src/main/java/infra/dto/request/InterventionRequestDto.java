@@ -28,4 +28,6 @@ public class InterventionRequestDto {
     private String poste_affecte;
     private String structure_affecte;
     private String personne_affecte;
+    private String nroIncident;
+    private String resolu;
 }
