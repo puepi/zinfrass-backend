@@ -25,6 +25,8 @@ ADD CONSTRAINT FK_equipement_lot
 FOREIGN KEY (lot_id) REFERENCES lot(id)
 ON DELETE CASCADE;
 
+ALTER TABLE `type_equipement`
+MODIFY COLUMN `abreviation` VARCHAR(255) NOT NULL;
 
 ALTER TABLE lot MODIFY caracteristiques TEXT;
 

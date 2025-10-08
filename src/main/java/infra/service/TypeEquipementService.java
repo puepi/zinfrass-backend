@@ -56,4 +56,9 @@ public class TypeEquipementService implements ITypeEquipementService{
     public TypeEquipementResponseDto getTypeEquipement(Long id) {
         return null;
     }
+
+    @Override
+    public void deleteTypeEquipement(Long id) {
+        typeEquipementRepository.deleteById(id);
+    }
 }

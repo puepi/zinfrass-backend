@@ -57,4 +57,17 @@ public class TypeEquipementController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(e.getMessage(),null));
         }
     }
+
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ApiResponse> deleteTypeEquipement(@PathVariable Long id){
+        try {
+            typeEquipementService.deleteTypeEquipement(id);
+            return ResponseEntity.ok(new ApiResponse("Success",null));
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(e.getMessage(),null));
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(e.getMessage(),null));
+        }
+    }
 }
