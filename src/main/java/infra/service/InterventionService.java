@@ -6,6 +6,7 @@ import infra.dto.response.InterventionResponseDto;
 import infra.dto.response.LotResponseDto;
 import infra.enums.Origine;
 import infra.enums.TypeIncidentIntervention;
+import infra.model.Equipement;
 import infra.model.Intervention;
 import infra.model.Lot;
 import infra.repository.InterventionRepository;
@@ -54,9 +55,17 @@ public class InterventionService implements IInterventionService{
                 intervention.setEtat_objet(requestDto.getEtat_objet());
                 intervention.setNature(TypeIncidentIntervention.LOT);
                 intervention.setRef_autorisation(requestDto.getRef_autorisation());
+
                 interventions.add(intervention);
 
 //                LotResponseDto lotResponseDto=lotService.changeQuantity(Long.parseLong(requestDto.getObjet()),0);
+            }
+
+            for (Equipement eq : lot.getEquipements()) {
+                eq.setLastLotId(eq.getLot().getId());        // ✅ keep trace// optional, human readable
+                eq.setLot(null);                             // unlink
+                eq.setLieu("Salle Serveur/Magasin");
+                eq.setCurrentPosition("en stock");
             }
 //             Remove all equipements to set quantity to 0
             lot.getEquipements().clear();

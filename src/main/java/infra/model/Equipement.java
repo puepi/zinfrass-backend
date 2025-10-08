@@ -23,6 +23,9 @@ public class Equipement {
     private String numeroSerie;
     @Column(unique=true)
     private String numeroUnique;
+    private Long lastLotId;
+    private String currentPosition;
+    private String lieu;
     @ManyToOne
     @JoinColumn(name="lot_id")
     private Lot lot;

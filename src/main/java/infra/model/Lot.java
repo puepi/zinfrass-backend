@@ -41,7 +41,7 @@ public class Lot {
     @JoinColumn(name="type_id", nullable = false)
     private TypeEquipement typeEquipement;
 
-    @OneToMany(mappedBy = "lot",cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "lot",cascade = {CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.LAZY)
     private Set<Equipement> equipements=new HashSet<>();
 
     @OneToMany(mappedBy = "lot",cascade = CascadeType.ALL,fetch = FetchType.LAZY)

@@ -15,6 +15,6 @@ public interface IEquipementService {
     EquipementResponseDto getEquipement(Long id);
 
     List<EquipementResponseDto> getEquipementsFromLot(Long idLot);
-
+    List<EquipementResponseDto> getEquipementsEnStock();
     List<EquipementResponseDto> getAllEquipements();
 }

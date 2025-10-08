@@ -55,4 +55,16 @@ public class EquipementController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Failure",null));
         }
     }
+
+    @GetMapping("/en-stock")
+    public ResponseEntity<ApiResponse> getEquipementsEnStock(){
+        try {
+            List<EquipementResponseDto> responseDto=equipementService.getEquipementsEnStock();
+            return ResponseEntity.ok(new ApiResponse("Succes",responseDto));
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(e.getMessage(),null));
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Failure",null));
+        }
+    }
 }

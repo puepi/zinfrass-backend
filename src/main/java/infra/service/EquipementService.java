@@ -58,6 +58,12 @@ public class EquipementService implements IEquipementService{
     }
 
     @Override
+    public List<EquipementResponseDto> getEquipementsEnStock() {
+        List<Equipement> equipements=equipementRepository.findByCurrentPosition("en stock");
+        return equipements.stream().map(equipement -> Mapper.equipementtoEquipementResponseDto(equipement)).toList();
+    }
+
+    @Override
     public List<EquipementResponseDto> getAllEquipements() {
         List<Equipement> equipements=equipementRepository.findAll();
         return equipements.stream().map(equipement -> Mapper.equipementtoEquipementResponseDto(equipement)).toList();

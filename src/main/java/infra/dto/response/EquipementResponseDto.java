@@ -14,4 +14,7 @@ public class EquipementResponseDto {
     private String numeroSerie;
     private String numeroUnique;
     private String nroLot;
+    private String currentPosition;
+    private String lieu;
+    private Long lastLotId;
 }

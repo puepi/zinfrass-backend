@@ -120,6 +120,9 @@ public class Mapper {
         responseDto.setNumeroUnique(equipement.getNumeroUnique());
         responseDto.setNumeroSerie(equipement.getNumeroSerie());
         responseDto.setNroLot(equipement.getLot().getNroLot());
+        responseDto.setLastLotId(equipement.getLastLotId());
+        responseDto.setCurrentPosition(equipement.getCurrentPosition());
+        responseDto.setLieu(equipement.getLieu());
         return responseDto;
     }
 
