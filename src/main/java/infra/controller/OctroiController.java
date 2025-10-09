@@ -4,8 +4,10 @@ import infra.api_response.ApiResponse;
 import infra.dto.request.LotRequestDto;
 import infra.dto.request.OctroiRequestDto;
 import infra.dto.response.OctroiResponseDto;
+import infra.exception.ResourceNotFoundException;
 import infra.service.IOctroiService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +36,22 @@ public class OctroiController {
             return ResponseEntity.ok(new ApiResponse("Success",responseDto));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+
+
+    @DeleteMapping("/{idLot}/delete")
+    public ResponseEntity<ApiResponse> getAllLots(@PathVariable Long idLot){
+        try {
+            octroiService.deleteOctroi(idLot);
+            return ResponseEntity.ok(new ApiResponse("Success",null));
+        } catch (ResourceNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Failure",null));
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(
+                    e.getMessage(),null
+            ));
         }
     }
 }

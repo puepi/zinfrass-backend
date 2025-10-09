@@ -37,7 +37,7 @@ public class EquipementService implements IEquipementService{
 //      System.out.println("equipement = " + equipement);
 //        equipement.setNumeroUnique(EquipmentCodeGenerator.generateEquipmentCode(lot.getProvider().getNom(),lot.getTypeEquipement().getAbreviation(),lot.getDateLivraison()));
         System.out.println("equipement = " + equipement);
-        return Mapper.equipementtoEquipementResponseDto(equipementRepository.save(equipement));
+        return Mapper.equipementtoEquipementResponseDto(equipementRepository.save(equipement),lotService);
     }
 
     @Override
@@ -48,24 +48,29 @@ public class EquipementService implements IEquipementService{
     @Override
     public EquipementResponseDto getEquipement(Long id) {
         Equipement equipement= equipementRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(""));
-        return Mapper.equipementtoEquipementResponseDto(equipement);
+        return Mapper.equipementtoEquipementResponseDto(equipement,lotService);
+    }
+
+    @Override
+    public Optional<Equipement> getEquipementByLot(Long id) {
+        return Optional.empty();
     }
 
     @Override
     public List<EquipementResponseDto> getEquipementsFromLot(Long idLot) {
         List<Equipement> equipements=equipementRepository.findByLotId(idLot);
-        return equipements.stream().map(equipement -> Mapper.equipementtoEquipementResponseDto(equipement)).toList();
+        return equipements.stream().map(equipement -> Mapper.equipementtoEquipementResponseDto(equipement,lotService)).toList();
     }
 
     @Override
     public List<EquipementResponseDto> getEquipementsEnStock() {
         List<Equipement> equipements=equipementRepository.findByCurrentPosition("en stock");
-        return equipements.stream().map(equipement -> Mapper.equipementtoEquipementResponseDto(equipement)).toList();
+        return equipements.stream().map(equipement -> Mapper.equipementtoEquipementResponseDto(equipement,lotService)).toList();
     }
 
     @Override
     public List<EquipementResponseDto> getAllEquipements() {
         List<Equipement> equipements=equipementRepository.findAll();
-        return equipements.stream().map(equipement -> Mapper.equipementtoEquipementResponseDto(equipement)).toList();
+        return equipements.stream().map(equipement -> Mapper.equipementtoEquipementResponseDto(equipement,lotService)).toList();
     }
 }

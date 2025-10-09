@@ -4,13 +4,17 @@ package infra.dto;
 import infra.dto.request.EquipementRequestDto;
 import infra.dto.response.BatimentResponseDto;
 import infra.dto.response.*;
+import infra.exception.ResourceNotFoundException;
 import infra.model.*;
+import infra.service.ILotService;
+import infra.service.LotService;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Mapper {
+
     public static TypeEquipementResponseDto typeEquipementToTypeEquipementResponseDto(TypeEquipement typeEquipement) {
         TypeEquipementResponseDto responseDto = new TypeEquipementResponseDto();
         responseDto.setId(typeEquipement.getId());
@@ -114,12 +118,18 @@ public class Mapper {
                 .toList();
     }
 
-    public static EquipementResponseDto equipementtoEquipementResponseDto(Equipement equipement) {
+    public static EquipementResponseDto equipementtoEquipementResponseDto(Equipement equipement, ILotService lotService) {
         EquipementResponseDto responseDto = new EquipementResponseDto();
+
         responseDto.setId(equipement.getId());
         responseDto.setNumeroUnique(equipement.getNumeroUnique());
         responseDto.setNumeroSerie(equipement.getNumeroSerie());
-        responseDto.setNroLot(equipement.getLot().getNroLot());
+        if(equipement.getLot()!=null){
+            Lot leLot=(equipement.getLot());
+            responseDto.setNroLot(leLot.getNroLot());
+        }else{
+            responseDto.setNroLot(lotService.getLotById(equipement.getLastLotId()).getNroLot());
+        }
         responseDto.setLastLotId(equipement.getLastLotId());
         responseDto.setCurrentPosition(equipement.getCurrentPosition());
         responseDto.setLieu(equipement.getLieu());

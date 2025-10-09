@@ -36,4 +36,9 @@ public class OctroiService implements IOctroiService {
                 .map(octroi -> Mapper.octroiToOctroiResponseDto(octroi))
                 .toList();
     }
+
+    @Override
+    public void deleteOctroi(Long id) {
+        octroiRepository.deleteById(id);
+    }
 }

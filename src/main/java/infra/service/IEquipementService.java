@@ -13,6 +13,7 @@ public interface IEquipementService {
     EquipementResponseDto addEquipement(EquipementRequestDto requestDto);
     List<Equipement> addListOfEquipements(List<EquipementResponseDto> equipements);
     EquipementResponseDto getEquipement(Long id);
+    Optional<Equipement> getEquipementByLot(Long id);
 
     List<EquipementResponseDto> getEquipementsFromLot(Long idLot);
     List<EquipementResponseDto> getEquipementsEnStock();

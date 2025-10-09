@@ -10,4 +10,6 @@ import java.util.List;
 public interface IOctroiService {
     OctroiResponseDto addOctroi(OctroiRequestDto requestDto);
     List<OctroiResponseDto> getAllOctrois();
+
+    void deleteOctroi(Long id);
 }
