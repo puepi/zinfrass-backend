@@ -64,6 +64,10 @@ public class Lot {
         equipement.setLot(this);
         this.quantiteStock=this.equipements.size();
     }
+    public void removeEquipement(Equipement equipement){
+        equipements.remove(equipement);
+        equipement.setLot(null);
+    }
 
     // 🔑 JPA callback
     @PrePersist

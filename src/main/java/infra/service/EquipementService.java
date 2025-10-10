@@ -73,4 +73,9 @@ public class EquipementService implements IEquipementService{
         List<Equipement> equipements=equipementRepository.findAll();
         return equipements.stream().map(equipement -> Mapper.equipementtoEquipementResponseDto(equipement,lotService)).toList();
     }
+
+    @Override
+    public void deleteEquipement(Long id) {
+        equipementRepository.deleteById(id);
+    }
 }

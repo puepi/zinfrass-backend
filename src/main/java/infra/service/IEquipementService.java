@@ -18,4 +18,5 @@ public interface IEquipementService {
     List<EquipementResponseDto> getEquipementsFromLot(Long idLot);
     List<EquipementResponseDto> getEquipementsEnStock();
     List<EquipementResponseDto> getAllEquipements();
+    void deleteEquipement(Long id);
 }

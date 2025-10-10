@@ -10,6 +10,7 @@ import infra.model.Equipement;
 import infra.model.Fournisseur;
 import infra.model.Lot;
 import infra.model.TypeEquipement;
+import infra.repository.EquipementRepository;
 import infra.repository.FournisseurRepository;
 import infra.repository.LotRepository;
 import infra.repository.TypeEquipementRepository;
@@ -25,13 +26,15 @@ public class LotService implements ILotService{
     private final LotRepository lotRepository;
     private final FournisseurRepository fournisseurRepository;
     private  final TypeEquipementService typeEquipementService;
+    private final EquipementRepository equipementRepository;
 
     private static final DateTimeFormatter DATE_FR_FORMATTER = DateTimeFormatter.ofPattern("ddMMyyyy");
 
-    public LotService(LotRepository lotRepository, FournisseurRepository fournisseurRepository, TypeEquipementRepository typeEquipementRepository, TypeEquipementService typeEquipementService) {
+    public LotService(LotRepository lotRepository, FournisseurRepository fournisseurRepository, TypeEquipementRepository typeEquipementRepository, TypeEquipementService typeEquipementService, EquipementService equipementService, EquipementRepository equipementRepository) {
         this.lotRepository = lotRepository;
         this.fournisseurRepository = fournisseurRepository;
         this.typeEquipementService = typeEquipementService;
+        this.equipementRepository = equipementRepository;
     }
 
     @Override
@@ -101,7 +104,9 @@ public class LotService implements ILotService{
             Lot lot = optionalLot.get();
 
             // 2. Mise à jour de la propriété de l'entité.
-            lot.setQuantiteStock(qty);
+//            lot.setQuantiteStock(qty);
+            lot.getEquipements().clear();
+            lot.updateQuantiteStock();
 
             // 3. Sauvegarde de l'entité. Puisque l'entité a déjà un ID,
             //    JpaRepository effectue automatiquement une opération UPDATE.
@@ -136,5 +141,15 @@ public class LotService implements ILotService{
 
         // 5️⃣ Return response DTO
         return Mapper.lotToLotResponseDto(savedLot);
+    }
+
+    @Transactional
+    LotResponseDto removeEquipementFromLot(Long idLot, Long equipementId){
+        Equipement equipement=equipementRepository.findById(equipementId).orElseThrow(()->new ResourceNotFoundException("Equipement inexistant"));
+        equipementRepository.deleteById(equipementId);
+        Lot lot=lotRepository.findById(idLot).orElseThrow(()->new ResourceNotFoundException("Id Lot inexistant"));
+        lot.removeEquipement(equipement);
+        lot.updateQuantiteStock();
+        return Mapper.lotToLotResponseDto(lotRepository.save(lot));
     }
 }

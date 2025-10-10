@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.yaml.snakeyaml.events.Event;
 
 import java.util.ArrayList;
@@ -24,7 +25,8 @@ public class Equipement {
     @Column(unique=true)
     private String numeroUnique;
     private Long lastLotId;
-    private String currentPosition;
+    @ColumnDefault("'en mémoire'")
+    private String currentPosition="en mémoire";
     private String lieu;
     @ManyToOne
     @JoinColumn(name="lot_id")
