@@ -14,7 +14,7 @@ public interface EquipementRepository extends JpaRepository<Equipement,Long>{
 
     @Query("""
             select distinct e from Equipement e
-            left join fetch e.lot
+            left join fetch e.lot l
             left join fetch l.typeEquipement t
             left join  fetch e.interventions i
             left join fetch e.incidents  inc

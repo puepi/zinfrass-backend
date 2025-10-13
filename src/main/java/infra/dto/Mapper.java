@@ -404,31 +404,34 @@ public class Mapper {
                 .map(intervention -> interventionToInterventionResponseDto(intervention)).toList();
     }
 
-    public static InventoryEquipementDto equipementToInventoryEquipementDto(Equipement equipement,ILotService lotService){
-        InventoryEquipementDto inventoryEquipementDto=new InventoryEquipementDto();
-        inventoryEquipementDto.setId(equipement.getId());
-        Lot leLot=equipement.getLot();
-        if(leLot==null){
-            leLot=lotService.getLotById(equipement.getLastLotId());
-        }
-        inventoryEquipementDto.setMarque(leLot.getMarque());
-        inventoryEquipementDto.setModele(leLot.getModele());
-        inventoryEquipementDto.setNroLot(leLot.getNroLot());
-        inventoryEquipementDto.setNumeroSerie(equipement.getNumeroSerie());
-        inventoryEquipementDto.setNumeroUnique(equipement.getNumeroUnique());
-        inventoryEquipementDto.setLieu(equipement.getLieu());
-        inventoryEquipementDto.setCurrentPosition(equipement.getCurrentPosition());
-        inventoryEquipementDto.setTypeEquipement(leLot.getTypeEquipement().getNom());
-        inventoryEquipementDto.setCaracteristiques(leLot.getCaracteristiques());
-        inventoryEquipementDto.setLastLotId(equipement.getLastLotId());
-        inventoryEquipementDto.setPhotos(leLot.getImages());
-        inventoryEquipementDto.setCouleur(leLot.getCouleur());
-        inventoryEquipementDto.setDateReception(leLot.getDateLivraison());
-        return inventoryEquipementDto;
-    }
+//    public static InventoryEquipementDto equipementToInventoryEquipementDto(Equipement equipement,ILotService lotService){
+//        InventoryEquipementDto inventoryEquipementDto=new InventoryEquipementDto();
+//        inventoryEquipementDto.setId(equipement.getId());
+//        Lot leLot=equipement.getLot();
+//        if(leLot==null){
+//            leLot=lotService.getLotById(equipement.getLastLotId());
+//        }
+//        inventoryEquipementDto.setMarque(leLot.getMarque());
+//        inventoryEquipementDto.setModele(leLot.getModele());
+//        inventoryEquipementDto.setNroLot(leLot.getNroLot());
+//        inventoryEquipementDto.setNumeroSerie(equipement.getNumeroSerie());
+//        inventoryEquipementDto.setNumeroUnique(equipement.getNumeroUnique());
+//        inventoryEquipementDto.setLieu(equipement.getLieu());
+//        inventoryEquipementDto.setCurrentPosition(equipement.getCurrentPosition());
+//        inventoryEquipementDto.setTypeEquipement(leLot.getTypeEquipement().getNom());
+//        inventoryEquipementDto.setCaracteristiques(leLot.getCaracteristiques());
+//        inventoryEquipementDto.setLastLotId(equipement.getLastLotId());
+//        inventoryEquipementDto.setPhotos(leLot.getImages());
+//        inventoryEquipementDto.setCouleur(leLot.getCouleur());
+//        inventoryEquipementDto.setDateReception(leLot.getDateLivraison());
+//        return inventoryEquipementDto;
+//    }
 
-    public static InventoryEquipementDto equipementToInventoryEquipementDto(Equipement e){
+    public static InventoryEquipementDto equipementToInventoryEquipementDto(Equipement e,ILotService lotService){
         Lot lot = e.getLot();
+        if(lot==null){
+            lot=lotService.getLotById(e.getLastLotId());
+        }
         TypeEquipement type = (lot != null) ? lot.getTypeEquipement() : null;
 
         InventoryEquipementDto dto = new InventoryEquipementDto();

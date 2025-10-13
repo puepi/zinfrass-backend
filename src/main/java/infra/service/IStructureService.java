@@ -22,4 +22,6 @@ public interface IStructureService {
     Page<StructureResponseDto> getPaginatedAllStructures(Pageable pageable);
 
     List<StructureResponseDto> getStructureByNameContaining(String name);
+
+    void deleteStructureById(Long id);
 }

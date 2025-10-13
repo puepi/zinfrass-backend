@@ -85,7 +85,7 @@ public class EquipementService implements IEquipementService{
     public List<InventoryEquipementDto> getInventoryEquipement() {
         return equipementRepository.findAllWithDetails()
                 .stream()
-                .map(Mapper::equipementToInventoryEquipementDto)
+                .map(equipement->Mapper.equipementToInventoryEquipementDto(equipement,lotService))
                 .toList();
     }
 }

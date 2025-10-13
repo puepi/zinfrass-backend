@@ -4,6 +4,7 @@ import infra.api_response.ApiResponse;
 import infra.dto.response.BatimentResponseDto;
 import infra.dto.response.InventoryEquipementDto;
 import infra.service.EquipementService;
+import infra.service.ILotService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

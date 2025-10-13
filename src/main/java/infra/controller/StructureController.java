@@ -101,4 +101,17 @@ public class StructureController {
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
         }
     }
+
+    @DeleteMapping("/{id}/delete")
+    public ResponseEntity<ApiResponse> deleteStructureById(@PathVariable Long id){
+        try {
+            service.deleteStructureById(id);
+            return ResponseEntity.ok(new ApiResponse("Succes",null));
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(e.getMessage(),null));
+        }catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
 }
