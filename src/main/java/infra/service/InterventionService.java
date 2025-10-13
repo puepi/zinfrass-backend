@@ -12,6 +12,8 @@ import infra.model.Lot;
 import infra.repository.InterventionRepository;
 import infra.repository.LotRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -81,6 +83,11 @@ public class InterventionService implements IInterventionService{
     public List<InterventionResponseDto> getAllInterventions() {
         List<Intervention> interventions=interventionRepository.findAll();
         return interventions.stream().map(Mapper::interventionToInterventionResponseDto).toList();
+    }
+
+    @Override
+    public Page<InterventionResponseDto> getPaginatedAllInterventions(Pageable pageable) {
+        return interventionRepository.findAll(pageable).map(Mapper::interventionToInterventionResponseDto);
     }
 
     @Override

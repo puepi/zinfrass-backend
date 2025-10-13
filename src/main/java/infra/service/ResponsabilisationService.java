@@ -10,6 +10,8 @@ import infra.model.ResponsabilisationId;
 import infra.model.Structure;
 import infra.repository.ResponsabilisationRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -102,6 +104,11 @@ public class ResponsabilisationService implements IResponsabilisationService {
     public List<ResponsabilisationResponseDto> getResponsabilisations(){
         List<Responsabilisation> responseDtos=responsabilisationRepository.findAllByActifTrue();
         return Mapper.responsabilisationsToListOfResponsabilisationResponseDto(responseDtos);
+    }
+
+    @Override
+    public Page<ResponsabilisationResponseDto> getPaginatedAllResponsabilisations(Pageable pageable) {
+        return responsabilisationRepository.findAllByActifTrue(pageable).map(Mapper::responsabilisationToResponsabilisationResponseDto);
     }
 
 }

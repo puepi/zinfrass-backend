@@ -8,6 +8,8 @@ import infra.exception.ResourceNotFoundException;
 import infra.model.Structure;
 import infra.repository.StructureRepository;
 import infra.service.StructureService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -71,6 +73,17 @@ public class StructureController {
         } catch (ResourceNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(e.getMessage(),null));
         }catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+
+    @GetMapping("/getall/pagination")
+    public ResponseEntity<ApiResponse> getPaginatedAllStructures(Pageable pageable){
+        try {
+            Page<StructureResponseDto> responseDto=service.getPaginatedAllStructures(pageable);
+            return ResponseEntity.ok(new ApiResponse("Succes",responseDto));
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
         }

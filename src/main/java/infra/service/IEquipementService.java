@@ -2,6 +2,7 @@ package infra.service;
 
 import infra.dto.request.EquipementRequestDto;
 import infra.dto.response.EquipementResponseDto;
+import infra.dto.response.InventoryEquipementDto;
 import infra.model.Equipement;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +20,6 @@ public interface IEquipementService {
     List<EquipementResponseDto> getEquipementsEnStock();
     List<EquipementResponseDto> getAllEquipements();
     void deleteEquipement(Long id);
+
+    List<InventoryEquipementDto> getInventoryEquipement();
 }

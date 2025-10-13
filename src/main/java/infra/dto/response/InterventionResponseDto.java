@@ -29,4 +29,12 @@ public class InterventionResponseDto {
     private String poste_affecte;
     private String structure_affecte;
     private String personne_affecte;
+
+    public InterventionResponseDto(Long id, LocalDate dateIntervention, String objet, String etatObjet, String positionEquipement) {
+        this.id=id;
+        this.dateIntervention=dateIntervention;
+        this.objet=objet;
+        this.etat_objet=etatObjet;
+        this.position_equipement=positionEquipement;
+    }
 }

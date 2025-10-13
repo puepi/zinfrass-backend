@@ -6,6 +6,8 @@ import infra.dto.response.IncidentResponseDto;
 import infra.dto.response.InterventionResponseDto;
 import infra.service.IInterventionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +33,16 @@ public class InterventionController {
     public ResponseEntity<ApiResponse> getAll(){
         try {
             List<InterventionResponseDto> responseDto=interventionService.getAllInterventions();
+            return ResponseEntity.ok(new ApiResponse("Success",responseDto));
+        }catch(Exception e){
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+
+    @GetMapping("/getall/pagination")
+    public ResponseEntity<ApiResponse> getAll(Pageable pageable){
+        try {
+            Page<InterventionResponseDto> responseDto=interventionService.getPaginatedAllInterventions(pageable);
             return ResponseEntity.ok(new ApiResponse("Success",responseDto));
         }catch(Exception e){
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));

@@ -2,6 +2,8 @@ package infra.repository;
 
 import infra.model.Responsabilisation;
 import infra.model.ResponsabilisationId;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +14,5 @@ import java.util.Optional;
 public interface ResponsabilisationRepository extends JpaRepository<Responsabilisation, ResponsabilisationId> {
     Optional<Responsabilisation> findByStructureIdAndPosteIdAndActifTrue(Long structureId, Long posteId);
     List<Responsabilisation> findAllByActifTrue();
+    Page<Responsabilisation> findAllByActifTrue(Pageable pageable);
 }

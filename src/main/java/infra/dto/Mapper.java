@@ -9,6 +9,7 @@ import infra.model.*;
 import infra.service.ILotService;
 import infra.service.LotService;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -424,5 +425,57 @@ public class Mapper {
         inventoryEquipementDto.setCouleur(leLot.getCouleur());
         inventoryEquipementDto.setDateReception(leLot.getDateLivraison());
         return inventoryEquipementDto;
+    }
+
+    public static InventoryEquipementDto equipementToInventoryEquipementDto(Equipement e){
+        Lot lot = e.getLot();
+        TypeEquipement type = (lot != null) ? lot.getTypeEquipement() : null;
+
+        InventoryEquipementDto dto = new InventoryEquipementDto();
+        dto.setId(e.getId());
+        dto.setNumeroSerie(e.getNumeroSerie());
+        dto.setNumeroUnique(e.getNumeroUnique());
+        dto.setNroLot(lot != null ? lot.getNroLot() : null);
+        dto.setCurrentPosition(e.getCurrentPosition());
+        dto.setLieu(e.getLieu());
+        dto.setLastLotId(e.getLastLotId());
+        dto.setCaracteristiques(lot != null ? lot.getCaracteristiques() : null);
+        dto.setMarque(lot != null ? lot.getMarque() : null);
+        dto.setModele(lot != null ? lot.getModele() : null);
+        dto.setTypeEquipement(type != null ? type.getNom() : null);
+        dto.setCouleur(lot != null ? lot.getCouleur() : null);
+        dto.setDateReception(lot != null ? lot.getDateLivraison() : null);
+        dto.setEtatObjet(
+                e.getInterventions().stream()
+                        .sorted(Comparator.comparing(Intervention::getDateIntervention).reversed())
+                        .map(Intervention::getEtat_objet)
+                        .findFirst().orElse("Inconnu")
+        );
+
+        // map images
+        if (lot != null && lot.getImages() != null)
+            dto.getPhotos().addAll(lot.getImages());
+
+        // map interventions
+        dto.setInterventions(
+                e.getInterventions().stream()
+                        .map(i -> new InterventionResponseDto(
+                                i.getId(),
+                                i.getDateIntervention(),
+                                i.getObjet(),
+                                i.getEtat_objet(),
+                                i.getPosition_equipement()
+                        ))
+                        .toList()
+        );
+
+        // map incidents if you have IncidentResponseDto ready
+        dto.setIncidents(
+                e.getIncidents().stream()
+                        .map(i -> new IncidentResponseDto(i.getId(), i.getObjet(), i.getDateIncident()))
+                        .toList()
+        );
+
+        return dto;
     }
 }

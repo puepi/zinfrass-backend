@@ -8,6 +8,8 @@ import infra.exception.ResourceNotFoundException;
 import infra.model.Poste;
 import infra.service.PosteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +54,16 @@ public class PosteController {
     public ResponseEntity<ApiResponse> getAllPostes(){
         try {
             List<PosteResponseDto> responseDto=posteService.getAllPostes();
+            return ResponseEntity.ok(new ApiResponse("Success", (responseDto)));
+        }catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+    @GetMapping("/getall/pagination")
+    public ResponseEntity<ApiResponse> getPaginatedAllPostes(Pageable pageable){
+        try {
+            Page<PosteResponseDto> responseDto=posteService.getPaginatedAllPostes(pageable);
             return ResponseEntity.ok(new ApiResponse("Success", (responseDto)));
         }catch (Exception e) {
             e.printStackTrace();

@@ -24,4 +24,10 @@ public class IncidentResponseDto {
     private String poste_affecte;
     private String structure_affecte;
     private String personne_affecte;
+
+    public IncidentResponseDto(Long id, String objet, LocalDate dateIncident) {
+        this.id=id;
+        this.objet=objet;
+        this.dateIncident=dateIncident;
+    }
 }

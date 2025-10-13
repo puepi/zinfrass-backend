@@ -5,6 +5,8 @@ import infra.dto.request.PersonnelRequestDto;
 import infra.dto.response.PersonnelResponseDto;
 import infra.service.IPersonnelService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.function.EntityResponse;
@@ -41,6 +43,16 @@ public class PersonnelController {
     public ResponseEntity<ApiResponse> getNomsAndPrenoms(@PathVariable Long id){
         try {
             String responseDto=personnelService.getNoms(id);
+            return ResponseEntity.ok(new ApiResponse("Success",responseDto));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+
+    @GetMapping("/getall/pagination")
+    public ResponseEntity<ApiResponse> getPaginatedAllPersonnels(Pageable pageable){
+        try {
+            Page<PersonnelResponseDto> responseDto=personnelService.getPaginetedAllPersonnels(pageable);
             return ResponseEntity.ok(new ApiResponse("Success",responseDto));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));

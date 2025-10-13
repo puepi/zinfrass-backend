@@ -3,6 +3,7 @@ package infra.service;
 import infra.dto.Mapper;
 import infra.dto.request.EquipementRequestDto;
 import infra.dto.response.EquipementResponseDto;
+import infra.dto.response.InventoryEquipementDto;
 import infra.exception.ResourceNotFoundException;
 import infra.model.Equipement;
 import infra.model.Lot;
@@ -10,6 +11,7 @@ import infra.repository.EquipementRepository;
 import infra.repository.LotRepository;
 import infra.utility.EquipmentCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +25,7 @@ public class EquipementService implements IEquipementService{
     private final ILotService lotService;
 
     @Autowired
-    public EquipementService(EquipementRepository equipementRepository, LotRepository lotRepository, ILotService lotService) {
+    public EquipementService(EquipementRepository equipementRepository, LotRepository lotRepository, @Lazy ILotService lotService) {
         this.equipementRepository = equipementRepository;
         this.lotService = lotService;
     }
@@ -77,5 +79,13 @@ public class EquipementService implements IEquipementService{
     @Override
     public void deleteEquipement(Long id) {
         equipementRepository.deleteById(id);
+    }
+
+    @Override
+    public List<InventoryEquipementDto> getInventoryEquipement() {
+        return equipementRepository.findAllWithDetails()
+                .stream()
+                .map(Mapper::equipementToInventoryEquipementDto)
+                .toList();
     }
 }

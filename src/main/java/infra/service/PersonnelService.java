@@ -7,6 +7,8 @@ import infra.enums.Genre;
 import infra.model.Personnel;
 import infra.repository.PersonnelRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +38,11 @@ public class PersonnelService implements IPersonnelService {
     @Override
     public PersonnelResponseDto getPersonnelByMatricule(String matricule) {
         return null;
+    }
+
+    @Override
+    public Page<PersonnelResponseDto> getPaginetedAllPersonnels(Pageable pageable) {
+        return personnelRepository.findAll(pageable).map(Mapper::personnelToPersonnelResponse);
     }
 
     @Override

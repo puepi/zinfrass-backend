@@ -8,7 +8,10 @@ import infra.exception.ResourceNotFoundException;
 import infra.model.Structure;
 import infra.repository.StructureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -53,6 +56,13 @@ public class StructureService implements IStructureService {
     public List<StructureResponseDto> geAllStructures() {
         List<Structure> structures=structureRepository.findAll();
         return Mapper.structuresToListOfStructureResponseDto(structures);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<StructureResponseDto> getPaginatedAllStructures(Pageable pageable) {
+        Page<Structure> structurePage=structureRepository.findAll(pageable);
+        return structurePage.map(structure -> Mapper.structureToStructureResponseDto(structure));
     }
 
     @Override

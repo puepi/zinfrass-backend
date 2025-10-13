@@ -14,6 +14,8 @@ import infra.repository.EquipementRepository;
 import infra.repository.FournisseurRepository;
 import infra.repository.LotRepository;
 import infra.repository.TypeEquipementRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -74,6 +76,11 @@ public class LotService implements ILotService{
     }
 
     @Override
+    public Page<LotResponseDto> getPaginatedAllLots(Pageable pageable) {
+        return lotRepository.findAll(pageable).map(Mapper::lotToLotResponseDto);
+    }
+
+    @Override
     public String genererNroLot(Lot lot) {
         int safeEndIndex = Math.min(3, lot.getProvider().getNom().length());
         String fournisseurCode = lot.getProvider().getNom().toUpperCase().substring(0, safeEndIndex); // suppose un champ code dans Fournisseur
@@ -90,7 +97,7 @@ public class LotService implements ILotService{
         );
         // Numéro séquentiel automatique
         int numeroSequence = lotsExistants.size() + 1;
-        String seqStr = String.format("%03d", numeroSequence);
+        String seqStr = String.format("%d", numeroSequence);
         return "Lot-" + seqStr + String.join("-", fournisseurCode, marqueModel, dateStr);
     }
 

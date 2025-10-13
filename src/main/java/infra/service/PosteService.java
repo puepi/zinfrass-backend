@@ -7,6 +7,8 @@ import infra.enums.Rang;
 import infra.exception.ResourceNotFoundException;
 import infra.model.Poste;
 import infra.repository.PosteRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,9 +36,15 @@ public class PosteService implements IPosteService {
         return posteRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Poste not found"));
     }
 
+    @Override
     public List<PosteResponseDto> getAllPostes(){
         List<Poste> postes=posteRepository.findAll();
         return  Mapper.postesToListOfPosteResponseDto(postes);
+    }
+
+    @Override
+    public Page<PosteResponseDto> getPaginatedAllPostes(Pageable pageable) {
+        return posteRepository.findAll(pageable).map(Mapper::posteToPosteResponseDto);
     }
 
 }

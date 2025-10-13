@@ -8,6 +8,8 @@ import infra.exception.ResourceNotFoundException;
 import infra.model.Responsabilisation;
 import infra.service.ResponsabilisationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +54,17 @@ public class ResponsabilisationController {
     public ResponseEntity<ApiResponse> getResponsabilisations(){
         try {
             List<ResponsabilisationResponseDto> responseDto=responsabilisationService.getResponsabilisations();
+            return ResponseEntity.ok(new ApiResponse("Found", (responseDto)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+
+    @GetMapping("/getall/pagination")
+    public ResponseEntity<ApiResponse> getPaginatedAllResponsabilisations(Pageable pageable){
+        try {
+            Page<ResponsabilisationResponseDto> responseDto=responsabilisationService.getPaginatedAllResponsabilisations(pageable);
             return ResponseEntity.ok(new ApiResponse("Found", (responseDto)));
         } catch (Exception e) {
             e.printStackTrace();

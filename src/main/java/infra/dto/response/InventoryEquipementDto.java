@@ -28,6 +28,8 @@ public class InventoryEquipementDto {
     private String typeEquipement;
     private String couleur;
     private LocalDate dateReception;
+    private String etatObjet;
+
 //    private String etat_recent;
     private List<IncidentResponseDto> incidents=new ArrayList<>();
     private List<InterventionResponseDto> interventions=new ArrayList<>();
