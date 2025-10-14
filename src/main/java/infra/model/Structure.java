@@ -36,15 +36,15 @@ public class Structure {
     @Enumerated(EnumType.STRING)
     private TypeStructure type;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="sub_id")
     private Subdivision subdivision;
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "parent")
     @JsonManagedReference
     private Set<Structure> structures=new HashSet<>();
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
     @JoinColumn(name = "parent_id")
     private Structure parent;

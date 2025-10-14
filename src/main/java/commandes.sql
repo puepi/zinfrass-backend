@@ -33,3 +33,8 @@ ALTER TABLE lot MODIFY caracteristiques TEXT;
 alter table zinfrass.poste drop constraint poste_chk_1;
 
 alter table zinfrass.responsabilisation alter column noms_prenoms set default 'Poste vacant' ;
+
+--Cannot delete or update a parent row: a foreign key constraint fails
+                                               --(`zinfrass`.`factures_eau_elec`, CONSTRAINT `FKgyp69banu5i1bn7bx1n3chn54` FOREIGN KEY
+                                               --(`batiment_id`) REFERENCES `batiment` (`id`))
+--                                               means that the batiment_id is in use in factures_eau_elec
