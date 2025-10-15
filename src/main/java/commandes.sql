@@ -24,6 +24,8 @@ ALTER TABLE equipement
 ADD CONSTRAINT FK_equipement_lot
 FOREIGN KEY (lot_id) REFERENCES lot(id)
 ON DELETE CASCADE;
+-- the command above allows you to delete a lot and by the way delete automatically all its equipements
+
 
 ALTER TABLE `type_equipement`
 MODIFY COLUMN `abreviation` VARCHAR(255) NOT NULL;
@@ -37,4 +39,5 @@ alter table zinfrass.responsabilisation alter column noms_prenoms set default 'P
 --Cannot delete or update a parent row: a foreign key constraint fails
                                                --(`zinfrass`.`factures_eau_elec`, CONSTRAINT `FKgyp69banu5i1bn7bx1n3chn54` FOREIGN KEY
                                                --(`batiment_id`) REFERENCES `batiment` (`id`))
---                                               means that the batiment_id is in use in factures_eau_elec
+--                                               means that the batiment_id is in use in factures_eau_elec and in some way the row you want to
+--                                               delete is linked to batiment which in turn used in factures_eau_elec
