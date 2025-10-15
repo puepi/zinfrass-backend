@@ -9,6 +9,8 @@ import infra.model.TypeEquipement;
 import infra.repository.TypeEquipementRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -60,5 +62,10 @@ public class TypeEquipementService implements ITypeEquipementService{
     @Override
     public void deleteTypeEquipement(Long id) {
         typeEquipementRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<TypeEquipementResponseDto> getAllPaginatedTypesEquipement(Pageable pageable) {
+        return typeEquipementRepository.findAll(pageable).map(Mapper::typeEquipementToTypeEquipementResponseDto);
     }
 }

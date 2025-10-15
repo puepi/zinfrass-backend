@@ -3,6 +3,8 @@ package infra.service;
 import infra.dto.request.TypeEquipementRequestDto;
 import infra.dto.response.TypeEquipementResponseDto;
 import infra.model.TypeEquipement;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -18,4 +20,6 @@ public interface ITypeEquipementService {
     TypeEquipementResponseDto getTypeEquipement(Long id);
 
     void deleteTypeEquipement(Long id);
+
+    Page<TypeEquipementResponseDto> getAllPaginatedTypesEquipement(Pageable pageable);
 }
