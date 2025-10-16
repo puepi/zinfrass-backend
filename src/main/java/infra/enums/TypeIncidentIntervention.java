@@ -8,6 +8,7 @@ public enum TypeIncidentIntervention {
     LOGICIEL("Logiciel"),
     BATIMENT("Bâtiment"),
     ESPACE("Espace");
+
     private final String label;
 
     TypeIncidentIntervention(String label) {
