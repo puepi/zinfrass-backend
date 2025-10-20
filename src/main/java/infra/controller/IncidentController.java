@@ -35,4 +35,13 @@ public class IncidentController {
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
         }
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<ApiResponse> updateIncidents(){
+        try {
+            return ResponseEntity.ok(new ApiResponse("Success",null));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
 }

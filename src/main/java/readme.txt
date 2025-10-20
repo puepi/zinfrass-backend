@@ -9,12 +9,12 @@ présenter le cycle de vie des infrastructures // gestion des infrastructures co
 [générer automatiquement les numéros de série si besoin]
 [générer automatiquement un identifiant unique pour chaque bâtiment, équipement ou espace]
 [[
-    UC-LEN-Think001
-    EC-HP-Pavillon2012
-    OND-APC-Scanovi9851
+    EQ-UC-LEN-Think001
+    EQ-EC-HP-Pavillon2012
+    EQ-OND-APC-Scanovi98-51
     BAT-A-Centraux BAT-B-MFOU
-    BUR-R3
-    TOI-R1
+    ESP-BUR-R3
+    ESP-TOI-R1
 ]]
 [consulter la liste des équipements affectés à un poste de travail]
 [ajouter la situation géographique des structures]
@@ -95,6 +95,7 @@ présenter le cycle de vie des infrastructures // gestion des infrastructures co
 - déploiement
 - extension grâce à un agent intelligent permettant d'aider le technicien à résoudre rapidement les pannes au regard du matériel, des logiciels et de l'historique d'incidents et interventions
 
+---------------------------------------------------------------------------------
 https://www.youtube.com/watch?v=29eDuMjsEF8
 https://www.youtube.com/watch?v=M9O5AjEFzKw&t=70191s
 https://www.youtube.com/watch?v=joHUPyb3ZwY&t=40s
@@ -118,3 +119,13 @@ https://www.youtube.com/watch?v=joHUPyb3ZwY&t=40s
 - rechercher l'objet d'une intervention selon la nature matériel, batiment, espace
 - rechercher un bâtiment selon la subdivision
 
+[
+    les différents rôles sont: administrateur, technicien et utilisateur
+    USER -> send incidents and give appreciations
+    TECH -> update incidents and register interventions
+    ADMIN -> manage users, assign technicians, manage equipement
+    donner la possibilité au Chef de noter chaque intervention par des observations
+    et une couleur satisfait/pas satisfait
+    donner la possibilité ç tout le monde de voir les incidents à l'accueil avec des
+    couleurs pour classer du plus récent au plus ancien
+]

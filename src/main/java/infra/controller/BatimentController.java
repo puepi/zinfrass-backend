@@ -59,7 +59,7 @@ public class BatimentController {
 
     }
 
-    @GetMapping("/getall")
+    @GetMapping("/public/getall")
     public ResponseEntity<ApiResponse> getAllBatiments(){
         try {
             List<BatimentResponseDto> responseDto=batimentService.getBatiments();

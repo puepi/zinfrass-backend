@@ -59,6 +59,15 @@ public class InterventionController {
         }
     }
 
+    @PostMapping("/add")
+    public ResponseEntity<ApiResponse> addIntervention(){
+        try {
+            return ResponseEntity.ok(new ApiResponse("Success",null));
+        }catch(Exception e){
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+
     @DeleteMapping("/{id}/delete")
     public ResponseEntity<ApiResponse> deleteIntervention(@PathVariable Long id){
         try {
@@ -68,4 +77,6 @@ public class InterventionController {
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
         }
     }
+
+
 }
