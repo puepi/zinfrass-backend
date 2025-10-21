@@ -1,6 +1,7 @@
 package infra.dto;
 
 
+import infra.dto.request.AppUserRequestDto;
 import infra.dto.request.EquipementRequestDto;
 import infra.dto.response.BatimentResponseDto;
 import infra.dto.response.*;
@@ -480,5 +481,12 @@ public class Mapper {
         );
 
         return dto;
+    }
+
+    public static AppUser userRequestDtoToUser(AppUserRequestDto userRequestDto) {
+        AppUser user = new AppUser();
+        user.setUsername(userRequestDto.getUsername());
+        user.setPassword(userRequestDto.getPassword());
+        return user;
     }
 }

@@ -37,7 +37,7 @@ public class ApiConfig {
         http
                 .csrf(csrf->csrf.disable())
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests((auth) -> auth
+                .authorizeHttpRequests(auth -> auth
 //                .requestMatchers(HttpMethod.GET,"/**").permitAll() // allow access to public path
                 .requestMatchers(HttpMethod.POST,"/login").permitAll()
                 .requestMatchers("/error","/public").permitAll()
