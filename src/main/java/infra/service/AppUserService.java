@@ -19,11 +19,11 @@ public class AppUserService implements  IAppUserService{
     }
 
     @Override
-    public String login(AppUserRequestDto user) {
+    public boolean login(AppUserRequestDto user) {
         AppUser theUser=userRepository.findByUsername(user.getUsername())
                 .orElseThrow(()->new ResourceNotFoundException("User not found"));
         if(theUser.getPassword().equals(user.getPassword()))
-            return "Successfully logged in";
-        return "Failed to log in";
+            return true;
+        return false;
     }
 }

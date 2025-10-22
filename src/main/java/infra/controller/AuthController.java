@@ -6,7 +6,9 @@ import infra.dto.response.BatimentResponseDto;
 import infra.model.AppUser;
 import infra.service.IAppUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,10 +35,16 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<ApiResponse> login(@RequestBody AppUserRequestDto user){
         try {
-            String responseDto= userService.login(user);
-            return ResponseEntity.ok(new ApiResponse("Success", responseDto));
+            boolean responseDto= userService.login(user);
+            if(responseDto==true)
+                return ResponseEntity.ok(new ApiResponse("Success", responseDto));
+            else
+                throw new UsernameNotFoundException("You are not authorized");
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiResponse(e.getMessage(),null));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
         }
+
     }
 }
