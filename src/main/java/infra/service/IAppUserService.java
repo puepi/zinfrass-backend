@@ -7,4 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IAppUserService {
     public AppUser register(AppUserRequestDto requestDto);
+
+    String login(AppUserRequestDto user);
 }

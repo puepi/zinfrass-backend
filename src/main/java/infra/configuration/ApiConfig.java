@@ -1,24 +1,32 @@
 package infra.configuration;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import static org.springframework.security.authentication.dao.DaoAuthenticationProvider.*;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
+@RequiredArgsConstructor
 public class ApiConfig {
+    private final UserDetailsService userDetailsService;
+
     @Bean
     public WebMvcConfigurer corsConfigurer(){
         return new WebMvcConfigurer(){
@@ -39,7 +47,7 @@ public class ApiConfig {
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
 //                .requestMatchers(HttpMethod.GET,"/**").permitAll() // allow access to public path
-                .requestMatchers(HttpMethod.POST,"/login").permitAll()
+                .requestMatchers(HttpMethod.POST,"/auth/login","/auth/register").permitAll()
                 .requestMatchers("/error","/public").permitAll()
                 // Allow all roles to access GET endpoints
                 .requestMatchers(HttpMethod.GET, "/**").hasAnyRole("USER", "TECH", "ADMIN")
@@ -65,25 +73,33 @@ public class ApiConfig {
         return http.build();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
-        UserDetails user = User.withUsername("user")
-                .password(encoder.encode("password"))
-                .roles("USER")
-                .build();
-        UserDetails tech=User.withUsername("tech")
-                .password(encoder.encode("tech"))
-                .roles("TECH")
-                .build();
-        UserDetails admin = User.withUsername("admin")
-                .password(encoder.encode("admin"))
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(user, admin,tech);
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
+//        UserDetails user = User.withUsername("user")
+//                .password(encoder.encode("password"))
+//                .roles("USER")
+//                .build();
+//        UserDetails tech=User.withUsername("tech")
+//                .password(encoder.encode("tech"))
+//                .roles("TECH")
+//                .build();
+//        UserDetails admin = User.withUsername("admin")
+//                .password(encoder.encode("admin"))
+//                .roles("ADMIN")
+//                .build();
+//        return new InMemoryUserDetailsManager(user, admin,tech);
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider provider=new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+        return provider;
     }
 }
