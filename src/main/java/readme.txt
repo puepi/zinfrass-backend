@@ -99,6 +99,7 @@ présenter le cycle de vie des infrastructures // gestion des infrastructures co
 https://www.youtube.com/watch?v=29eDuMjsEF8
 https://www.youtube.com/watch?v=M9O5AjEFzKw&t=70191s
 https://www.youtube.com/watch?v=joHUPyb3ZwY&t=40s
+https://www.youtube.com/watch?v=Qyid0FxEn6k
 ----------------------------------------------------------------
 (
   une recherche inclut les ressources suivantes: un type d'équipement, un équipement,

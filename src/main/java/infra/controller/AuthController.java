@@ -35,16 +35,15 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<ApiResponse> login(@RequestBody AppUserRequestDto user){
         try {
-            boolean responseDto= userService.login(user);
-            if(responseDto==true)
+            String responseDto= userService.login(user);
+            if(!responseDto.equals("Failure")){
                 return ResponseEntity.ok(new ApiResponse("Success", responseDto));
-            else
+            }else
                 throw new UsernameNotFoundException("You are not authorized");
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiResponse(e.getMessage(),null));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
         }
-
     }
 }

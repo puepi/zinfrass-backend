@@ -8,5 +8,5 @@ import org.springframework.stereotype.Service;
 public interface IAppUserService {
     public AppUser register(AppUserRequestDto requestDto);
 
-    boolean login(AppUserRequestDto user);
+    String login(AppUserRequestDto user);
 }
