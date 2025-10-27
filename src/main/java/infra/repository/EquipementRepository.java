@@ -11,6 +11,7 @@ import java.util.List;
 public interface EquipementRepository extends JpaRepository<Equipement,Long>{
     List<Equipement> findByLotId(Long idLot);
     List<Equipement> findByCurrentPosition(String position);
+    Equipement findByNumeroUnique(String identifiant);
 
     @Query("""
             select distinct e from Equipement e

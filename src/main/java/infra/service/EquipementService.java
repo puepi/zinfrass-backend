@@ -9,14 +9,12 @@ import infra.model.Equipement;
 import infra.model.Lot;
 import infra.repository.EquipementRepository;
 import infra.repository.LotRepository;
-import infra.utility.EquipmentCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class EquipementService implements IEquipementService{
@@ -87,5 +85,13 @@ public class EquipementService implements IEquipementService{
                 .stream()
                 .map(equipement->Mapper.equipementToInventoryEquipementDto(equipement,lotService))
                 .toList();
+    }
+
+    @Override
+    public Equipement getEquipementByNumeroUnique(String identifiant) {
+        Equipement equipement=equipementRepository.findByNumeroUnique(identifiant);
+        System.out.println("equipement = " + equipement);
+        System.out.println("identifiant = " + identifiant);
+        return equipement;
     }
 }

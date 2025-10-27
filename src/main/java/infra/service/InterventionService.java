@@ -9,6 +9,7 @@ import infra.enums.TypeIncidentIntervention;
 import infra.model.Equipement;
 import infra.model.Intervention;
 import infra.model.Lot;
+import infra.repository.EquipementRepository;
 import infra.repository.InterventionRepository;
 import infra.repository.LotRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ import java.util.List;
 public class InterventionService implements IInterventionService{
     private final InterventionRepository interventionRepository;
     private final EquipementService equipementService;
+    private final EquipementRepository equipementRepository;
     private final LotService lotService;
     private final LotRepository lotRepository;
 
@@ -90,7 +92,9 @@ public class InterventionService implements IInterventionService{
         return interventionRepository.findAll(pageable).map(Mapper::interventionToInterventionResponseDto);
     }
 
+
     @Override
+    @Transactional
     public InterventionResponseDto addInstallation(InterventionRequestDto requestDto) {
         if(Origine.INSTALLATION.fromString(requestDto.getRaison()).equals(Origine.INSTALLATION)){
             Intervention intervention=new Intervention();
@@ -98,13 +102,17 @@ public class InterventionService implements IInterventionService{
             intervention.setPoste(requestDto.getPoste());
             intervention.setService(requestDto.getService());
             intervention.setObjet(requestDto.getObjet());
-            intervention.setLieu(requestDto.getLieu());
             intervention.setObservations(requestDto.getObservations());
             intervention.setDateIntervention(requestDto.getDateIntervention());
             intervention.setPosition_equipement(requestDto.getPosition_equipement());
             intervention.setRaison(Origine.fromString(requestDto.getRaison()));
             intervention.setIdentifiant(requestDto.getIdentifiant());
             intervention.setLieu(requestDto.getLieu());
+            //get equipement by numero_unique and update lieu and current_position
+            Equipement equipement=equipementService.getEquipementByNumeroUnique(requestDto.getIdentifiant());
+            equipement.setLieu(requestDto.getLieu());
+            equipement.setCurrentPosition(requestDto.getPosition_equipement());
+            equipementRepository.save(equipement);
             intervention.setEtat_objet(requestDto.getEtat_objet());
             intervention.setNature(TypeIncidentIntervention.fromString(requestDto.getNature()));
             intervention.setRef_autorisation(requestDto.getRef_autorisation());

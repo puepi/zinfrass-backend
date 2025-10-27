@@ -15,6 +15,7 @@ public class ResponsabilisationResponseDto {
     private Long id;
     private Long structureId;
     private Long posteId;
+    private String espaceBureau;
     private String nomStructure;
     private String nomPoste;
     private LocalDate debut;

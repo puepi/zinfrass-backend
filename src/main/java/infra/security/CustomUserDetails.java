@@ -20,8 +20,6 @@ public class CustomUserDetails implements UserDetails {
 //        return Collections.singleton(new SimpleGrantedAuthority("USER"));
         List<SimpleGrantedAuthority> authorities=new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        authorities.add(new SimpleGrantedAuthority("ROLE_TECH"));
-        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         return authorities;
     }
 

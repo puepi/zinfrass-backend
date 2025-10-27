@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -28,6 +29,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @RequiredArgsConstructor
 public class ApiConfig {
     private final UserDetailsService userDetailsService;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     public WebMvcConfigurer corsConfigurer(){
@@ -42,37 +44,38 @@ public class ApiConfig {
         };
     }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf->csrf.disable())
-                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.POST,"/auth/login","/auth/register").permitAll()
-                .requestMatchers("/error","/public").permitAll()
-                // Allow all roles to access GET endpoints
-                .requestMatchers(HttpMethod.GET, "/**").hasAnyRole("USER", "TECH", "ADMIN")
-
-                // Incident access rules
-//                .requestMatchers(HttpMethod.GET, "/incidents/**").hasAnyRole("USER", "TECH", "ADMIN")
-                .requestMatchers(HttpMethod.POST, "/incidents/**").hasAnyRole("USER", "TECH")
-                .requestMatchers(HttpMethod.PUT, "/incidents/**").hasRole("TECH")
-
-                // Only USER can post appreciations
-                .requestMatchers(HttpMethod.POST, "/appreciations/**").hasRole("USER")
-
-                // Only TECH can post interventions
-                .requestMatchers(HttpMethod.POST, "/interventions/**").hasRole("TECH")
-
-                // All other endpoints require ADMIN role
-                .requestMatchers("/**").hasRole("ADMIN"))
-                 .formLogin(form->form.disable())
-                .logout(logout->logout.disable())
-                 .httpBasic(withDefaults())  // enable http basic authentication
-//                .logout(withDefaults())
-        ;
-        return http.build();
-    }
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//                .csrf(csrf->csrf.disable())
+//                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .authorizeHttpRequests(auth -> auth
+//                .requestMatchers(HttpMethod.POST,"/auth/login","/auth/register").permitAll()
+//                .requestMatchers("/error","/public").permitAll()
+//                // Allow all roles to access GET endpoints
+//                .requestMatchers(HttpMethod.GET, "/**").hasAnyRole("USER", "TECH", "ADMIN")
+//
+//                // Incident access rules
+////                .requestMatchers(HttpMethod.GET, "/incidents/**").hasAnyRole("USER", "TECH", "ADMIN")
+//                .requestMatchers(HttpMethod.POST, "/incidents/**").hasAnyRole("USER", "TECH")
+//                .requestMatchers(HttpMethod.PUT, "/incidents/**").hasRole("TECH")
+//
+//                // Only USER can post appreciations
+//                .requestMatchers(HttpMethod.POST, "/appreciations/**").hasRole("USER")
+//
+//                // Only TECH can post interventions
+//                .requestMatchers(HttpMethod.POST, "/interventions/**").hasRole("TECH")
+//
+//                // All other endpoints require ADMIN role
+//                .requestMatchers("/**").hasRole("ADMIN"))
+//                 .formLogin(form->form.disable())
+//                .logout(logout->logout.disable())
+//                 .httpBasic(withDefaults())  // enable http basic authentication
+//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+////                .logout(withDefaults())
+//        ;
+//        return http.build();
+//    }
 
 //    @Bean
 //    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
@@ -108,4 +111,19 @@ public class ApiConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll()
+                )
+                .formLogin(form -> form.disable())
+                .httpBasic(withDefaults());
+
+        return http.build();
+    }
+
 }

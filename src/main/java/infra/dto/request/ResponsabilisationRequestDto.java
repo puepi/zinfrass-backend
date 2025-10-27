@@ -18,6 +18,7 @@ import java.time.LocalDate;
 public class ResponsabilisationRequestDto {
     private Long structureId;
     private Long posteId;
+    private Long espaceId;
     private LocalDate debut;
     private LocalDate fin;
     private String noms;

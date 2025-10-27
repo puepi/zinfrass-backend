@@ -22,4 +22,6 @@ public interface IEquipementService {
     void deleteEquipement(Long id);
 
     List<InventoryEquipementDto> getInventoryEquipement();
+
+    Equipement getEquipementByNumeroUnique(String identifiant);
 }
