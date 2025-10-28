@@ -61,8 +61,16 @@ public class EquipementController {
         try {
             List<EquipementResponseDto> responseDto=equipementService.getEquipementsEnStock();
             return ResponseEntity.ok(new ApiResponse("Succes",responseDto));
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(e.getMessage(),null));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+
+    @GetMapping("/out-stock")
+    public ResponseEntity<ApiResponse> getEquipementsHorsStock(){
+        try {
+            List<EquipementResponseDto> responseDto=equipementService.getEquipementsHorsStock();
+            return ResponseEntity.ok(new ApiResponse("Succes",responseDto));
         }catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse(e.getMessage(),null));
         }

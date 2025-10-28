@@ -64,6 +64,8 @@ public class Intervention {
     private String position_equipement;
     private String ref_autorisation;
     private String poste_affecte;
+    private String nroIncident;
     private String structure_affecte;
     private String personne_affecte;
+    private String resolu;
 }

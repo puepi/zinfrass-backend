@@ -11,6 +11,8 @@ import infra.repository.EquipementRepository;
 import infra.repository.LotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -69,6 +71,12 @@ public class EquipementService implements IEquipementService{
     }
 
     @Override
+    public List<EquipementResponseDto> getEquipementsHorsStock() {
+        List<Equipement> equipements=equipementRepository.findByCurrentPosition("out stock");
+        return equipements.stream().map(equipement -> Mapper.equipementtoEquipementResponseDto(equipement,lotService)).toList();
+    }
+
+    @Override
     public List<EquipementResponseDto> getAllEquipements() {
         List<Equipement> equipements=equipementRepository.findAll();
         return equipements.stream().map(equipement -> Mapper.equipementtoEquipementResponseDto(equipement,lotService)).toList();
@@ -93,5 +101,11 @@ public class EquipementService implements IEquipementService{
         System.out.println("equipement = " + equipement);
         System.out.println("identifiant = " + identifiant);
         return equipement;
+    }
+
+    @Override
+    public Page<InventoryEquipementDto> getInventoryAllPaginated(Pageable pageable) {
+        Page<Equipement> inventory=equipementRepository.findAll(pageable);
+        return inventory.map(equipement -> Mapper.equipementToInventoryEquipementDto(equipement,lotService));
     }
 }

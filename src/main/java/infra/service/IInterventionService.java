@@ -18,4 +18,6 @@ public interface IInterventionService {
     InterventionResponseDto addInstallation(InterventionRequestDto requestDto);
 
     void deleteIntervention(Long id);
+
+    InterventionResponseDto addDepannage(InterventionRequestDto requestDto);
 }

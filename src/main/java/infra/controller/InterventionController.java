@@ -58,6 +58,15 @@ public class InterventionController {
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
         }
     }
+    @PostMapping("/add-depannage")
+    public ResponseEntity<ApiResponse> addDepannage(@RequestBody InterventionRequestDto requestDto){
+        try {
+            InterventionResponseDto responseDto=interventionService.addDepannage(requestDto);
+            return ResponseEntity.ok(new ApiResponse("Success",responseDto));
+        }catch(Exception e){
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
 
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addIntervention(){

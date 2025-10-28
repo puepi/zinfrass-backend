@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IncidentRepository extends JpaRepository<Incident,Long> {
+
+    Incident findByNroIncident(String nroIncident);
 }

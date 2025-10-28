@@ -2,14 +2,17 @@ package infra.service;
 
 import infra.dto.Mapper;
 import infra.dto.request.InterventionRequestDto;
+import infra.dto.response.IncidentResponseDto;
 import infra.dto.response.InterventionResponseDto;
 import infra.dto.response.LotResponseDto;
 import infra.enums.Origine;
 import infra.enums.TypeIncidentIntervention;
 import infra.model.Equipement;
+import infra.model.Incident;
 import infra.model.Intervention;
 import infra.model.Lot;
 import infra.repository.EquipementRepository;
+import infra.repository.IncidentRepository;
 import infra.repository.InterventionRepository;
 import infra.repository.LotRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +32,9 @@ public class InterventionService implements IInterventionService{
     private final EquipementService equipementService;
     private final EquipementRepository equipementRepository;
     private final LotService lotService;
+    private final IncidentService incidentService;
     private final LotRepository lotRepository;
+    private final IncidentRepository incidentRepository;
 
     @Transactional
     @Override
@@ -127,5 +132,45 @@ public class InterventionService implements IInterventionService{
     @Override
     public void deleteIntervention(Long id) {
         interventionRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public InterventionResponseDto addDepannage(InterventionRequestDto requestDto) {
+        if(Origine.DEPANNAGE.fromString(requestDto.getRaison()).equals(Origine.DEPANNAGE)){
+            Intervention intervention=new Intervention();
+            intervention.setNomsIntervenant(requestDto.getNomsIntervenant());
+            intervention.setPoste(requestDto.getPoste());
+            intervention.setService(requestDto.getService());
+            intervention.setObjet(requestDto.getObjet());
+            intervention.setObservations(requestDto.getObservations());
+            intervention.setDateIntervention(requestDto.getDateIntervention());
+            intervention.setPosition_equipement(requestDto.getPosition_equipement());
+            intervention.setRaison(Origine.fromString(requestDto.getRaison()));
+            intervention.setIdentifiant(requestDto.getIdentifiant());
+            intervention.setLieu(requestDto.getLieu());
+            intervention.setDiagnostic(requestDto.getDiagnostic());
+            intervention.setSolution(requestDto.getSolution());
+            //get equipement by numero_unique and update lieu and current_position
+            Equipement equipement=equipementService.getEquipementByNumeroUnique(requestDto.getIdentifiant());
+            equipement.setLieu(requestDto.getLieu());
+            equipement.setCurrentPosition(requestDto.getPosition_equipement());
+            equipementRepository.save(equipement);
+            intervention.setEtat_objet(requestDto.getEtat_objet());
+            intervention.setNature(TypeIncidentIntervention.fromString(requestDto.getNature()));
+            intervention.setRef_autorisation(requestDto.getRef_autorisation());
+            intervention.setPoste_affecte(requestDto.getPoste_affecte());
+            intervention.setStructure_affecte(requestDto.getStructure_affecte());
+            intervention.setPersonne_affecte(requestDto.getPersonne_affecte());
+            intervention.setNroIncident(requestDto.getNroIncident());
+            intervention.setResolu(requestDto.getResolu());
+            if(requestDto.getResolu().equals("oui")){
+                Incident incident=incidentService.getByNroIncident(requestDto.getNroIncident());
+                incident.setResolu("oui");
+                incidentRepository.save(incident);
+            }
+            return Mapper.interventionToInterventionResponseDto(interventionRepository.save(intervention));
+        }
+        return null;
     }
 }

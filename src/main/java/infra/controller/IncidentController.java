@@ -3,8 +3,11 @@ package infra.controller;
 import infra.api_response.ApiResponse;
 import infra.dto.request.IncidentRequestDto;
 import infra.dto.response.IncidentResponseDto;
+import infra.dto.response.StructureResponseDto;
 import infra.service.IIncidentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,6 +44,17 @@ public class IncidentController {
         try {
             return ResponseEntity.ok(new ApiResponse("Success",null));
         } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
+        }
+    }
+
+    @GetMapping("/getall/pagination")
+    public ResponseEntity<ApiResponse> getPaginatedAllIncidents(Pageable pageable){
+        try {
+            Page<IncidentResponseDto> responseDto=incidentService.getPaginatedAllIncidents(pageable);
+            return ResponseEntity.ok(new ApiResponse("Succes",responseDto));
+        } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.internalServerError().body(new ApiResponse(e.getMessage(),null));
         }
     }

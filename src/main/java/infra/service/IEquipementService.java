@@ -4,6 +4,8 @@ import infra.dto.request.EquipementRequestDto;
 import infra.dto.response.EquipementResponseDto;
 import infra.dto.response.InventoryEquipementDto;
 import infra.model.Equipement;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +20,13 @@ public interface IEquipementService {
 
     List<EquipementResponseDto> getEquipementsFromLot(Long idLot);
     List<EquipementResponseDto> getEquipementsEnStock();
+    List<EquipementResponseDto> getEquipementsHorsStock();
     List<EquipementResponseDto> getAllEquipements();
     void deleteEquipement(Long id);
 
     List<InventoryEquipementDto> getInventoryEquipement();
 
     Equipement getEquipementByNumeroUnique(String identifiant);
+
+    Page<InventoryEquipementDto> getInventoryAllPaginated(Pageable pageable);
 }

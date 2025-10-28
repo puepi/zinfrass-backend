@@ -388,6 +388,7 @@ public class Mapper {
         responseDto.setEtat_objet(intervention.getEtat_objet());
         responseDto.setDiagnostic(intervention.getDiagnostic());
         responseDto.setSolution(intervention.getSolution());
+        responseDto.setNroIncident(intervention.getNroIncident());
         responseDto.setObjet(intervention.getObjet());
         responseDto.setPosition_equipement(intervention.getPosition_equipement());
         responseDto.setPersonne_affecte(intervention.getPersonne_affecte());

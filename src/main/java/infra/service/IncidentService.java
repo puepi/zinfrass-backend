@@ -7,6 +7,8 @@ import infra.enums.TypeIncidentIntervention;
 import infra.model.Incident;
 import infra.repository.IncidentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,4 +38,17 @@ public class IncidentService implements IIncidentService {
         List<Incident> incidents=incidentRepository.findAll();
         return Mapper.incidentstoListOfIncidentResponseDto(incidents);
     }
+
+    @Override
+    public Page<IncidentResponseDto> getPaginatedAllIncidents(Pageable pageable) {
+        Page<Incident> incidents=incidentRepository.findAll(pageable);
+        return incidents.map(Mapper::incidentToIncidentResponseDto);
+    }
+
+    @Override
+    public Incident getByNroIncident(String nroIncident) {
+        Incident incident=incidentRepository.findByNroIncident(nroIncident);
+        return incident;
+    }
+
 }

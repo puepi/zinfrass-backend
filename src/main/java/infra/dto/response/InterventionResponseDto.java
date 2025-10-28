@@ -29,6 +29,8 @@ public class InterventionResponseDto {
     private String poste_affecte;
     private String structure_affecte;
     private String personne_affecte;
+    private String nroIncident;
+    private boolean resolu;
 
     public InterventionResponseDto(Long id, LocalDate dateIntervention, String objet, String etatObjet, String positionEquipement) {
         this.id=id;
