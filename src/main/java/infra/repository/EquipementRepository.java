@@ -22,4 +22,7 @@ public interface EquipementRepository extends JpaRepository<Equipement,Long>{
             left join fetch l.images img
             """)
     List<Equipement> findAllWithDetails();
+
+    @Query("select count(e) from Equipement e where e.currentPosition='en stock'")
+    Long countEquipementsEnStock();
 }
